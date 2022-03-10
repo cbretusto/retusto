@@ -1,6 +1,6 @@
 @php $layout = 'layouts.super_user_layout'; @endphp
 
-@auth
+{{-- @auth
     @php
         if(Auth::user()->user_level_id == 1){
             $layout = 'layouts.super_user_layout';
@@ -12,7 +12,7 @@
             $layout = 'layouts.user_layout';
         }
     @endphp
-@endauth
+@endauth --}}
 
 {{-- Here I removed the @auth because the dashboard isn't loading properly --}}
 @extends($layout)
