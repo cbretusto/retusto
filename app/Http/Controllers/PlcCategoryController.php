@@ -54,17 +54,18 @@ class PlcCategoryController extends Controller
         })
         ->addColumn('action', function ($plc_category){
             $result = "";
-
+            $result = "<center>";
             //===== DISPLAY DELETE BUTTON IN PLC CATEGORY DATATABLES =====//
             // $result .= '<button type="button" class="btn btn-danger actionDeletePlcCategory" plc_category-id="' . $plc_category->id . '" data-toggle="modal" data-target="#modalDeletePlcCategory" data-keyboard="false"><i class="fas fa-times"></i></button>';
             if ($plc_category->logdel == 0) {
                 $result .= '<button class="btn btn-primary btn-sm  text-center actionEditPlcCategory" plc_category-id="' . $plc_category->id . '" data-toggle="modal" data-target="#modalEditPLCCategory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
-                $result .= '<button class="btn btn-danger btn-sm text-center actionDeactivatePlcCategory" plc_category-id="' . $plc_category->id . '"  data-toggle="modal" data-target="#modalDeactivatePlcCategory" data-keyboard="false"><i class ="fa fa-ban">  Deactivate</button>';
+                $result .= '<button class="btn btn-danger btn-sm text-center actionDeactivatePlcCategory" plc_category-id="' . $plc_category->id . '"  data-toggle="modal" data-target="#modalDeactivatePlcCategory" data-keyboard="false"><i class ="fa fa-ban"></i>  Deactivate</button>';
             } else {
-                $result .= '<button class="btn btn-success btn-sm text-center actionActivatePlcCategory" plc_category-id="' . $plc_category->id . '"  data-toggle="modal" data-target="#modalActivatePlcCategory" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
+                $result .= '<button class="btn btn-success btn-sm text-center actionActivatePlcCategory" plc_category-id="' . $plc_category->id . '"  data-toggle="modal" data-target="#modalActivatePlcCategory" data-keyboard="false"><i class ="fa fa-key"></i>  Activate</button>';
             }
-
             return $result;
+            $result = "<center>";
+
         })
         ->addColumn('status', function($plc_category){
             $result = "<center>";
@@ -121,7 +122,7 @@ class PlcCategoryController extends Controller
             }
         }
     }
-    
+
     //============================== DEACTIVATE PLC CATEGORY ==============================
     public function deactivate_plc_category(Request $request)
     {

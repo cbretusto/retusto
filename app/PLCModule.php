@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\UserManagement;
 
 class PLCModule extends Model
 {
@@ -11,6 +12,15 @@ class PLCModule extends Model
 
     public function rapidx_user_details()
     {
+    	return $this->hasOne(UserManagement::class, 'id', 'process_owner');
+    }
+
+    public function rapidx_user_details1()
+    {
     	return $this->hasOne(RapidXUser::class, 'id', 'rapidx_id');
     }
+    // public function rapidx_user_name()
+    // {
+    // 	return $this->hasOne(RapidXUser::class, 'process_owner', 'rapidx_name');
+    // }
 }

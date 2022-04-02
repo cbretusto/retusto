@@ -101,6 +101,8 @@ function AddRevisionHistory(){
                 $("#formAddRevision")[0].reset();
                 toastr.success('Revision history was succesfully saved!');
                 dataTablePlcModuleRevisionHistory.draw(); // reload the tables after insertion
+                dataTablePlcModuleFlowChart.draw();
+
             }
 
             $("#BtnAddRevisionIcon").removeClass('fa fa-spinner fa-pulse');
@@ -220,16 +222,16 @@ function GetRevisionHistoryId(revisionHistoryId){
             //     $('#txtMaxRowReasonIdForEdit').val(0).trigger('change');
             //     $('#dynamic_field_for_revision').find('.btn_remove_for_reason').closest('tr').remove();
 
-               
+
 
             //     for (let index = 0; index < implodedReasonRev.length; index++) {
             //         implodedReasonRevArr.push(implodedReasonRev[index]);
             //     }
-                
+
             //     let counter = 0;
             //     for (let reasonIndex = 0; reasonIndex < implodedReasonRevArr.length; reasonIndex++) {
             //         counter++;
-                  
+
             //         var html  = '<tr class="col-md-12" style="text-align:center;" id="tr_for_reason_'+reasonIndex+'">'
             //             html += '	<td class ="col-md-1">'
             //             html += '		<button type="button" name="remove" id="'+reasonIndex+'" class="btn btn-danger btn_remove_for_reason" ><i class="fa fa-times"></i></button>'
@@ -242,8 +244,8 @@ function GetRevisionHistoryId(revisionHistoryId){
             //             $('#dynamic_field_for_revision').append(html);
             //             $('input[name="edit_revision_history_reason_'+reasonIndex+'"]', $('#editRevisionHistoryForm')).val(implodedReasonRevArr[reasonIndex]);
             //             $('#txtMaxRowReasonIdForEdit').val(counter);
-                   
-                       
+
+
             //     }
             //     console.log(counter);
 
@@ -253,7 +255,7 @@ function GetRevisionHistoryId(revisionHistoryId){
             //         implodedDetailsArr.push(implodedDetailsRev[index1]);
             //     }
             //     for (let implodedArrLoop1 = 0; implodedArrLoop1 < implodedDetailsArr.length; implodedArrLoop1++) {
-                    
+
             //         var html  = '<tr class="col-md-12" style="text-align:center;" id="tr_for_details_'+implodedArrLoop1+'">'
             //             html += '	<td class ="col-md-1">'
             //             html += '		<button type="button" name="remove" id="'+implodedArrLoop1+'" class="btn btn-danger btn_remove_for_details" ><i class="fa fa-times"></i></button>'
@@ -266,19 +268,13 @@ function GetRevisionHistoryId(revisionHistoryId){
             //             $('#dynamic_field_for_details').append(html);
             //             $('input[name="edit_revision_history_details_'+implodedArrLoop1+'"]', $('#editRevisionHistoryForm')).val(implodedDetailsArr[implodedArrLoop1]);
             //             $('#txtMaxRowDetailsIdForEdit').val(implodedArrLoop1);
-                        
-
             //     }
-
-                $("#txtEditRevisionHistoryProcessOwner").val(history_revision[0].process_owner);
-                $("#txtEditRevisionHistoryConcernedDept").val(history_revision[0].concerned_dept);
-                $("#txtEditRevisionHistoryInCharge").val(history_revision[0].in_charge);
+                $("#selectEditProcessOwner").val(history_revision[0].process_owner).trigger('change');;
+                $("#txtEditRevisionHistoryDate").val(history_revision[0].revision_date);
+                $("#selectEditDepartment").val(history_revision[0].concerned_dept).trigger('change');;
+                $("#selectEditProcessInCharge").val(history_revision[0].in_charge).trigger('change');;
                 $("#txteditReasonForRevision").val(history_revision[0].reason_for_revision);
                 $("#txteditDetailsOfRevision").val(history_revision[0].details_of_revision);
-
-                
-
-
             }
             else{
                 toastr.warning('No Revision History Record Found!');
@@ -338,8 +334,9 @@ function EditRevisionHistory(){
             else if(response['result'] == 1){
                 $("#modalEditRevisionHistory").modal('hide');
                 $("#editRevisionHistoryForm")[0].reset();
-                toastr.success('User was succesfully saved!');
+                toastr.success('Revision History succesfully saved!');
                 dataTablePlcModuleRevisionHistory.draw(); // reload the tables after insertion
+                dataTablePlcModuleFlowChart
             }
 
             $("#iBtnRevisionHistoryIcon").removeClass('fa fa-spinner fa-pulse');
@@ -355,7 +352,7 @@ function EditRevisionHistory(){
     });
 }
 
-function DeleteRevisionHistory() {
+function DeactivateRevisionHistory() {
     toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -375,35 +372,35 @@ function DeleteRevisionHistory() {
     };
 
     $.ajax({
-        url: "delete_revision_history",
+        url: "deactivate_revision_history",
         method: "post",
-        data: $('#deleteHistoryForm').serialize(),
+        data: $('#deactivateHistoryForm').serialize(),
         dataType: "json",
         beforeSend: function () {
-            $("#deleteHistoryIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteHistory").prop('disabled', 'disabled');
+            $("#deactivateHistoryIcon").addClass('fa fa-spinner fa-pulse');
+            $("#btnDeactivateHistory").prop('disabled', 'disabled');
         },
         success: function (response) {
             let result = response['result'];
             if (result == 1) {
-                $("#modalDeleteHistory").modal('hide');
-                $("#deleteHistoryForm")[0].reset();
-                toastr.success('PLC Category successfully deleted!');
+                $("#modalDeactivateHistory").modal('hide');
+                $("#deactivateHistoryForm")[0].reset();
+                toastr.success('PLC Category successfully deactivated!');
                 dataTablePlcModuleRevisionHistory.draw();
             }
             else {
-                toastr.warning('PLC Category already deleted!');
+                toastr.warning('PLC Category already deactivated!');
             }
 
-            $("#deleteHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteHistory").removeAttr('disabled');
-            $("#deleteHistoryIcon").addClass('fa fa-check');
+            $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#btnDeactivateHistory").removeAttr('disabled');
+            $("#deactivateHistoryIcon").addClass('fa fa-check');
         },
         error: function (data, xhr, status) {
             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#deleteHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteHistory").removeAttr('disabled');
-            $("#deleteHistoryIcon").addClass('fa fa-check');
+            $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#btnDeactivateHistory").removeAttr('disabled');
+            $("#deactivateHistoryIcon").addClass('fa fa-check');
         }
     });
 }
@@ -460,3 +457,142 @@ function ActivateRevisionHistory() {
         }
     });
 }
+
+
+function LoadUserListRev(cboElement)
+{
+    let result = '<option value="">N/A</option>';
+
+    $.ajax({
+
+    url: "load_user_management_rev",
+    method: "get",
+    dataType: "json",
+    beforeSend: function(){
+            result = '<option value=""> -- Loading -- </option>';
+            cboElement.html(result);
+        },
+        success: function(response){
+            result = '';
+            if(response['users'].length > 0){
+                result = '<option selected disabled>-- Select In-Charge -- </option>';
+                for(let index = 0; index < response['users'].length; index++){
+                    // let disabled = '';
+                    result += '<option value="' + response['users'][index].rapidx_name + '">' + response['users'][index].rapidx_name + '</option>';
+
+                    // if(JsonObject['users'][index].status == 2){
+                    //     disabled = 'disabled';
+                    // }
+                    // else{
+                    //     disabled = '';
+                    // }
+                    // result += '<option data-code="' + JsonObject['users'][index].id + '" ' + disabled + '>' + JsonObject['users'][index].name + '</option>';
+                }
+            }
+            else{
+                result = '<option value=""> -- No record found -- </option>';
+            }
+
+            cboElement.html(result);
+        },
+        error: function(data, xhr, status){
+            result = '<option value=""> -- Reload Again -- </option>';
+            cboElement.html(result);
+            toastr.error('Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+        }
+
+    });
+}
+
+function LoadUserListProcessOwner(cboElement)
+{
+    let result = '<option value="">N/A</option>';
+
+    $.ajax({
+
+    url: "load_user_management_process_owner",
+    method: "get",
+    dataType: "json",
+    beforeSend: function(){
+            result = '<option value=""> -- Loading -- </option>';
+            cboElement.html(result);
+        },
+        success: function(response){
+            result = '';
+            if(response['users'].length > 0){
+                result = '<option selected disabled>-- Select Process Owner -- </option>';
+                for(let index = 0; index < response['users'].length; index++){
+                    // let disabled = '';
+                    result += '<option value="' + response['users'][index].rapidx_name + '">' + response['users'][index].rapidx_name + '</option>';
+
+                    // if(JsonObject['users'][index].status == 2){
+                    //     disabled = 'disabled';
+                    // }
+                    // else{
+                    //     disabled = '';
+                    // }
+                    // result += '<option data-code="' + JsonObject['users'][index].id + '" ' + disabled + '>' + JsonObject['users'][index].name + '</option>';
+                }
+            }
+            else{
+                result = '<option value=""> -- No record found -- </option>';
+            }
+
+            cboElement.html(result);
+        },
+        error: function(data, xhr, status){
+            result = '<option value=""> -- Reload Again -- </option>';
+            cboElement.html(result);
+            toastr.error('Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+        }
+
+    });
+}
+
+function LoadConcernedDepartment(cboElement)
+{
+    let result = '<option value="">N/A</option>';
+
+    $.ajax({
+
+    url: "load_concerned_department",
+    method: "get",
+    dataType: "json",
+    beforeSend: function(){
+            result = '<option value=""> -- Loading -- </option>';
+            cboElement.html(result);
+        },
+        success: function(response){
+            result = '';
+            if(response['users_department'].length > 0){
+                result = '<option selected disabled>-- Select Concerned Department -- </option>';
+                for(let index = 0; index < response['users_department'].length; index++){
+                    // let disabled = '';
+                    // console.log(response['users_department'][index].id);
+                    result += '<option value="' + response['users_department'][index].department_name + '">' + response['users_department'][index].department_name + '</option>';
+
+                    // if(JsonObject['users'][index].status == 2){
+                    //     disabled = 'disabled';
+                    // }
+                    // else{
+                    //     disabled = '';
+                    // }
+                    // result += '<option data-code="' + JsonObject['users'][index].id + '" ' + disabled + '>' + JsonObject['users'][index].name + '</option>';
+                }
+            }
+            else{
+                result = '<option value=""> -- No record found -- </option>';
+            }
+
+            cboElement.html(result);
+        },
+        error: function(data, xhr, status){
+            result = '<option value=""> -- Reload Again -- </option>';
+            cboElement.html(result);
+            toastr.error('Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+        }
+
+    });
+}
+
+

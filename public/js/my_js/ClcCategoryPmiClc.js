@@ -33,7 +33,7 @@ function AddPmiClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['titles'] === undefined){
                     $("#selectAddPmiClcTitle").removeClass('is-invalid');
                     $("#selectAddPmiClcTitle").attr('title', '');
@@ -161,6 +161,32 @@ function GetPmiClcByIdToEdit(pmi_clcId){
             let pmi_clc_category = response['pmi_clc_category'];
 
             if(pmi_clc_category.length > 0){
+                if(pmi_clc_category[0].g_ng == 'Good'){
+                    console.log(pmi_clc_category[0].g_ng);
+                    $("#txtEditPmiClcGood").prop("checked", true);
+                }else if (pmi_clc_category[0].g_ng == 'Not Good'){
+                    console.log(pmi_clc_category[0].g_ng);
+                    $("#txtEditPmiClcNotGood").prop("checked", true);
+                }
+                else if (pmi_clc_category[0].g_ng == null){
+                    console.log(pmi_clc_category[0].g_ng);
+                    $("#txtEditPmiClcNotGood").prop("checked", false);
+                    $("#txtEditPmiClcGood").prop("checked", false);
+                }
+
+                if(pmi_clc_category[0].g_ng_last == 'Good'){
+                    console.log(pmi_clc_category[0].g_ng_last);
+                    $("#txtEditPmiClcGoodLast").prop("checked", true);
+                }else if (pmi_clc_category[0].g_ng_last == 'Not Good'){
+                    console.log(pmi_clc_category[0].g_ng_last);
+                    $("#txtEditPmiClcNotGoodLast").prop("checked", true);
+                }
+                else if (pmi_clc_category[0].g_ng_last == null){
+                    console.log(pmi_clc_category[0].g_ng_last);
+                    $("#txtEditPmiClcNotGoodLast").prop("checked", false);
+                    $("#txtEditPmiClcGoodLast").prop("checked", false);
+                }
+
                 $("#selectEditPmiClcTitle")                         .val(pmi_clc_category[0].titles).trigger('change');
                 $("#txtEditPmiClcControlObjectives")                .val(pmi_clc_category[0].control_objectives);
                 $("#txtEditPmiClcInternalControls")                 .val(pmi_clc_category[0].internal_controls);
@@ -212,7 +238,7 @@ function ChangeClcCategoryPmiClcStatus(){
         success: function(response){
 
             if(response['validation'] == 'hasError'){
-                toastr.error('User activation failed!');
+                toastr.error('Activation failed!');
             }else{
                 if(response['result'] == 1){
                     if($("#txtChangeClcCategoryPmiClcStat").val() == 1){
@@ -277,7 +303,7 @@ function EditPmiClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['titles'] === undefined){
                     $("#selectEditPmiClcTitle").removeClass('is-invalid');
                     $("#selectEditPmiClcTitle").attr('title', '');

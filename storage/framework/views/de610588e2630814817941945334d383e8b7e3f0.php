@@ -84,7 +84,7 @@
                                                 <th>Review Findings</th>
                                                 <th>Follow-ups</th>
                                                 <th>Status</th>
-                                                <th>Uploaded File</th>
+                                                
                                                 <th style="width: 8%">Action</th>
                                             </tr>
                                         </thead>
@@ -299,37 +299,7 @@
         </div>
     </div> <!-- CHANGE STAT MODAL END -->
 
-    <!-- PMI IT CLC EVIDENCES TABLE MODAL START -->
-    <div class="modal fade" id="modalViewUploadedFile">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content"> <!--START-->
-                <div class="modal-header bg-dark">
-                    <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> PMI IT CLC EVIDENCES UPLOADED FILE</h4>
-                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <div class="card-header">
-                        <div class="modal-body">
-                            <div class="row mb-2">
-                                <div class="col-sm-6">
-                                    <h5>VIEW FILE UPLOADED</h5>
-                                </div>
-                            </div>
-                            <table id="tblClcEvidences" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
-                                <thead>
-                                    <tr style="text-align:center">
-                                    <th>Category</th>
-                                    <th>CLC Uploaded File</th>
-                                    </tr>
-                                </thead>            
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div><!--END-->
-        </div>
-    </div> <!--  PMI IT CLC EVIDENCES TABLE MODAL START -->
+    
 
 <?php $__env->stopSection(); ?>
 
@@ -373,27 +343,45 @@
                     { "data" : "review_findings" },
                     { "data" : "follow_ups" },
                     { "data" : "status_last" },
-                    { "data" : "uploaded_file" },
+                    // { "data" : "uploaded_file" },
                     { "data" : "action", orderable:false, searchable:false }
                 ],
             });// END OF DATATABLE
 
-            // ======================= CLC EVIDENCES DATA TABLE =======================        
-            dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
-                "processing" : false,
-                "serverSide" : true,
-                "ajax" : {
-                    url: "view_pmi_it_clc_evidences_file",
-                    data: {
-                        category : "PMI IT-CLC",
-                    }
-                },
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_pmi_it_clc_evidences_file",
+            //         data: {
+            //             category : "PMI IT-CLC",
+            //         }
+            //     },
 
-                "columns":[
-                    { "data" : "clc_category" },
-                    { "data" : "uploaded_file" }
-                ],
-            });// END OF DATATABLE
+            //     "columns":[
+            //         { "data" : "clc_category" },
+            //         { "data" : "uploaded_file" }
+            //     ],
+            // });// END OF DATATABLE
+
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableSelectClcEvidences = $("#tblSelectClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_select_pmi_it_clc_evidences_file",
+            //         data: {
+            //             category : "PMI IT-CLC",
+            //         }
+            //     },
+
+            //     "columns":[
+            //         { "data" : "clc_category" },
+            //         { "data" : "uploaded_file" },
+            //         { "data" : "action", orderable:false, searchable:false }
+            //     ],
+            // });// END OF DATATABLE
 
             // ============================ AUTO ADD CREATED BY USER ============================
             $(document).on('click', '#btnShowAddPmiItClcCategoryModal, .actionEditPmiItClcCategory', function() {
@@ -528,7 +516,39 @@
                 ChangeClcCategoryPmiItClcStatus();
             });
 
-            // auto resize the textareas
+            //============================== SELECT CLC EVIDENCES FILE ==============================
+            $(document).on('click', '.actionSelectClcEvidences', function(){
+                let selectclcevidence = $(this).attr('filter'); 
+                let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
+                console.log(selectclcevidence);
+                console.log(selectclcevidenceId);
+                $("#selectClcEvidencesFile").val(selectclcevidence); 
+                $("#selectClcEvidencesId").val(selectclcevidenceId); 
+
+                if(selectclcevidence == 0){
+                    $("#lblSelectClcEvidences").text('Are you sure to delete this record?'); 
+                    $("#h4SelectClcEvidences").html('<i class="fa fa-times"></i> Delete Record');
+                }
+                else{
+                    $("#lblSelectClcEvidences").text('Are you sure to add this record?');
+                    $("#h4SelectClcEvidences").html('<i class="fa fa-check"></i>  Add Record');
+                }
+            });
+            $("#formSelectClcEvidences").submit(function(event){
+                event.preventDefault();
+                SelectClcEvidencesFile();
+            });
+
+            // ===========================================================
+            function reloadDataTableClcCategoryPmiItClc() {
+                dataTableClcEvidences.draw();
+            }
+            $("#modalSelectFiles").on('hidden.bs.modal', function () {
+                console.log('PMI IT CLC Reload Successfully');
+                reloadDataTableClcCategoryPmiItClc();
+            });        
+
+            // ========================= RESIZE TEXTAREA =========================
             document.querySelectorAll("textarea").forEach(function (size) {
                 size.addEventListener("input", function () {
                     var resize = window.getComputedStyle(this);

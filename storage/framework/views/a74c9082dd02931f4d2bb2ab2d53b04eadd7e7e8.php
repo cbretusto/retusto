@@ -36,6 +36,7 @@
                                 <div class="col-3 text-right"><br>
 
                                     <a class="text-white" id="pmi_test1" status="1"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    
 
                                 </div>
                         </div>
@@ -522,7 +523,6 @@
                     <div class="col-3">
                         <div class="info-box bg-info">
                             <div class="info-box-content">
-
                                 <div class="mb-3">
                                     <h2 class="card-title mb-0">PMI-36 Cash in Bank Monthly Monitoring</h2><br>
                                 </div>

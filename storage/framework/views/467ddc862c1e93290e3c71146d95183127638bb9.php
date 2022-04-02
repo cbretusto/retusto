@@ -1,5 +1,18 @@
-<?php $layout = 'layouts.admin_layout'; ?>
+<?php $layout = 'layouts.super_user_layout'; ?>
 
+<?php if(auth()->guard()->check()): ?>
+    <?php
+        if(Auth::user()->user_level_id == 1){
+            $layout = 'layouts.super_user_layout';
+        }
+        else if(Auth::user()->user_level_id == 2){
+            $layout = 'layouts.admin_layout';
+        }
+        else if(Auth::user()->user_level_id == 3){
+            $layout = 'layouts.user_layout';
+        }
+    ?>
+<?php endif; ?>
 
 
 
@@ -34,7 +47,7 @@
         }
     </style>
 
-    <div class="content-wrapper"  style="height: 777px; overflow: scroll;">
+    <div class="content-wrapper" style="height: 777px; overflow: scroll;">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -54,7 +67,6 @@
                             <div class="card-header">
                                 <h3 class="card-title">PMI CLC</h3>
                             </div>
-
                             <div class="card-body table-responsive">                            
                                 <div style="float: right;">                   
                                     <button class="btn btn-info" data-toggle="modal" data-target="#modalAddPmiClcCategory" id="btnShowAddPmiClcCategoryModal"><i class="fa fa-plus"></i>  Add PMI CLC  </button>
@@ -72,7 +84,7 @@
                                                 <th>Review Findings</th>
                                                 <th>Follow-up Details</th>
                                                 <th style="width: 3%">G / NG</th>
-                                                <th>Uploaded <br> File</th>
+                                                
                                                 <th style="width: 8%">Action</th>
                                             </tr>
                                         </thead>
@@ -101,7 +113,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="txtClcCategory" name="clc_category" value="PMI CLC" readonly>       
+                                <input type="text" class="form-control" id="txtClcCategory" name="clc_category" value="PMI CLC" hidden readonly>       
                             </div>
 
                             <div class="form-group col-sm-12 flex-column d-flex"> 
@@ -110,7 +122,7 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                     </div>
                                     <select class="form-control" name="titles" id="selectAddPmiClcTitle" style="width: 70%;">
-                                        <option selected disabled value="">-SELECT-</option>
+                                        <option selected disabled value="">--Select--</option>
                                         <option value="Ethics and intergrity">Ethics and integrity</option>
                                         <option value="Roles of board directors and corporate auditors">Roles of board directors and corporate auditors</option>
                                         <option value="Executive stance and attitude">Executive stance and attitude</option>
@@ -133,7 +145,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Control Objective:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" rows="10" id="txtAddPmiClcControlObjectives" name="control_objectives"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtAddPmiClcControlObjectives" name="control_objectives"></textarea>
                                 </div>
                             </div>
 
@@ -141,7 +153,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Internal Control:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
-                                    <textarea type="text" class="form-control" id="txtAddPmiClcInternalControls" name="internal_controls"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtAddPmiClcInternalControls" name="internal_controls"></textarea>
                                 </div>
                             </div>
 
@@ -165,7 +177,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Detected Problems & Improvement Plans:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtAddPmiClcDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtAddPmiClcDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
                                 </div>
                             </div>
 
@@ -173,7 +185,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Review Findings:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtAddPmiClcReviewFindings" name="review_findings"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtAddPmiClcReviewFindings" name="review_findings"></textarea>
                                 </div>
                             </div>
 
@@ -181,7 +193,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Follow-up Details:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtAddFollowupDetails" name="follow_up_details"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtAddFollowupDetails" name="follow_up_details"></textarea>
                                 </div>
                             </div>
                             
@@ -237,7 +249,7 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                     </div>
                                     <select class="form-control select2bs4 selectPmiClcTitle" name="titles" id="selectEditPmiClcTitle" style="width: 70%;">
-                                        <option selected disabled value="">-SELECT-</option>
+                                        <option selected disabled value="">--Select--</option>
                                         <option value="Ethics and intergrity">Ethics and integrity</option>
                                         <option value="Roles of board directors and corporate auditors">Roles of board directors and corporate auditors</option>
                                         <option value="Executive stance and attitude">Executive stance and attitude</option>
@@ -260,7 +272,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Control Objective:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" rows="10" id="txtEditPmiClcControlObjectives" name="control_objectives" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiClcControlObjectives" name="control_objectives" readonly></textarea>
                                 </div>
                             </div>
 
@@ -268,7 +280,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Internal Control:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
-                                    <textarea type="text" class="form-control" id="txtEditPmiClcInternalControls" name="internal_controls" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiClcInternalControls" name="internal_controls" readonly></textarea>
                                 </div>
                             </div>
 
@@ -278,11 +290,11 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input peso radioBtn" type="radio" id="txtEditPmiClcGNg" name="g_ng" value="Good">
+                                        <input class="form-check-input peso radioBtn" type="radio" id="txtEditPmiClcGood" name="g_ng" value="Good">
                                         <label class="form-check-label" for="inlineRadio1">GOOD</label>
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiClcGNg" name="g_ng" value="Not Good">
+                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiClcNotGood" name="g_ng" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
                                     </div>                                        
                                 </div> 
@@ -300,7 +312,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Review Findings:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiClcReviewFindings" name="review_findings"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiClcReviewFindings" name="review_findings"></textarea>
                                 </div>
                             </div>
 
@@ -308,7 +320,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Follow-up Details:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditFollowupDetails" name="follow_up_details"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditFollowupDetails" name="follow_up_details"></textarea>
                                 </div>
                             </div>
                             
@@ -318,11 +330,11 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input peso radioBtn" type="radio" name="g_ng_last" id="txtEditPmiClcGNgLast" value="Good">
+                                        <input class="form-check-input peso radioBtn" type="radio" name="g_ng_last" id="txtEditPmiClcGoodLast" value="Good">
                                         <label class="form-check-label" for="inlineRadio1">GOOD</label>
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtEditPmiClcGNgLast" value="Not Good">
+                                        <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtEditPmiClcNotGoodLast" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
                                     </div>    
                                 </div> 
@@ -383,11 +395,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                
+                <div class="form-group col-sm-12"> 
+                    <input type="hidden" id="uploaded_file_id">
+                </div>
                     <div class="card-header">
                         <div class="modal-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <h5>VIEW FILE UPLOADED</h5>
+                                    <h5>VIEW PMI CLC UPLOADED FILE</h5>
                                 </div>
                             </div>
                             <table id="tblClcEvidences" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
@@ -405,6 +422,70 @@
         </div>
     </div> <!--  PMI CLC EVIDENCES TABLE MODAL START -->
 
+    <!-- SELECT PMI CLC EVIDENCES TABLE MODAL START -->
+    <div class="modal fade" id="modalSelectFiles">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content"> <!--START-->
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> SELECT CLC EVIDENCES UPLOADED FILE</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group col-sm-12"> 
+                    <input type="hidden" name="pmi_clc_id" id="txtPmiClcId">
+                    <input type="hidden" name="pmi_category_id" id="txtPmiCategoryId" value="1">
+                </div>
+                    <div class="card-header">
+                        <div class="modal-body">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <h5>VIEW PMI CLC UPLOADED FILE</h5>
+                                </div>
+                            </div>
+                            <table id="tblSelectClcEvidences" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                                <thead>
+                                    <tr style="text-align:center">
+                                    <th>Category</th>
+                                    <th>CLC Uploaded File</th>
+                                    <th>Action</th>
+                                    </tr>
+                                </thead>            
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div><!--END-->
+        </div>
+    </div> <!-- SELECT PMI CLC EVIDENCES TABLE MODAL START -->
+
+    <!-- FILTER ADD MODAL START -->
+    <div class="modal fade" id="modalSelectClcEvidences">
+        <div class="modal-dialog">
+            <div class="modal-content modal-sm">
+                <div class="modal-header bg-info">
+                    <h4 class="modal-title" id="h4SelectClcEvidences"><i class="fab fa-stack-overflow"></i> Add File</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="formSelectClcEvidences">
+                    <?php echo csrf_field(); ?>
+                    <div class="modal-body">
+                        <label id="lblSelectClcEvidences"></label>
+                        <h5><strong>Are you sure you want to add this record?</strong></h5>
+                        <input type="hidden" name="pmi_clc_id" id="selectPmiClcId">
+                        <input type="hidden" name="select_clc_evidences_id" id="selectClcEvidencesId">
+                        <input type="hidden" name="filter" id="selectClcEvidencesFile">
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnChangeSelectClcEvidences" class="btn btn-info"><i id="iBtnSelectClcEvidencesIcon" class="fa fa-check"></i> Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- FILTER ADD MODAL END -->
 <?php $__env->stopSection(); ?>
 
 <!--  -->
@@ -413,6 +494,7 @@
     <script type="text/javascript">
         let dataTableClcCategoryPmiClc;
         let dataTableClcEvidences;
+        let dataTableSelectClcEvidences;
 
         $(document).ready(function () {
             
@@ -448,27 +530,45 @@
                     { "data" : "review_findings" },
                     { "data" : "follow_up_details" },
                     { "data" : "g_ng_last" },
-                    { "data" : "uploaded_file" },
+                    // { "data" : "uploaded_file" },
                     { "data" : "action", orderable:false, searchable:false }
                 ],
             });// END OF DATATABLE
 
-            // ======================= CLC EVIDENCES DATA TABLE =======================        
-            dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
-                "processing" : false,
-                "serverSide" : true,
-                "ajax" : {
-                    url: "view_pmi_clc_evidences_file",
-                    data: {
-                        category : "PMI CLC",
-                    }
-                },
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_pmi_clc_evidences_file",
+            //         data: function (param){
+            //             param.id = $('#uploaded_file_id').val();
+            //         },
+            //     },
 
-                "columns":[
-                    { "data" : "clc_category" },
-                    { "data" : "uploaded_file" }
-                ],
-            });// END OF DATATABLE
+            //     "columns":[
+            //         { "data" : "clc_evidences.clc_category" },
+            //         { "data" : "uploaded_file" },
+            //     ],
+            // });// END OF DATATABLE
+
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableSelectClcEvidences = $("#tblSelectClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_select_pmi_clc_evidences_file",
+            //         data: {
+            //             category : "PMI CLC",
+            //         }
+            //     },
+
+            //     "columns":[
+            //         { "data" : "clc_category" },
+            //         { "data" : "uploaded_file" },
+            //         { "data" : "action", orderable:false, searchable:false }
+            //     ],
+            // });// END OF DATATABLE
 
             // ============================ AUTO ADD CREATED BY USER ============================
             $(document).on('click', '#btnShowAddPmiClcCategoryModal, .actionEditPmiClcCategory', function() {
@@ -480,7 +580,7 @@
                     },
                     success: function(response){
                         let result = response['get_user'];
-                        console.log(result[0].name);
+                        console.log('RapidX User:', result[0].name);
                         $('#txtCreatedBy').val(result[0].name);
                         $('#txtUpdatedBy').val(result[0].name);
                     },
@@ -579,7 +679,7 @@
             $(document).on('click', '.actionChangeClcCategoryPmiClcStat', function(){
                 let clccategorypmiclcStat = $(this).attr('status'); // the status will collect the value (1-active, 2-inactive)
                 let clccategorypmiclcId = $(this).attr('pmi_clc-id'); // the pmi_clc-id(attr) is inside the datatables of ClcCategoryPmiClcController that will be use to collect the pmi_clc-id
-                console.log(clccategorypmiclcStat);
+                    console.log('Status:', clccategorypmiclcStat);
                 $("#txtChangeClcCategoryPmiClcStat").val(clccategorypmiclcStat); // collect the pmi_clc status id the default is 2, this will be use to change the pmi_clc status when the formChangeClcCategoryPmiClcStat(form) is submitted
                 $("#txtChangeClcCategoryPmiClcId").val(clccategorypmiclcId); // after clicking the actionChangeClcCategoryPmiClcStat(button) the clccategorypmiclcId will be pass to the clc_category_pmi_clc_id(input=hidden) and when the form is submitted this will be pass to ajax and collect pmi_clc-id that will be use to query the pmi_clc-id in the ClcCategoryPmiClcController to update the status of the pmi_clc
 
@@ -600,7 +700,53 @@
                 ChangeClcCategoryPmiClcStatus();
             });
 
-            // auto resize the textareas
+            //============================== SELECT ADD CLC EVIDENCES FILE ==============================
+            $(document).on('click', '.actionSelectClcEvidences', function(){
+                let pmiclcId  = $('#txtPmiClcId').val();
+                let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
+                let selectclcevidence = $(this).attr('filter'); 
+
+                    console.log('Add Record');
+                    console.log('Pmi Clc ID:', pmiclcId);
+                    console.log('Add File Evidence ID:', selectclcevidenceId);
+                    console.log('Filter ID:', selectclcevidence);
+
+                $("#selectPmiClcId").val(pmiclcId); 
+                $("#selectClcEvidencesId").val(selectclcevidenceId); 
+                $("#selectClcEvidencesFile").val(selectclcevidence); 
+            });
+            $("#formSelectClcEvidences").submit(function(event){
+                event.preventDefault();
+                AddClcEvidencesFile();
+            });
+
+            // =============================== GET SELECT FILE & CATEGORY ID =============================== 
+            $(document).on('click', '.actionSelectFiles', function(){
+                let pmiclcId  = $(this).attr('pmi_clc-id'); 
+                let pmicategoryId  = $('#txtPmiCategoryId').val(); 
+                    console.log('Select File ID:', pmiclcId);
+                    console.log('Category ID:', pmicategoryId);
+                $("#txtPmiClcId").val(pmiclcId); 
+            });
+
+            // ========================= GET UPLOADED FILE ID =========================
+            $(document).on('click','.actionViewUploadedFile', function(){
+                let id  = $(this).attr('pmi_clc-id');
+                $('#uploaded_file_id').val( id);
+                console.log('Uploaded File ID:', id);
+                dataTableClcEvidences.draw();
+            });
+
+            // ========================= RELOAD DATATABLE =========================
+            function reloadDataTableClcEvidences() {
+                dataTableClcEvidences.draw();
+            }
+            $("#modalSelectFiles").on('hidden.bs.modal', function () {
+                console.log('PMI CLC Reload Successfully');
+                reloadDataTableClcEvidences();
+            });                
+
+            // ========================= RESIZE TEXTAREA =========================
             document.querySelectorAll("textarea").forEach(function (size) {
                 size.addEventListener("input", function () {
                     var resize = window.getComputedStyle(this);
@@ -610,6 +756,7 @@
                     this.style.height = (this.scrollHeight + parseInt(resize.getPropertyValue("border-top-width")) + parseInt(resize.getPropertyValue("border-bottom-width"))) + "px";
                 });
             });
+
 
         }); // JQUERY DOCUMENT READY END
 

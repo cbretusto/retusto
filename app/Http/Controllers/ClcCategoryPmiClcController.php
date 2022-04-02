@@ -53,6 +53,8 @@ class ClcCategoryPmiClcController extends Controller
             if($pmi_clc->status == 1){
                 $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditPmiClcCategory" style="width:105px;margin:2%;" pmi_clc-id="' . $pmi_clc->id . '" data-toggle="modal" data-target="#modalEditPmiClcCategory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
                 $result .= '<br>';
+                // $result .= '<button type="button" class="btn btn-dark btn-sm text-center actionSelectFiles" style="width:105px;margin:2%;" pmi_clc-id="' . $pmi_clc->id . '" data-toggle="modal" data-target="#modalSelectFiles" data-keyboard="false"><i class="nav-icon far fa-file"></i> Select File</button>&nbsp;';
+                // $result .= '<br>';
                 $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangeClcCategoryPmiClcStat" style="width:105px;margin:2%;" pmi_clc-id="' . $pmi_clc->id . '" status="2" data-toggle="modal" data-target="#modalChangeClcCategoryPmiClcStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
                 $result .= '<br>';
             }else{

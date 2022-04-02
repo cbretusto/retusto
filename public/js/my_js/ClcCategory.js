@@ -29,7 +29,7 @@ function AddClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['category'] === undefined){
                     $("#txtAddClcCategory").removeClass('is-invalid');
                     $("#txtAddClcCategory").attr('title', '');
@@ -93,34 +93,8 @@ function GetClcCategoryByIdToEdit(clc_categoryId){
             if(clc_category_id.length > 0){
                 $("#txtEditClcCategory").val(clc_category_id[0].category);
                 $('#modalEditClcCategory').on('hide', function() {
-                    window.location.reload();
+                    dataTableClcCategory.draw(); // reload the tables after insertion
                 });
-                // $('#check_box').on('click', function() {
-                //     $('#check_box').attr('checked', 'checked');
-                //     if($(this).is(":checked")){
-                //         $("#txtEditReportName_of_File").removeAttr('disabled', false);
-                //         $("#txtEditReportUploaded_Date").removeAttr('disabled', false);
-                //         $("#txtEditReportName_of_Author").removeAttr('disabled', false);
-                //         $("#txtEditReportUploaded_File").addClass('d-none');
-                //         $("#EditReportUploaded_File").removeClass('d-none');
-                //         $("#btnEditReport").removeClass('d-none');
-                //     }
-                //     else{
-                //         $("#txtEditReportName_of_File").attr('disabled', 'disabled');
-                //         $("#txtEditReportUploaded_Date").attr('disabled', 'disabled');
-                //         $("#txtEditReportName_of_Author").attr('disabled', 'disabled');
-                //         $("#txtEditReportUploaded_File").attr('disabled', 'disabled');
-                //         $("#txtEditReportUploaded_File").removeClass('d-none');
-                //         $("#EditReportUploaded_File").addClass('d-none');
-                //         $("#btnEditReport").addClass('d-none');
-                //     }
-                //     $(document).ready(function(){
-                //         $('#modalEditReport').on('hide.bs.modal', function() {
-                //             $('#check_box').attr('checked', false);
-                //             window.location.reload();
-                //         });
-                //     });
-                // });
             }
             else{
                 toastr.warning('No Record Found!');
@@ -164,7 +138,7 @@ function EditClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['category'] === undefined){
                     $("#txtEditClcCategory").removeClass('is-invalid');
                     $("#txtEditClcCategory").attr('title', '');
@@ -227,15 +201,15 @@ function ChangeClcCategoryStatus(){
         success: function(response){
 
             if(response['validation'] == 'hasError'){
-                toastr.error('User activation failed!');
+                toastr.error('Category activation failed!');
             }else{
                 if(response['result'] == 1){
                     if($("#txtChangeClcCategoryStat").val() == 1){
-                        toastr.success('User activation success!');
+                        toastr.success('Activation success!');
                         $("#txtChangeClcCategoryStat").val() == 2;
                     }
                     else{
-                        toastr.success('User deactivation success!');
+                        toastr.success('Deactivation success!');
                         $("#txtChangeClcCategoryStat").val() == 1;
                     }
                 }

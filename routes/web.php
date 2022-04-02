@@ -24,8 +24,8 @@ Route::get('/plc_dashboard', function () {
 })->name('plc_dashboard');
 
 
-Route::get('/pmi-01', function () {
-    return view('PLC Dashboard/pmi-01');
+Route::get('/PMI', function () {
+    return view('PLC Dashboard/PMI');
 });
 
 Route::get('/user_management', function () {
@@ -71,12 +71,14 @@ Route::get('/clc_category_pmi_it_clc', function () {
 //========================== USER CONTROLLER =============================//
 Route::get('/view_users', 'UserManagementController@view_users');
 Route::get('/load_rapidx_user_list', 'UserManagementController@load_rapidx_user_list');
+Route::get('/load_rapidx_department_list', 'UserManagementController@load_rapidx_department_list');
 Route::post('/add_user', 'UserManagementController@add_user')->name('add_user');
 Route::get('/get_user_levels', 'UserLevelController@get_user_levels'); //get the user level in database (Admin-User)
 Route::post('/edit_user', 'UserManagementController@edit_user');
 Route::get('/get_user_by_id', 'UserManagementController@get_user_by_id');
 Route::post('/change_user_stat', 'UserManagementController@change_user_stat')->name('change_user_stat');
 Route::get('/get_user_by_stat', 'UserManagementController@get_user_by_stat');
+Route::get('/get_user_log', 'UserManagementController@get_user_log');
 
 //========================== PLC CATEGORY CONTROLLER =============================//
 Route::post('/add_plc_category', 'PlcCategoryController@add_plc_category');
@@ -89,7 +91,9 @@ Route::get('/get_plc_category', 'PlcCategoryController@get_plc_category');
 
 //========================== PLC EVIDENCE CONTROLLER =============================//
 Route::get('/view_plc_evidences', 'PlcEvidencesController@view_plc_evidences');
-Route::get('/view_plc_receiving_orders', 'PlcEvidencesController@view_plc_receiving_orders');
+Route::get('/view_select_pmi_plc_evidences_file', 'PlcEvidencesController@view_select_pmi_plc_evidences_file');
+Route::get('/view_pmi_plc_evidences_file', 'PlcEvidencesController@view_pmi_plc_evidences_file');
+Route::get('/view_plc_evidence', 'PlcEvidencesController@view_plc_evidence');
 Route::get('/get_rapidx_user', 'PlcEvidencesController@get_rapidx_user');
 Route::post('/add_plc_evidences', 'PlcEvidencesController@add_plc_evidences');
 Route::get('/download_plc_evidences/{id}', 'PlcEvidencesController@download_plc_evidences');
@@ -111,8 +115,12 @@ Route::post('/add_revision_history', 'PlcModulesController@add_revision_history'
 Route::post('/no_revision_history', 'PlcModulesController@no_revision_history');
 Route::get('/get_revision_history_id_to_edit', 'PlcModulesController@get_revision_history_id_to_edit');
 Route::post('/edit_revision_history', 'PlcModulesController@edit_revision_history');
-Route::post('/delete_revision_history', 'PlcModulesController@delete_revision_history');
-// Route::post('/activate_revision_history', 'PlcModulesController@activate_revision_history');
+// Route::post('/delete_revision_history', 'PlcModulesController@delete_revision_history');
+Route::post('/deactivate_revision_history', 'PlcModulesController@deactivate_revision_history');
+Route::post('/activate_revision_history', 'PlcModulesController@activate_revision_history');
+Route::get('/load_user_management_rev', 'PlcModulesController@load_user_management_rev');
+Route::get('/load_user_management_process_owner', 'PlcModulesController@load_user_management_process_owner');
+Route::get('/load_concerned_department', 'PlcModulesController@load_concerned_department');
 
 //===========================PLC MODULES FLOW CHART CONTROLLER =============================
 Route::get('/view_plc_modules_flow_chart', 'PlcModulesFlowChartController@view_plc_modules_flow_chart');
@@ -121,7 +129,7 @@ Route::post('/add_flow_chart', 'PlcModulesFlowChartController@add_flow_chart');
 Route::get('/download_flow_chart/{id}', 'PlcModulesFlowChartController@download_flow_chart');
 Route::get('/get_flow_chart_id', 'PlcModulesFlowChartController@get_flow_chart_id');
 Route::post('/edit_flow_chart', 'PlcModulesFlowChartController@edit_flow_chart');
-
+Route::post('/change_plc_flow_chart_stat', 'PlcModulesFlowChartController@change_plc_flow_chart_stat')->name('change_plc_flow_chart_stat');
 
 //===========================PLC MODULES RCM CONTROLLER =============================
 Route::get('/view_plc_modules_rcm', 'PlcModulesRcmController@view_plc_modules_rcm');
@@ -130,6 +138,7 @@ Route::get('/get_rcm_data_id_to_edit', 'PlcModulesRcmController@get_rcm_data_id_
 Route::post('/edit_rcm_data', 'PlcModulesRcmController@edit_rcm_data');
 Route::post('/delete_rcm_data', 'PlcModulesRcmController@delete_rcm_data');
 Route::get('/get_rcm_data_id_to_view', 'PlcModulesRcmController@get_rcm_data_id_to_view');
+Route::post('/change_plc_rcm_stat', 'PlcModulesRcmController@change_plc_rcm_stat')->name('change_plc_rcm_stat');
 
 //===========================PLC MODULES SA CONTROLLER =============================
 Route::get('/view_plc_sa_data', 'PlcModulesSaController@view_plc_sa_data');
@@ -138,6 +147,12 @@ Route::get('/get_sa_data_to_edit', 'PlcModulesSaController@get_sa_data_to_edit')
 Route::post('/delete_sa_data', 'PlcModulesSaController@delete_sa_data');
 Route::post('/edit_sa_module', 'PlcModulesSaController@edit_sa_module');
 Route::get('/get_uploaded_file', 'PlcModulesSaController@get_uploaded_file');
+Route::get('/load_user_management_SA', 'PlcModulesSaController@load_user_management_SA');
+Route::get('/load_user_SA', 'PlcModulesSaController@load_user_SA');
+Route::post('/approved_sa_data', 'PlcModulesSaController@approved_sa_data');
+Route::post('/disapproved_sa_data', 'PlcModulesSaController@disapproved_sa_data');
+Route::post('/yec_approved_date', 'PlcModulesSaController@yec_approved_date')->name('yec_approved_date');
+Route::get('/get_yec_approved_date', 'PlcModulesSaController@get_yec_approved_date')->name('get_yec_approved_date');
 
 //============================= CLC CATEGORY CONTROLLER ================================
 Route::get('/view_clc_category', 'ClcCategoryController@view_clc_category');
@@ -150,9 +165,13 @@ Route::get('/get_clc_category', 'ClcCategoryController@get_clc_category');
 
 //============================= CLC EVIDENCES CONTROLLER ================================
 Route::get('/view_clc_evidences', 'ClcEvidencesController@view_clc_evidences');
-Route::get('/view_pmi_clc_evidences_file', 'ClcEvidencesController@view_pmi_clc_evidences_file');
-Route::get('/view_pmi_fcrp_evidences_file', 'ClcEvidencesController@view_pmi_fcrp_evidences_file');
-Route::get('/view_pmi_it_clc_evidences_file', 'ClcEvidencesController@view_pmi_it_clc_evidences_file');
+// Route::get('/view_pmi_clc_evidences_file', 'ClcEvidencesController@view_pmi_clc_evidences_file');
+// Route::get('/view_select_pmi_clc_evidences_file', 'ClcEvidencesController@view_select_pmi_clc_evidences_file');
+// Route::post('/select_clc_evidences', 'ClcEvidencesController@select_clc_evidences')->name('select_clc_evidences');
+// Route::get('/view_pmi_fcrp_evidences_file', 'ClcEvidencesController@view_pmi_fcrp_evidences_file');
+// Route::get('/view_select_pmi_fcrp_evidences_file', 'ClcEvidencesController@view_select_pmi_fcrp_evidences_file');
+// Route::get('/view_pmi_it_clc_evidences_file', 'ClcEvidencesController@view_pmi_it_clc_evidences_file');
+// Route::get('/view_select_pmi_it_clc_evidences_file', 'ClcEvidencesController@view_select_pmi_it_clc_evidences_file');
 Route::get('/get_rapidx_user', 'ClcEvidencesController@get_rapidx_user');
 Route::post('/add_clc_evidences', 'ClcEvidencesController@add_clc_evidences');
 Route::get('/download_file_clc_evidence/{id}', 'ClcEvidencesController@download_file_clc_evidence');
@@ -187,6 +206,11 @@ Route::get('/get_pmi_it_clc_category_by_id', 'ClcCategoryPmiItClcController@get_
 Route::post('/edit_pmi_it_clc_category', 'ClcCategoryPmiItClcController@edit_pmi_it_clc_category');
 Route::post('/change_clc_category_pmi_it_clc_stat', 'ClcCategoryPmiItClcController@change_clc_category_pmi_it_clc_stat')->name('change_clc_category_pmi_it_clc_stat');
 
+//============================= SELECT PLC EVIDENCE CONTROLLER ================================
+Route::get('/view_select_plc_evidences', 'SelectPlcEvidenceController@view_select_plc_evidences');
+Route::post('/add_plc_evidences_file', 'SelectPlcEvidenceController@add_plc_evidences_file');
+
+Route::get('/export/{id}', 'InvExcelController@export');
 
 
 

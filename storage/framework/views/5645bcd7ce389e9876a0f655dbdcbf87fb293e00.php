@@ -72,7 +72,6 @@
             <title>JSOX System | <?php echo $__env->yieldContent('title'); ?></title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="shortcut icon" type="image/png" href="<?php echo e(asset('public/images/favicon.ico')); ?>">
-   
 
             <!-- CSS LINKS -->
             <?php echo $__env->make('shared.css_links.css_links', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -84,6 +83,8 @@
             </style>
         </head>
         <body class="hold-transition sidebar-mini">
+            <input type="hidden" id="login_id" value="<?php echo $_SESSION['rapidx_user_id']; ?>">
+            <input type="hidden" id="login_name" value="<?php echo $_SESSION["rapidx_name"]; ?>">
             <div class="modal" tabindex="-1" role="dialog" id="modalOnGoing">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -114,9 +115,54 @@
             <?php echo $__env->make('shared.js_links.js_links', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php echo $__env->yieldContent('js_content'); ?>
         </body>
-    </html>
-<?php else: ?>
-    <script type="text/javascript">
-        window.location = "../RapidX/";
-    </script>
-<?php endif; ?><?php /**PATH /var/www/Jsox/resources/views/layouts/super_user_layout.blade.php ENDPATH**/ ?>
+
+        <script>
+            verifyUser();
+            function verifyUser(){
+                var loginName = $('#login_name').val();
+                console.log('Session(Admin/User):', loginName);
+        
+                $.ajax({
+                    url: "get_user_log",
+                    method: "get",
+                    data: {
+                        loginName : loginName
+                    },
+                    dataType: "json",
+                
+                    success: function(response){
+                        if(response['result'].length == 0){
+                            window.location.href = 'error';
+                        }
+                        else{
+                            for(i = 0; i<response['result'].length;i++){
+                                if(response['result'][i]['user_level_id'] == 1){
+                                    $('#user_management_id').removeClass('d-none');
+                                    $('#plc_dashboard_id').removeClass('d-none');
+                                    $('#plc_category_id').removeClass('d-none');
+                                    $('#plc_evidences_id').removeClass('d-none');
+                                    $('#jsox_plc_matrix_id').removeClass('d-none');
+                                    
+                                    $('#clc_dashboard_id').removeClass('d-none');
+                                    $('#clc_category_id').removeClass('d-none');
+                                    $('#clc_evidences_id').removeClass('d-none');
+                                }
+                                if(response['result'][i]['user_level_id'] == 2){
+                                    $('#plc_dashboard_id').removeClass('d-none');
+                                    $('#clc_dashboard_id').removeClass('d-none');
+                                }
+                            }
+                        } 
+                    }
+                });
+            }
+        </script>
+        </html>
+        
+        <?php else: ?>
+        <script type="text/javascript">
+            window.location = "<?php echo e(url('http://rapidx/RapidX/')); ?>";
+        </script>
+        <?php endif; ?>
+        
+    <?php /**PATH /var/www/Jsox/resources/views/layouts/super_user_layout.blade.php ENDPATH**/ ?>

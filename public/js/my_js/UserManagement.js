@@ -19,7 +19,7 @@ function LoadRapidXUserList(cboElement)
                 for(let index = 0; index < JsonObject['users'].length; index++){
                     let disabled = '';
 
-                    if(JsonObject['users'][index].status == 2){
+                    if(JsonObject['users'][index].status == 3){
                         disabled = 'disabled';
                     }
                     else{
@@ -32,6 +32,42 @@ function LoadRapidXUserList(cboElement)
                 result = '<option value=""> -- No record found -- </option>';
             }
 
+            cboElement.html(result);
+        },
+        error: function(data, xhr, status){
+            result = '<option value=""> -- Reload Again -- </option>';
+            cboElement.html(result);
+            toastr.error('Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+        }
+
+    });
+}
+
+//============================== SELECT USER ( RAPIDX ) ==============================
+function LoadRapidXDepartmentList(cboElement)
+{
+    let result = '<option value="">N/A</option>';
+    $.ajax({
+
+        url: "load_rapidx_department_list",
+        method: "get",
+        dataType: "json",
+        beforeSend: function(){
+                result = '<option value=""> -- Loading -- </option>';
+                cboElement.html(result);
+        },
+        success: function(response){
+            result = '';
+            if(response['department'].length > 0){
+                result = '<option selected disabled>-- Select Department -- </option>';
+                for(let index = 0; index < response['department'].length; index++){
+                    console.log(response['department'][index].id);
+                    result += '<option value="' + response['department'][index].department_name + '">' + response['department'][index].department_name + '</option>';
+                }
+            }
+            else{
+                result = '<option value=""> -- No record found -- </option>';
+            }
             cboElement.html(result);
         },
         error: function(data, xhr, status){
@@ -225,7 +261,8 @@ function GetUserByIdToEdit(userId){
             let user = response['user'];
             if(user.length > 0){
                 $("#selectEditRapidxUser").val(user[0].rapidx_name).trigger('change');
-                $("#selEditUserLevel").val(user[0].user_level_ID).trigger('change');
+                $("#selectEditRapidxDepartment").val(user[0].department).trigger('change');
+                $("#selEditUserLevel").val(user[0].user_level_id).trigger('change');
             }
             else{
                 toastr.warning('No User Record Found!');

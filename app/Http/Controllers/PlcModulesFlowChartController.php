@@ -15,17 +15,45 @@ class PlcModulesFlowChartController extends Controller
 {
     public function view_plc_modules_flow_chart(Request $request)
         {
-            $plc_module_flow_chart = PLCModuleFlowChart::where('category', $request->session)->get();
+            $plc_module_flow_chart = PLCModuleFlowChart::with('rapidx_user_details')
+            ->where('category', $request->session)->get();
 
             return DataTables::of($plc_module_flow_chart)
-            ->addColumn('action', function ($plc_module_flow_chart){
-                $result = "";
 
-                $result .= '<button class="btn btn-primary btn-sm  text-center actionEditFlowChart" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalEditFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
+            ->addColumn('flow_chart_status', function($plc_module_flow_chart){
+                $result = "<center>";
+                if($plc_module_flow_chart->flow_chart_status == 1){
+                    $result .= '<span class="badge badge-pill badge-success">Active</span>';
+                }
+                else{
+                    $result .= '<span class="badge badge-pill badge-danger">Inactive</span>';
+                }
+                    $result .= '</center>';
+                    return $result;
+            })
 
-
+            ->addColumn('action', function($plc_module_flow_chart){
+                $result = '<center>';
+                if($plc_module_flow_chart->flow_chart_status == 1){
+                    if ($plc_module_flow_chart->flow_chart == NULL){
+                        $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionUploadFlowChart" style="width:105px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalAddFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Upload Flow Chart</button>&nbsp;';
+                        $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                        $result .= '<br>';
+                    }
+                    else{
+                        $result .= '<br>';
+                        $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionEditFlowChart" style="width:105px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalEditFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
+                        $result .= '<br>';
+                        $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                        $result .= '<br>';
+                    }
+                }else{
+                    $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="1" data-toggle="modal"  data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-check"></i> Active</button>&nbsp;';
+                }
+                $result .= '</center>';
                 return $result;
             })
+
             ->addColumn('flow_chart', function($plc_module_flow_chart){
             $result = "<center>";
 
@@ -67,7 +95,7 @@ class PlcModulesFlowChartController extends Controller
         })
 
 
-                ->rawColumns(['action','flow_chart','uploaded_by','date_uploaded'])
+                ->rawColumns(['flow_chart_status', 'action','flow_chart','uploaded_by','date_uploaded'])
                 ->make(true);
 
         }
@@ -106,13 +134,15 @@ class PlcModulesFlowChartController extends Controller
                     // return $original_filename;
 
                     Storage::putFileAs('public/flow_chart', $request->uploaded_flow_chart,  $original_filename);
-                    PLCModuleFlowChart::insert([
-                        'category' => $request->category_name,
-                        'process_owner'   => $request->name_of_process_owner,
+                    // PLCModuleFlowChart::where('id', $request->flow_chart_id)
+                    PLCModuleFlowChart::where('id', $request->flow_chart_id)
+                    ->update([
+                        // 'category' => $request->category_name,
+                        // 'process_owner'   => $request->name_of_process_owner,
                         'flow_chart'  => $original_filename,
                         'date_uploaded' => $request->flow_chart_uploaded_date,
                         'uploaded_by'  => $request->name_of_uploader_flow_chart,
-                        'status' => 0,
+                        // 'status' => 0,
                         'logdel' => 0,
                         // 'updated_at' => date('Y-m-d H:i:s'),
                         'created_at' => date('Y-m-d H:i:s')
@@ -123,20 +153,6 @@ class PlcModulesFlowChartController extends Controller
                 //     return response()->json(['result' => "2"]);
                 // }
             }
-            else{
-                PLCModuleFlowChart::insert([
-                    'category' => $request->category_name,
-                    'process_owner'   => $request->name_of_process_owner,
-                    'flow_chart'  => 'No File Uploaded',
-                    'date_uploaded' => $request->flow_chart_uploaded_date,
-                    'uploaded_by'  => $request->name_of_uploader_flow_chart,
-                    'status' => 0,
-                    'logdel' => 0,
-                    // 'updated_at' => date('Y-m-d H:i:s'),
-                    'created_at' => date('Y-m-d H:i:s')
-                ]);
-                return response()->json(['result' => "0"]);
-            }
         }
         else{
             return response()->json(['validation' => "hasError", 'error' => $validator->messages()]);
@@ -146,6 +162,8 @@ class PlcModulesFlowChartController extends Controller
     //====================================== DOWNLOAD FILE ======================================
     public function download_flow_chart(Request $request, $id){
         $flowchart = PLCModuleFlowChart::where('id', $id)->first();
+
+        // return $flowchart;
 
         $file =  storage_path() . "/app/public/flow_chart/" . $flowchart->flow_chart;
 
@@ -176,11 +194,11 @@ class PlcModulesFlowChartController extends Controller
                 Storage::putFileAs('public/flow_chart', $request->edit_uploaded_flow_chart,  $original_filename1);
                 PLCModuleFlowChart::where('id', $request->flow_chart_id)
                 ->update([
-                    'process_owner' => $request->edit_process_owner,
+                    // 'process_owner' => $request->edit_process_owner,
                     'revised_by'   => $request->flow_chart_revised_by,
                     'flow_chart' => $original_filename1,
                     'revised_date' => $request->revised_date,
-                    'status' => $request->plc_evidence_status +1
+                    // 'status' => $request->plc_evidence_status +1
                 ]);
                 return response()->json(['result' => "1"]);
 
@@ -190,4 +208,29 @@ class PlcModulesFlowChartController extends Controller
 
         }
     }
+
+    //============================== CHANGE PMI CLC STAT ==============================
+    public function change_plc_flow_chart_stat(Request $request){
+        date_default_timezone_set('Asia/Manila');
+
+        $data = $request->all(); // collect all input fields
+
+        $validator = Validator::make($data, [
+            'plc_flow_chart_id' => 'required',
+            'flow_chart_status' => 'required',
+        ]);
+
+        if($validator->passes()){
+            PLCModuleFlowChart::where('id', $request->plc_flow_chart_id)
+            ->update([
+                'flow_chart_status' => $request->flow_chart_status,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+            return response()->json(['result' => "1"]);
+        }
+        else{
+            return response()->json(['validation' => "hasError", 'error' => $validator->messages()]);
+        }
+    }
+
 }

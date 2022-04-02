@@ -141,7 +141,7 @@ function GetFlowChart(flowChartID){
                 $("#txtEditProcessOwnerId").val(flowChart[0].process_owner);
                 $("#txtEditReuploadedFlowChart").val(flowChart[0].flow_chart)
                 $('#modalEditFlowChart').on('hide', function() {
-                    window.location.reload();
+                    // window.location.reload();
                 });
                 $('#check_box').on('click', function() {
                     $('#check_box').attr('checked', 'checked');
@@ -158,7 +158,7 @@ function GetFlowChart(flowChartID){
                     $(document).ready(function(){
                         $('#modalEditFlowChart').on('hide.bs.modal', function() {
                             $('#check_box').attr('checked', false);
-                            window.location.reload();
+                            // window.location.reload();
                         });
                     });
                 });
@@ -235,6 +235,68 @@ function EditFlowChart(){
             $("#iBtnEditFlowChartIcon").removeClass('fa fa-spinner fa-pulse');
             $("#btnEditFlowChart").removeAttr('disabled');
             $("#iBtnEditFlowChartIcon").addClass('fa fa-check');
+        }
+    });
+}
+
+//============================== CHANGE PMI CLC CATEGORY STATUS ==============================
+function ChangePlcFlowChartStatus(){
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "3000",
+        "timeOut": "3000",
+        "extendedTimeOut": "3000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    };
+
+    $.ajax({
+        url: "change_plc_flow_chart_stat",
+        method: "post",
+        data: $('#formChangePlcFlowChartStat').serialize(),
+        dataType: "json",
+        beforeSend: function(){
+            $("#iBtnChangePlcFlowChartStatIcon").addClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcFlowChartStat").prop('disabled', 'disabled');
+        },
+        success: function(response){
+
+            if(response['validation'] == 'hasError'){
+                toastr.error('Flow Chart activation failed!');
+            }else{
+                if(response['result'] == 1){
+                    if($("#txtChangePlcFlowChartStat").val() == 1){
+                        toastr.success('Activation success!');
+                        $("#txtChangePlcFlowChartStat").val() == 2;
+                    }
+                    else{
+                        toastr.success('Deactivation success!');
+                        $("#txtChangePlcFlowChartStat").val() == 1;
+                    }
+                }
+                $("#modalChangePlcFlowChartStat").modal('hide');
+                $("#formChangePlcFlowChartStat")[0].reset();
+                dataTablePlcModuleFlowChart.draw();
+            }
+
+            $("#iBtnChangePlcFlowChartStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcFlowChartStat").removeAttr('disabled');
+            $("#iBtnChangePlcFlowChartStatIcon").addClass('fa fa-check');
+        },
+        error: function(data, xhr, status){
+            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+            $("#iBtnChangePlcFlowChartStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcFlowChartStat").removeAttr('disabled');
+            $("#iBtnChangePlcFlowChartStatIcon").addClass('fa fa-check');
         }
     });
 }

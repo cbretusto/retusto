@@ -31,7 +31,9 @@
                                         <thead>
                                             <tr style="text-align:center">
                                             <th>Name</th>
+                                            <th>Department</th>
                                             <th>Username</th>
+                                            <th>Email</th>
                                             <th>User Level</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -52,7 +54,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h4 class="modal-title"><i class="fa fa-user-plus"></i> Add User Approver</h4>
+                    <h4 class="modal-title"><i class="fa fa-user-plus"></i> Add User</h4>
                     <button type="button" style="color: #fff;" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -65,6 +67,11 @@
                                 <div class="form-group">
                                     <label>Name</label>
                                     <select class="form-control sel-rapidx-user-list select2bs4" id="selectAddRapidxUser" name="rapidx_name"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <select class="form-control sel-rapidx-department-list select2bs4" id="selectAddRapidxDepartment" name="rapidx_department"></select>
                                 </div>                             
 
                                 <div class="form-group">
@@ -90,7 +97,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h4 class="modal-title"><i class="fa fa-user-plus"></i> Edit User Approver</h4>
+                    <h4 class="modal-title"><i class="fa fa-user-plus"></i> Edit User</h4>
                     <button type="button" style="color: #fff;" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -104,7 +111,12 @@
                                 <div class="form-group">
                                     <label>Name</label>
                                     <select class="form-control sel-rapidx-user-list select2bs4" id="selectEditRapidxUser" name="rapidx_name"></select>
-                                </div>                             
+                                </div>   
+
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <select class="form-control sel-rapidx-department-list select2bs4" id="selectEditRapidxDepartment" name="rapidx_department"></select>
+                                </div>  
 
                                 <div class="form-group">
                                     <label>User Level</label>
@@ -172,6 +184,10 @@
                 theme: "bootstrap4"
             });
 
+            $('.sel-rapidx-department-list').select2({
+                theme: "bootstrap4"
+            });
+
             $(document).on('click','#tblUsers tbody tr',function(e){
                 $(this).closest('tbody').find('tr').removeClass('table-active');
                 $(this).closest('tr').addClass('table-active');
@@ -182,6 +198,7 @@
             // this will fetch <option> based on the uri called get_user_approver
             // then the controller will handle that uri to use specific method called get_user_approver() inside UserApproverController
             LoadRapidXUserList($('.sel-rapidx-user-list'));
+            LoadRapidXDepartmentList($('.sel-rapidx-department-list'));
             GetUserLevel($(".selectUserLevel"));
 
             dataTableUsers = $("#tblUsers").DataTable({
@@ -192,7 +209,9 @@
                 },
                 "columns":[
                     { "data" : "rapidx_name" },
+                    { "data" : "department" },
                     { "data" : "username" },
+                    { "data" : "email" },
                     { "data" : "user_level.name" },
                     { "data" : "status" },
                     { "data" : "action", orderable:false, searchable:false }

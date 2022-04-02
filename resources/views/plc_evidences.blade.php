@@ -26,7 +26,7 @@
 
     table.table tbody td{
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 </style>
 
@@ -66,7 +66,7 @@
                                 </ul>
                             <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="user-management" role="tabpanel" aria-labelledby="user-management-tab">
-                                    <div class="text-right mt-4">
+                                    <div>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddPlcEvidences" id = "btnAddPlcEvidencesModal"
                                     style="float: right;"><i class="fas fa-plus"></i> Add
                                     PLC Evidences</button></div><br><br>
@@ -74,7 +74,7 @@
 
                                     <div class="table-responsive">
                                     <table id="plcEvidencesTable"
-                                        class="table table-sm table-bordered table-striped table-hover text-center"
+                                        class="table table-sm table-bordered table-striped table-hover"
                                         width="100%" style="white-space: pre-wrap;">
                                         <thead>
                                             <tr>

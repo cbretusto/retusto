@@ -110,6 +110,8 @@ function AddRCMData(){
                 $("#formAddRcmData")[0].reset();
                 toastr.success('RCM Data was succesfully saved!');
                 dataTablePlcModuleRCM.draw(); // reload the tables after insertion
+                dataTablePlcModuleSa.draw(); // reload the tables after insertion
+
             }
 
             $("#btnAddRcmIcon").removeClass('fa fa-spinner fa-pulse');
@@ -156,11 +158,71 @@ function GetRcmData(rcmDataID){
         },
         success: function(response){
             let rcm_data = response['rcm_data'];
-        
+
             // console.log(rcm_data);
 
             if(rcm_data.length > 0){
-        
+                if(rcm_data[0].validity == 'X'){
+                    $("#editValidityId").prop("checked",true);
+                }else if (rcm_data[0].validity == 'NULL'){
+                    $("#editValidityId").prop("checked",false);
+                }
+                if(rcm_data[0].completeness == 'X'){
+                    $("#editCompletenessId").prop("checked",true);
+                }else if (rcm_data[0].completeness == 'NULL'){
+                    $("#editCompletenessId").prop("checked",false);
+                }
+                if(rcm_data[0].accuracy == 'X'){
+                    $("#editAccuracyId").prop("checked",true);
+                }else if (rcm_data[0].accuracy == 'NULL'){
+                    $("#editAccuracyId").prop("checked",false);
+                }
+                if(rcm_data[0].cut_off == 'X'){
+                    $("#editCutOffId").prop("checked",true);
+                }else if (rcm_data[0].cut_off == 'NULL'){
+                    $("#editCutOffId").prop("checked",false);
+                }
+                if(rcm_data[0].valuation == 'X'){
+                    $("#editValuationId").prop("checked",true);
+                }else if (rcm_data[0].valuation == 'NULL'){
+                    $("#editValuationId").prop("checked",false);
+                }
+                if(rcm_data[0].presentation == 'X'){
+                    $("#editPresentationId").prop("checked",true);
+                }else if (rcm_data[0].presentation == 'NULL'){
+                    $("#editPresentationId").prop("checked",false);
+                }
+                if(rcm_data[0].key_control == 'X'){
+                    $("#editKeyControlId").prop("checked",true);
+                }else if (rcm_data[0].key_control == 'NULL'){
+                    $("#editKeyControlId").prop("checked",false);
+                }
+                if(rcm_data[0].it_control == 'X'){
+                    $("#editItControlId").prop("checked",true);
+                }else if (rcm_data[0].it_control == 'NULL'){
+                    $("#editItControlId").prop("checked",false);
+                }
+                if(rcm_data[0].preventive == 'X'){
+                    $("#editPreventiveId").prop("checked",true);
+                }else if (rcm_data[0].preventive == 'NULL'){
+                    $("#editPreventiveId").prop("checked",false);
+                }
+                if(rcm_data[0].defective == 'X'){
+                    $("#editDefectiveId").prop("checked",true);
+                }else if (rcm_data[0].defective == 'NULL'){
+                    $("#editDefectiveId").prop("checked",false);
+                }
+                if(rcm_data[0].manual == 'X'){
+                    $("#editManualId").prop("checked",true);
+                }else if (rcm_data[0].manual == 'NULL'){
+                    $("#editManualId").prop("checked",false);
+                }
+                if(rcm_data[0].automatic == 'X'){
+                    $("#editAutomaticId").prop("checked",true);
+                }else if (rcm_data[0].automatic == 'NULL'){
+                    $("#editAutomaticId").prop("checked",false);
+                }
+
                 $("#txtEditControlObjectiveId").val(rcm_data[0].control_objective);
                 $("#txtEditRiskSummary").val(rcm_data[0].risk_summary);
                 $("#txtEditRiskDetailId").val(rcm_data[0].risk_detail);
@@ -170,7 +232,7 @@ function GetRcmData(rcmDataID){
                 $("#txtEditInternalControlId").val(rcm_data[0].internal_control);
                 $("#txtEditSystemId").val(rcm_data[0].system);
 
-                
+
             }
             else{
                 toastr.warning('No RCM Data Record Found!');
@@ -202,10 +264,18 @@ function EditRcmData(){
         "hideMethod": "fadeOut",
     };
 
+    let category_name =  $('input[name="category_name"]').val();
+    console.log('category_name ',category_name);
+
+    let formData = new FormData($('#editRcmDataForm')[0]);
+    formData.append('category_name', category_name);
+
     $.ajax({
         url: "edit_rcm_data",
         method: "post",
-        data: $('#editRcmDataForm').serialize(),
+        processData: false,
+        contentType: false,
+        data: formData,
         dataType: "json",
         beforeSend: function(){
             $("#iBtnEditRcmDataIcon").addClass('fa fa-spinner fa-pulse');
@@ -230,6 +300,7 @@ function EditRcmData(){
                 $("#editRcmDataForm")[0].reset();
                 toastr.success('RCM Data succesfully saved!');
                 dataTablePlcModuleRCM.draw(); // reload the tables after insertion
+                dataTablePlcModuleSa.draw(); // reload the tables after insertion
             }
 
             $("#iBtnEditRcmDataIcon").removeClass('fa fa-spinner fa-pulse');
@@ -246,7 +317,61 @@ function EditRcmData(){
 }
 
 // ============================== DELETE RCM DATA ==============================
-function DeleteRcmData(){
+// function DeleteRcmData(){
+//     toastr.options = {
+//         "closeButton": false,
+//         "debug": false,
+//         "newestOnTop": true,
+//         "progressBar": true,
+//         "positionClass": "toast-top-right",
+//         "preventDuplicates": false,
+//         "onclick": null,
+//         "showDuration": "300",
+//         "hideDuration": "3000",
+//         "timeOut": "3000",
+//         "extendedTimeOut": "3000",
+//         "showEasing": "swing",
+//         "hideEasing": "linear",
+//         "showMethod": "fadeIn",
+//         "hideMethod": "fadeOut",
+//     };
+
+//     $.ajax({
+//         url: "delete_rcm_data",
+//         method: "post",
+//         data: $('#deleteRCMDataForm').serialize(),
+//         dataType: "json",
+//         beforeSend: function(){
+//             $("#iBtnDeleteRcmDataIcon").addClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteRcmData").prop('disabled', 'disabled');
+//         },
+//         success: function(response){
+//             let result = response['result'];
+//             if(result == 1){
+//                 $("#modalDeleteRcmData").modal('hide');
+//                 $("#deleteRCMDataForm")[0].reset();
+//                 toastr.success('PLC Category successfully deleted');
+//                 dataTablePlcModuleRCM.draw();
+//             }
+//             else{
+//                 toastr.warning('No PLC Category found!');
+//             }
+
+//             $("#iBtnDeleteRcmDataIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteRcmData").removeAttr('disabled');
+//             $("#iBtnDeleteRcmDataIcon").addClass('fa fa-check');
+//         },
+//         error: function(data, xhr, status){
+//             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+//             $("#iBtnDeleteRcmDataIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteRcmData").removeAttr('disabled');
+//             $("#iBtnDeleteRcmDataIcon").addClass('fa fa-check');
+//         }
+//     });
+// }
+
+//============================== CHANGE PMI CLC CATEGORY STATUS ==============================
+function ChangePlcRcmStatus(){
     toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -266,35 +391,43 @@ function DeleteRcmData(){
     };
 
     $.ajax({
-        url: "delete_rcm_data",
+        url: "change_plc_rcm_stat",
         method: "post",
-        data: $('#deleteRCMDataForm').serialize(),
+        data: $('#formChangePlcRcmStat').serialize(),
         dataType: "json",
         beforeSend: function(){
-            $("#iBtnDeleteRcmDataIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteRcmData").prop('disabled', 'disabled');
+            $("#iBtnChangePlcRcmStatIcon").addClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRcmStat").prop('disabled', 'disabled');
         },
         success: function(response){
-            let result = response['result'];
-            if(result == 1){
-                $("#modalDeleteRcmData").modal('hide');
-                $("#deleteRCMDataForm")[0].reset();
-                toastr.success('PLC Category successfully deleted');
+
+            if(response['validation'] == 'hasError'){
+                toastr.error('User activation failed!');
+            }else{
+                if(response['result'] == 1){
+                    if($("#txtChangePlcRcmStat").val() == 1){
+                        toastr.success('Activation success!');
+                        $("#txtChangePlcRcmStat").val() == 2;
+                    }
+                    else{
+                        toastr.success('Deactivation success!');
+                        $("#txtChangePlcRcmStat").val() == 1;
+                    }
+                }
+                $("#modalChangePlcRcmStat").modal('hide');
+                $("#formChangePlcRcmStat")[0].reset();
                 dataTablePlcModuleRCM.draw();
             }
-            else{
-                toastr.warning('No PLC Category found!');
-            }
 
-            $("#iBtnDeleteRcmDataIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteRcmData").removeAttr('disabled');
-            $("#iBtnDeleteRcmDataIcon").addClass('fa fa-check');
+            $("#iBtnChangePlcRcmStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRcmStat").removeAttr('disabled');
+            $("#iBtnChangePlcRcmStatIcon").addClass('fa fa-check');
         },
         error: function(data, xhr, status){
             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#iBtnDeleteRcmDataIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteRcmData").removeAttr('disabled');
-            $("#iBtnDeleteRcmDataIcon").addClass('fa fa-check');
+            $("#iBtnChangePlcRcmStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRcmStat").removeAttr('disabled');
+            $("#iBtnChangePlcRcmStatIcon").addClass('fa fa-check');
         }
     });
 }
@@ -330,11 +463,11 @@ function GetRcmDataView(getRcmDataID){
         },
         success: function(response){
             let rcm_data_view = response['rcm_data_view'];
-        
+
             // console.log(rcm_data);
 
             if(rcm_data_view.length > 0){
-        
+
                 $("#txtControlObjectiveData").val(rcm_data_view[0].control_objective);
                 $("#txtRiskSummaryData").val(rcm_data_view[0].risk_summary);
                 $("#txtRiskDetailData").val(rcm_data_view[0].risk_detail);
@@ -355,11 +488,11 @@ function GetRcmDataView(getRcmDataID){
                 $("#txtInternatxtManualDatalControlData").val(rcm_data_view[0].manual);
                 $("#txtAutomaticData").val(rcm_data_view[0].automatic);
                 $("#txtSystemData").val(rcm_data_view[0].system);
-                
-                
-                
 
-                
+
+
+
+
             }
             else{
                 toastr.warning('No RCM Data Record Found!');

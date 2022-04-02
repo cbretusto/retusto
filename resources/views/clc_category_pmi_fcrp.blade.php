@@ -85,7 +85,7 @@
                                                 <th>Review Findings</th>
                                                 <th>Follow-up Details</th>
                                                 <th style="width: 3%">G / NG</th>
-                                                <th>Uploaded File</th>
+                                                {{-- <th>Uploaded File</th> --}}
                                                 <th style="width: 8%">Action</th>
                                             </tr>
                                         </thead>
@@ -281,11 +281,11 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input peso radioBtn" type="radio" id="txtEditPmiFcrpGNg" name="g_ng" value="Good">
+                                        <input class="form-check-input peso radioBtn" type="radio" id="txtEditPmiFcrpGood" name="g_ng" value="Good">
                                         <label class="form-check-label" for="inlineRadio1">GOOD</label>
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiFcrpGNg" name="g_ng" value="Not Good">
+                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiFcrpNotGood" name="g_ng" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
                                     </div>                                        
                                 </div> 
@@ -321,11 +321,11 @@
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input peso radioBtn" type="radio" name="g_ng_last" id="txtEditPmiFcrpGNgLast" value="Good">
+                                        <input class="form-check-input peso radioBtn" type="radio" name="g_ng_last" id="txtEditPmiFcrpGoodLast" value="Good">
                                         <label class="form-check-label" for="inlineRadio1">GOOD</label>
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtEditPmiFcrpGNgLast" value="Not Good">
+                                        <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtEditPmiFcrpNotGoodLast" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
                                     </div>    
                                 </div> 
@@ -388,7 +388,13 @@
                     <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                    </div>
+
+                    {{-- GET UPLOADED FILE ID --}}
+                    <div class="form-group col-sm-12"> 
+                        <input type="text" id="uploaded_file_id">
+                    </div>
+
                     <div class="card-header">
                         <div class="modal-body">
                             <div class="row mb-2">
@@ -411,6 +417,71 @@
         </div>
     </div> <!--  PMI FCRP EVIDENCES TABLE MODAL START -->
 
+    <!-- SELECT PMI FCRP EVIDENCES TABLE MODAL START -->
+    <div class="modal fade" id="modalSelectFiles">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content"> <!--START-->
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> SELECT CLC EVIDENCES UPLOADED FILE</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="form-group col-sm-12"> 
+                    <input type="text" name="pmi_fcrp_id" id="txtPmiFcrpId">
+                    <input type="text" name="pmi_category_id" id="txtPmiCategoryId" value="2">
+                </div>
+
+                <div class="card-header">
+                    <div class="modal-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h5>VIEW PMI FCRP UPLOADED FILE </h5>
+                            </div>
+                        </div>
+                        <table id="tblSelectClcEvidences" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                            <thead>
+                                <tr style="text-align:center">
+                                <th>Category</th>
+                                <th>CLC Uploaded File</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>            
+                        </table>
+                    </div>
+                </div>
+            </div><!--END-->
+        </div>
+    </div> <!-- SELECT PMI FCRP EVIDENCES TABLE MODAL START -->
+
+    <!-- FILTER MODAL START -->
+    <div class="modal fade" id="modalSelectClcEvidences">
+        <div class="modal-dialog">
+            <div class="modal-content modal-sm">
+                <div class="modal-header bg-info">
+                    <h4 class="modal-title" id="h4SelectClcEvidences"><i class="fab fa-stack-overflow"></i> Add File</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="formSelectClcEvidences">
+                    @csrf
+                    <div class="modal-body">
+                        <label id="lblSelectClcEvidences"></label>
+                        <h5><strong>Are you sure you want to add this record?</strong></h5>
+                        <input type="text" name="pmi_fcrp_id" id="selectPmiFcrpId">
+                        <input type="text" name="select_clc_evidences_id" id="selectClcEvidencesId">
+                        <input type="text" name="filter" id="selectClcEvidencesFile">
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnChangeSelectClcEvidences" class="btn btn-info"><i id="iBtnSelectClcEvidencesIcon" class="fa fa-check"></i> Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- FILTER MODAL END -->
 @endsection
 
 <!-- {{-- JS CONTENT --}} -->
@@ -419,6 +490,7 @@
     <script type="text/javascript">
         let dataTableClcCategoryPmiFcrp;
         let dataTableClcEvidences;
+        let dataTableSelectClcEvidences;
 
         $(document).ready(function () {
             
@@ -454,27 +526,45 @@
                     { "data" : "review_findings" },
                     { "data" : "follow_up_details" },
                     { "data" : "g_ng_last" },
-                    { "data" : "uploaded_file" },
+                    // { "data" : "uploaded_file" },
                     { "data" : "action", orderable:false, searchable:false }
                 ],
             });// END OF DATATABLE
 
-            // ======================= CLC EVIDENCES DATA TABLE =======================        
-            dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
-                "processing" : false,
-                "serverSide" : true,
-                "ajax" : {
-                    url: "view_pmi_fcrp_evidences_file",
-                    data: {
-                        category : "PMI FCRP",
-                    }
-                },
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_pmi_fcrp_evidences_file",
+            //         data: function (param){
+            //             param.id = $('#uploaded_file_id').val();
+            //         },
+            //     },
 
-                "columns":[
-                    { "data" : "clc_category" },
-                    { "data" : "uploaded_file" }
-                ],
-            });// END OF DATATABLE
+            //     "columns":[
+            //         { "data" : "clc_evidences.clc_category" },
+            //         { "data" : "uploaded_file" }
+            //     ],
+            // });// END OF DATATABLE
+
+            // // ======================= CLC EVIDENCES DATA TABLE =======================        
+            // dataTableSelectClcEvidences = $("#tblSelectClcEvidences").DataTable({ 
+            //     "processing" : false,
+            //     "serverSide" : true,
+            //     "ajax" : {
+            //         url: "view_select_pmi_fcrp_evidences_file",
+            //         data: {
+            //             category : "PMI FCRP",
+            //         }
+            //     },
+
+            //     "columns":[
+            //         { "data" : "clc_category" },
+            //         { "data" : "uploaded_file" },
+            //         { "data" : "action", orderable:false, searchable:false }
+            //     ],
+            // });// END OF DATATABLE
 
             // ============================ AUTO ADD CREATED BY USER ============================
             $(document).on('click', '#btnShowAddPmiFcrpCategoryModal, .actionEditPmiFcrpCategory', function() {
@@ -607,7 +697,76 @@
                 ChangeClcCategoryPmiFcrpStatus();
             });
 
-            // auto resize the textareas
+            // //============================== SELECT CLC EVIDENCES FILE ==============================
+            // $(document).on('click', '.actionSelectClcEvidences', function(){
+            //     let selectclcevidence = $(this).attr('filter'); 
+            //     let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
+            //     console.log(selectclcevidence);
+            //     console.log(selectclcevidenceId);
+            //     $("#selectClcEvidencesFile").val(selectclcevidence); 
+            //     $("#selectClcEvidencesId").val(selectclcevidenceId); 
+
+            //     if(selectclcevidence == 0){
+            //         $("#lblSelectClcEvidences").text('Are you sure to delete this record?'); 
+            //         $("#h4SelectClcEvidences").html('<i class="fa fa-times"></i> Delete Record');
+            //     }
+            //     else{
+            //         $("#lblSelectClcEvidences").text('Are you sure to add this record?');
+            //         $("#h4SelectClcEvidences").html('<i class="fa fa-check"></i>  Add Record');
+            //     }
+            // });
+            // $("#formSelectClcEvidences").submit(function(event){
+            //     event.preventDefault();
+            //     SelectClcEvidencesFile();
+            // });
+
+            //============================== SELECT ADD CLC EVIDENCES FILE ==============================
+            $(document).on('click', '.actionSelectClcEvidences', function(){
+                let pmifcrpId  = $('#txtPmiFcrpId').val();
+                let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
+                let selectclcevidence = $(this).attr('filter'); 
+
+                    console.log('Add Record');
+                    console.log('Pmi Fcrp ID:', pmifcrpId);
+                    console.log('Add File Evidence ID:', selectclcevidenceId);
+                    console.log('Filter ID:', selectclcevidence);
+
+                $("#selectPmiFcrpId").val(pmifcrpId); 
+                $("#selectClcEvidencesId").val(selectclcevidenceId); 
+                $("#selectClcEvidencesFile").val(selectclcevidence); 
+            });
+            $("#formSelectClcEvidences").submit(function(event){
+                event.preventDefault();
+                AddClcEvidencesFile();
+            });
+
+            // =============================== GET SELECT FILE & CATEGORY ID =============================== 
+            $(document).on('click', '.actionSelectFiles', function(){
+                let pmifcrpId  = $(this).attr('pmi_fcrp-id'); 
+                let pmicategoryId  = $('#txtPmiCategoryId').val(); 
+                    console.log('Select File ID:', pmifcrpId);
+                    console.log('Category ID:', pmicategoryId);
+                $("#txtPmiFcrpId").val(pmifcrpId); 
+            });
+            
+            // ========================= GET UPLOADED FILE ID =========================
+            $(document).on('click','.actionViewUploadedFile', function(){
+                let id  = $(this).attr('pmi_fcrp-id');
+                $('#uploaded_file_id').val( id);
+                console.log('Uploaded File ID:', id);
+                dataTableClcEvidences.draw();
+            });
+
+            // ========================= RELOAD DATATABLE =========================
+            function reloadDataTableClcCategoryPmiFcrp() {
+                dataTableClcEvidences.draw();
+            }
+            $("#modalSelectFiles").on('hidden.bs.modal', function () {
+                console.log('PMI FCRP Reload Successfully');
+                reloadDataTableClcCategoryPmiFcrp();
+            });        
+
+            // ========================= RESIZE TEXTAREA =========================
             document.querySelectorAll("textarea").forEach(function (size) {
                 size.addEventListener("input", function () {
                     var resize = window.getComputedStyle(this);

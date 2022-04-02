@@ -183,9 +183,8 @@
                 </div>
             </div><!-- EDIT MODAL END -->
 
-        
-        
-
+            
+            
         </section>
     </div>
 
@@ -326,7 +325,6 @@
                 //     event.preventDefault();
                 //     DeleteClcEvidence();
                 // });
-
 
         }); // JQUERY DOCUMENT READY END
     </script>                  

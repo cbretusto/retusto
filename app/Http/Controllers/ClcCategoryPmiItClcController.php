@@ -51,6 +51,8 @@ class ClcCategoryPmiItClcController extends Controller
             if($pmi_it_clc->it_clc_status == 1){
                 $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditPmiItClcCategory" style="width:105px;margin:2%;" pmi_it_clc-id="' . $pmi_it_clc->id . '" data-toggle="modal" data-target="#modalEditPmiItClcCategory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
                 $result .= '<br>';
+                // $result .= '<button type="button" class="btn btn-dark btn-sm text-center actionSelectFiles" style="width:105px;margin:2%;" pmi_it_clc-id="' . $pmi_it_clc->id . '" data-toggle="modal" data-target="#modalSelectFiles" data-keyboard="false"><i class="nav-icon far fa-file"></i> Select File</button>&nbsp;';
+                // $result .= '<br>';
                 $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangeClcCategoryPmiItClcStat" style="width:105px;margin:2%;" pmi_it_clc-id="' . $pmi_it_clc->id . '" it_clc_status="2" data-toggle="modal" data-target="#modalChangeClcCategoryPmiItClcStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
                 $result .= '<br>';
             }else{

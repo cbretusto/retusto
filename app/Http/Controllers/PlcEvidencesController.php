@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\PlcEvidences;
+use App\SelectPlcEvidence;
 use App\RapidXUser;
 use DataTables;
 use Carbon\Carbon;
@@ -22,8 +23,9 @@ class PlcEvidencesController extends Controller
         return DataTables::of($plc_evidences)
         ->addColumn('action',function($plc_evidences){
             $result = "";
+            $result = "<center>";
             $result .= '<button class="btn btn-primary btn-sm  text-center actionEditPlcEvidences" plc_evidences-id="' . $plc_evidences->id . '" data-toggle="modal" data-target="#modalEditPlcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
-
+            $result .= '</center>';
             return $result;
         })
         ->addColumn('plc_evidences', function($plc_evidences){
@@ -33,21 +35,18 @@ class PlcEvidencesController extends Controller
             //     $result .= '<span class="badge badge-pill badge-danger">No file uploaded!</span>';
             // }
             // else{
-
             //     $result .= "<a href='download_plc_evidences/" . $plc_evidences->id . "' > $plc_evidences->plc_evidences</a>";
             // }
             //     $result .= '</center>';
             $result = "";
             if($plc_evidences->plc_evidences != null){
-                $exploded_arr_original_file = explode(", ", $plc_evidences->plc_evidences);
+                $exploded_arr_original_file = explode("/", $plc_evidences->plc_evidences);
                 foreach($exploded_arr_original_file as $file){
                     // $result = $file;
                     $result .=  "<a href='download_plc_evidences/" . $file . "' > $file </a><br>";
                 }
             }
-
                 return $result;
-
         })
 
         ->addColumn('updated_a1', function($plc_evidences){
@@ -57,12 +56,10 @@ class PlcEvidencesController extends Controller
             if($date != null){
                 $result .= Carbon::parse($date)->format('M. d, Y');
             }
-        //    $result = Carbon::$date->format('M. d, Y');
-
+            //$result = Carbon::$date->format('M. d, Y');
             return $result;
-
-            })
-            ->addColumn('uploaded_by', function($plc_evidences){
+        })
+        ->addColumn('uploaded_by', function($plc_evidences){
                 $result = "";
             if ($plc_evidences->status == 0){
 
@@ -70,48 +67,98 @@ class PlcEvidencesController extends Controller
             }else{
                 $result .= $plc_evidences->revised_by;
             }
-
             return $result;
-
             })
-            ->addColumn('date_uploaded', function($plc_evidences){
+
+        ->addColumn('date_uploaded', function($plc_evidences){
                 $result = "";
             if ($plc_evidences->status == 0){
-
                 $result .= $plc_evidences->date_uploaded;
             }else{
                 $result .= $plc_evidences->revised_date;
             }
-
             return $result;
-
-            })
-
+        })
             ->rawColumns(['action','plc_evidences','updated_a1','uploaded_by', 'date_uploaded'])
             ->make(true);
-
     }
 
-    public function view_plc_receiving_orders(Request $request){
+    // Chan March 16, 2022
+    public function view_select_pmi_plc_evidences_file(Request $request)
+    {
         $plc_evidences = PlcEvidences::where('logdel', 0)->where('plc_category', 'like', '%'.$request->category.'%')->get();
-
         return DataTables::of($plc_evidences)
-
+        ->addColumn('action',function($plc_evidences){
+            $result = "";
+            $result = '<center>';
+            $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectPlcEvidences" plc_evidences-id="' . $plc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalSelectPlcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add Reference Document</button>';
+            $result .= '</center>';
+            return $result;
+        })
         ->addColumn('plc_evidences', function($plc_evidences){
-            $result = "<center>";
+            $result = "";
             if($plc_evidences->plc_evidences != null){
-                $exploded_arr_original_file = explode(", ", $plc_evidences->plc_evidences);
+                $exploded_arr_original_file = explode("/", $plc_evidences->plc_evidences);
                 foreach($exploded_arr_original_file as $file){
                     // $result = $file;
                     $result .=  "<a href='download_plc_evidences/" . $file . "' > $file </a><br>";
                 }
             }
-            $result .= '</center>';
-            return $result;
+                return $result;
+        })
+            ->rawColumns(['action','plc_evidences'])
+            ->make(true);
+    }
+
+    // Chan March 16, 2022
+    public function view_pmi_plc_evidences_file(Request $request)
+    {
+        // $plc_evidences = PlcEvidences::where('logdel', 0)->get();
+        $plc_evidences = SelectPlcEvidence::with(['category_details','sa_details', 'plc_evidences_details'])
+        ->where('plc_sa_id', $request->id)
+        ->where('assessment_details_and_findings', $request->buttonid)
+        ->where('filter', 1)
+        ->get();
+        // return $plc_evidences;
+        return DataTables::of($plc_evidences)
+
+        ->addColumn('plc_evidences', function($plc_evidences){
+            $result = "";
+            if($plc_evidences->plc_evidences_details != null){
+                $exploded_arr_original_file = explode("/", $plc_evidences->plc_evidences_details->plc_evidences);
+                foreach($exploded_arr_original_file as $file){
+                    // $result = $file;
+                    $result .=  "<a href='download_plc_evidences/" . $file . "' > $file </a><br>";
+                }
+            }
+                return $result;
         })
             ->rawColumns(['plc_evidences'])
             ->make(true);
     }
+
+
+
+    // public function view_select_pmi_plc_evidences_file(Request $request){
+    //     $plc_evidences = PlcEvidences::where('logdel', 0)->where('plc_category', 'like', '%'.$request->category.'%')->get();
+
+    //     return DataTables::of($plc_evidences)
+
+    //     ->addColumn('plc_evidences', function($plc_evidences){
+    //         $result = "<center>";
+    //         if($plc_evidences->plc_evidences != null){
+    //             $exploded_arr_original_file = explode(", ", $plc_evidences->plc_evidences);
+    //             foreach($exploded_arr_original_file as $file){
+    //                 // $result = $file;
+    //                 $result .=  "<a href='download_plc_evidences/" . $file . "' > $file </a><br>";
+    //             }
+    //         }
+    //         $result .= '</center>';
+    //         return $result;
+    //     })
+    //         ->rawColumns(['plc_evidences'])
+    //         ->make(true);
+    // }
 
     public function get_rapidx_user(Request $request){
         session_start();
@@ -160,7 +207,7 @@ class PlcEvidencesController extends Controller
                     // $original_filename = $request->file('uploaded_file')->getClientOriginalName();
 
                     // return $original_filename;
-                    $imploaded_arr_uploaded_file_orig = implode(', ', $arr_uploaded_file);
+                    $imploaded_arr_uploaded_file_orig = implode('/', $arr_uploaded_file);
 
                     // return $imploaded_arr_uploaded_file_orig;
 
@@ -205,7 +252,9 @@ class PlcEvidencesController extends Controller
         // $evidences = PlcEvidences::where('id', $id)->first();
 
         $file =  storage_path() . "/app/public/plc_evidences/" . $id;
-
+        // $pattern = ('/[^A-Z-a-z-1-9\s+\,()_]/i');
+        // $preg_pattern =  preg_replace($pattern);
+        // return $id;
         return Response::download($file, $id);
     }
 
@@ -261,7 +310,7 @@ class PlcEvidencesController extends Controller
                     // return $original_filename;
 
 
-                    $imploaded_arr_uploaded_file_orig_edit = implode(', ', $edit_arr_uploaded_file);
+                    $imploaded_arr_uploaded_file_orig_edit = implode('/', $edit_arr_uploaded_file);
                 // Storage::putFileAs('public/plc_evidences', $request->edit_uploaded_file,  $original_filename1);
                 PlcEvidences::where('id', $request->plc_evidence_id)
                 ->update([

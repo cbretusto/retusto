@@ -33,7 +33,7 @@ function AddPmiItClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['control_objectives'] === undefined){
                     $("#txtAddPmiItClcControlObjectives").removeClass('is-invalid');
                     $("#txtAddPmiItClcControlObjectives").attr('title', '');
@@ -208,7 +208,7 @@ function EditPmiItClcCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['control_objectives'] === undefined){
                     $("#txtEditPmiItClcControlObjectives").removeClass('is-invalid');
                     $("#txtEditPmiItClcControlObjectives").attr('title', '');
@@ -330,11 +330,11 @@ function ChangeClcCategoryPmiItClcStatus(){
             }else{
                 if(response['result'] == 1){
                     if($("#txtChangeClcCategoryPmiItClcStat").val() == 1){
-                        toastr.success('User activation success!');
+                        toastr.success('Activation success!');
                         $("#txtChangeClcCategoryPmiItClcStat").val() == 2;
                     }
                     else{
-                        toastr.success('User deactivation success!');
+                        toastr.success('Deactivation success!');
                         $("#txtChangeClcCategoryPmiItClcStat").val() == 1;
                     }
                 }

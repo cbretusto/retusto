@@ -15,21 +15,35 @@ class CreateTblPLCModuleSa extends Migration
     {
         Schema::create('tbl_plc_module_sa', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('assessed_by');
-            $table->String('checked_by');
-            $table->String('control_no');
-            $table->String('key_control');
-            $table->String('it_control');
-            $table->String('internal_control');
-            $table->String('dic_assessment');
-            $table->String('dic_status');
-            $table->String('oec_assessment');
-            $table->String('oec_status');
-            $table->String('rf_improvement');
-            $table->String('rf_assessment');
-            $table->String('rf_status');
+            $table->string('assessed_by');
+            $table->string('checked_by');
+            $table->string('control_no');
+            $table->string('key_control');
+            $table->string('it_control');
+            $table->string('internal_control');
+            $table->longText('dic_assessment');
+            $table->string('dic_attachment');
+            $table->string('dic_status');
+            $table->longText('oec_assessment');
+            $table->string('oec_attachment');
+            $table->string('oec_status');
+            $table->string('second_half_assessed_by');
+            $table->string('second_half_checked_by');
+            $table->longText('rf_improvement');
+            $table->longText('rf_assessment');
+            $table->string('rf_attachment');
+            $table->string('rf_status');
+            $table->longText('fu_improvement');
+            $table->longText('fu_assessment');
+            $table->string('fu_attachment');
+            $table->string('fu_status');
+            $table->string('yec_approved_date');
+            $table->unsignedTinyInteger('approver_status')->default(0)->comment = '0-For Update/Approval of Jr. Auditor, 1-Approval of IAS Manager, 2-(1st Half) Approved & (2nd half)For Approval Junior Auditor, 3-(1st Half) Approved & (2nd half) For Approval -IAS Manager, 4-Approved';
+            $table->bigInteger('rcm_id')->unsigned();
             $table->unsignedTinyInteger('logdel')->default(0)->comment = '0-show,1-hide';
             $table->timestamps();
+
+            $table->foreign('rcm_id')->references('id')->on('tbl_plc_module_rcm');
         });
     }
 

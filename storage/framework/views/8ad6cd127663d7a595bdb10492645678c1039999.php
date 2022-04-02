@@ -1,18 +1,6 @@
 <?php $layout = 'layouts.super_user_layout'; ?>
 
-<?php if(auth()->guard()->check()): ?>
-    <?php
-        if(Auth::user()->user_level_id == 1){
-            $layout = 'layouts.super_user_layout';
-        }
-        else if(Auth::user()->user_level_id == 2){
-            $layout = 'layouts.admin_layout';
-        }
-        else if(Auth::user()->user_level_id == 3){
-            $layout = 'layouts.user_layout';
-        }
-    ?>
-<?php endif; ?>
+
 
 
 

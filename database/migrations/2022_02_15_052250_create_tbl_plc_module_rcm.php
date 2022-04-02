@@ -15,26 +15,27 @@ class CreateTblPLCModuleRcm extends Migration
     {
         Schema::create('tbl_plc_module_rcm', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('control_objective');
-            $table->String('risk_summary');
-            $table->String('risk_detail');
-            $table->String('debit');
-            $table->String('credit');
-            $table->String('validity');
-            $table->String('completeness');
-            $table->String('accuracy');
-            $table->String('cut_off');
-            $table->String('valuation');
-            $table->String('presentation');
-            $table->String('key_control');
-            $table->String('it_control');
-            $table->String('control_id');
-            $table->String('internal_control');
-            $table->String('preventive');
-            $table->String('defective');
-            $table->String('manual');
-            $table->String('automatic');
-            $table->String('system');
+            $table->unsignedTinyInteger('status')->default(0)->comment = '1-active,2-Inactive';
+            $table->string('control_objective');
+            $table->longText('risk_summary');
+            $table->longText('risk_detail');
+            $table->string('debit');
+            $table->string('credit');
+            $table->string('validity');
+            $table->string('completeness');
+            $table->string('accuracy');
+            $table->string('cut_off');
+            $table->string('valuation');
+            $table->string('presentation');
+            $table->string('key_control');
+            $table->string('it_control');
+            $table->string('control_id');
+            $table->longText('internal_control');
+            $table->string('preventive');
+            $table->string('defective');
+            $table->string('manual');
+            $table->string('automatic');
+            $table->string('system');
             $table->timestamps();
         });
     }

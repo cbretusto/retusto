@@ -52,7 +52,7 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="user-management" role="tabpanel" aria-labelledby="user-management-tab">
-                                <div class="text-right mt-4">
+                                <div>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddPlcCategory"
                                 style="float: right;"><i class="fa fa-plus fa-md"></i> Add
                                 PLC Category</button></div><br><br>
@@ -60,7 +60,7 @@
 
                             <div class="table-responsive">
                                 <table id="plcCategoryTable"
-                                    class="table table-sm table-bordered table-striped table-hover text-center"
+                                    class="table table-sm table-bordered table-striped table-hover"
                                     width="100%">
                                     <thead>
                                         <tr>
@@ -85,8 +85,8 @@
     <div class="modal fade" id="modalAddPlcCategory">
         <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> Add PLC Category</h4>
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> Add PLC Category</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -99,13 +99,15 @@
                     <div class="form-group">
                     <label>PLC Category</label>
                         <input type="text" class="form-control" name="plc_category" id="txtAddPlcCategory">
+                        
+
                     </div>
                 </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" id="btnAddPlcCategory" class="btn btn-primary"><i id="BtnAddPlcCategoryIcon" class="fa fa-check"></i> Save</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="submit" id="btnAddPlcCategory" class="btn btn-dark"><i id="BtnAddPlcCategoryIcon" class="fa fa-check"></i> Save</button>
             </div>
             </form>
         </div>
@@ -140,8 +142,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnEditPlcCategory" class="btn btn-primary"><i id="iBtnEditPlcCategoryIcon" class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnEditPlcCategory" class="btn btn-dark"><i id="iBtnEditPlcCategoryIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
             </div>
@@ -152,7 +154,7 @@
     <div class="modal fade" id="modalDeactivatePlcCategory">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-dark">
+                <div class="modal-header bg-danger">
                     <h4 class="modal-title"><i class="far fa-file"></i>&nbsp;&nbsp;Deactivate PLC Category</h4>
                     <button type="button" style="color: #fff" class="close" data-dismiss="modal"
                         aria-label="Close">
@@ -168,8 +170,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnDeactivatePlcCategory" class="btn btn-primary"><i id="deactivateplcCategoryIcon"
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnDeactivatePlcCategory" class="btn btn-danger"><i id="deactivateplcCategoryIcon"
                                 class="fa fa-check"></i> Deactivate</button>
                     </div>
                 </form>
@@ -181,7 +183,7 @@
     <div class="modal fade" id="modalActivatePlcCategory">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-dark">
+                <div class="modal-header bg-success">
                     <h4 class="modal-title"><i class="far fa-file"></i>&nbsp;&nbsp;Activate PLC Category</h4>
                     <button type="button" style="color: #fff" class="close" data-dismiss="modal"
                         aria-label="Close">
@@ -198,8 +200,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnActivatePlcCategory" class="btn btn-primary"><i id="activatePlcCategoryIcon"
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnActivatePlcCategory" class="btn btn-success"><i id="activatePlcCategoryIcon"
                                 class="fa fa-check"></i> Activate</button>
                     </div>
                 </form>

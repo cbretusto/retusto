@@ -32,55 +32,45 @@
                     </div>
                 </div>
             </section>
-            
+
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-12 col-lg-6 mt-6">
+                    <div class="col-4">
                         <a href="<?php echo e(route('clc_category_pmi_clc')); ?>">
                         
-                            <div class="info-box">
-                                <span class="info-box-icon bg-dark"><i class="fas fa-book-reader"></i></span>
+                            <div class="info-box bg-info">
                                 <div class="info-box-content">
                                     <span class="info-box-text" style="position:absolute !important; text-align: center; margin-top: 17px;"><h5><strong>PMI CLC</strong></h5></span>
                                 </div>
+                                <span class="info-box-icon bg-info"><i class="fas fa-arrow-right"></i></span>
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-6 mt-6">
+                    <div class="col-4">
                         <a href="<?php echo e(route('clc_category_pmi_fcrp')); ?>">
-                        
-                            <div class="info-box">
-                                <span class="info-box-icon bg-dark"><i class="fas fa-book-reader"></i></span>
+                            <div class="info-box bg-info">
                                 <div class="info-box-content">
                                     <span class="info-box-text" style="position:absolute !important; text-align: center; margin-top: 17px;"><h5><strong>PMI FCRP</strong></h5></span>
                                 </div>
+                                <span class="info-box-icon bg-info"><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a href="<?php echo e(route('clc_category_pmi_it_clc')); ?>">
+                            <div class="info-box bg-info">
+                                <div class="info-box-content">
+                                    <span class="info-box-text" style="position:absolute !important; text-align: center; margin-top: 17px;"><h5><strong>PMI IT-CLC</strong></h5></span>
+                                </div>
+                                <span class="info-box-icon bg-info"><i class="fas fa-arrow-right"></i></span>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-6 mt-6">
-                        <a href="<?php echo e(route('clc_category_pmi_it_clc')); ?>">
-                        
-                            <div class="info-box">
-                                <span class="info-box-icon bg-dark"><i class="fas fa-book-reader"></i></span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text" style="position:absolute !important; text-align: center; margin-top: 17px;"><h5><strong>PMI IT-CLC</strong></h5></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        
         </section>
     </div>
 <?php $__env->stopSection(); ?>
@@ -91,5 +81,4 @@
 
     </script>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make($layout, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/Jsox/resources/views/clc_dashboard.blade.php ENDPATH**/ ?>

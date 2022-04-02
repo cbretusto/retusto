@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\UserManagement;
 
 class PLCModuleFlowChart extends Model
 {
@@ -11,6 +12,10 @@ class PLCModuleFlowChart extends Model
 
     public function rapidx_user_details()
     {
-    	return $this->hasOne(RapidXUser::class, 'id', 'rapidx_id');
+    	return $this->hasOne(UserManagement::class, 'id', 'process_owner');
+    }
+
+    public function plc_module(){
+        return $this->hasOne(PLCModule::class, 'id', 'rev_history_id');
     }
 }

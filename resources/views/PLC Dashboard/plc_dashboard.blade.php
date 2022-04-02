@@ -1,19 +1,5 @@
 @php $layout = 'layouts.super_user_layout'; @endphp
 
-@auth
-    @php
-        if(Auth::user()->user_level_id == 1){
-            $layout = 'layouts.super_user_layout';
-        }
-        else if(Auth::user()->user_level_id == 2){
-            $layout = 'layouts.admin_layout';
-        }
-        else if(Auth::user()->user_level_id == 3){
-            $layout = 'layouts.user_layout';
-        }
-    @endphp
-@endauth
-
 {{-- Here I removed the @auth because the dashboard isn't loading properly --}}
 @extends($layout)
 @section('title', 'Dashboard')
@@ -35,7 +21,8 @@
                             </div>
                                 <div class="col-3 text-right"><br>
 
-                                    <a class="text-white" id="pmi_test1" status="1"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_1" status="1"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    {{-- <a href="{{ route('clc_category_pmi_clc') }}"> --}}
 
                                 </div>
                         </div>
@@ -50,7 +37,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test2" status="2"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_2" status="2"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
 
                                 </div>
                         </div>
@@ -65,7 +52,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test3" status="3"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_3" status="3"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -79,7 +66,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test4" status="4"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_4" status="4"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -93,7 +80,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test5" status="5"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_5" status="5"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -107,7 +94,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test6" status="6"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_6" status="6"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -121,7 +108,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test7" status="7"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_7" status="7"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -136,7 +123,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test8" status="8"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_8" status="8"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -150,7 +137,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test9" status="9"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_9" status="9"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -164,7 +151,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test10" status="10"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_10" status="10"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -178,7 +165,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test11" status="11"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_11" status="11"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -192,7 +179,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test12" status="12"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_12" status="12"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -206,7 +193,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test13" status="13"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_13" status="13"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -220,7 +207,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test14" status="14"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_14" status="14"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -234,7 +221,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test15" status="15"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_15" status="15"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -248,7 +235,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test16" status="16"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_16" status="16"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -262,7 +249,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test17" status="17"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_17" status="17"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -276,7 +263,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test18" status="18"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_18" status="18"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -290,7 +277,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test19" status="19"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_19" status="19"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -304,7 +291,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test20" status="20"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_20" status="20"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -318,7 +305,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test21" status="21"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_21" status="21"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -332,7 +319,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test22" status="22"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_22" status="22"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -346,7 +333,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test23" status="23"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_23" status="23"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -360,7 +347,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test24" status="24"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_24" status="24"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -374,7 +361,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test25" status="25"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_25" status="25"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -388,7 +375,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test26" status="26"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_26" status="26"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -402,7 +389,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test27" status="27"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_27" status="27"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -416,7 +403,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test28" status="28"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_28" status="28"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -430,7 +417,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test29" status="29"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_29" status="29"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -444,7 +431,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test30" status="30"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_30" status="30"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -458,7 +445,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test31" status="31"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_31" status="31"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -472,7 +459,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test32" status="32"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_32" status="32"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -486,7 +473,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test33" status="33"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_33" status="33"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -500,7 +487,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test34" status="34"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_34" status="34"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -514,7 +501,7 @@
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test35" status="35"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_35" status="35"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -522,13 +509,12 @@
                     <div class="col-3">
                         <div class="info-box bg-info">
                             <div class="info-box-content">
-
                                 <div class="mb-3">
                                     <h2 class="card-title mb-0">PMI-36 Cash in Bank Monthly Monitoring</h2><br>
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test36" status="36"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                    <a class="text-white" id="pmi_36" status="36"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
                                 </div>
                         </div>
                     </div>
@@ -542,7 +528,7 @@
 <!--     {{-- JS CONTENT --}} -->
 @section('js_content')
     <script type="text/javascript">
-            $(document).on('click', '#pmi_test1', function(){
+            $(document).on('click', '#pmi_1', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -552,7 +538,7 @@
                 // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
             });
-            $(document).on('click', '#pmi_test2', function(){
+            $(document).on('click', '#pmi_2', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -563,7 +549,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
             });
 
-            $(document).on('click', '#pmi_test3', function(){
+            $(document).on('click', '#pmi_3', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -574,7 +560,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test4', function(){
+                $(document).on('click', '#pmi_4', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -585,7 +571,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test5', function(){
+                $(document).on('click', '#pmi_5', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -596,7 +582,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test6', function(){
+                $(document).on('click', '#pmi_6', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -607,7 +593,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test7', function(){
+                $(document).on('click', '#pmi_7', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -618,7 +604,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test8', function(){
+                $(document).on('click', '#pmi_8', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -629,7 +615,19 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test9', function(){
+                $(document).on('click', '#pmi_9', function(){                    
+            
+                // console.log('qwe');
+                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
+                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
+                // console.log(userApproverStat);
+                use_session(useSession);
+                console.log(useSession)                
+                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
+                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
+                });
+
+                $(document).on('click', '#pmi_10', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -640,7 +638,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test10', function(){
+                $(document).on('click', '#pmi_11', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -651,7 +649,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test11', function(){
+                $(document).on('click', '#pmi_12', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -662,7 +660,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test12', function(){
+                $(document).on('click', '#pmi_13', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -673,7 +671,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test13', function(){
+                $(document).on('click', '#pmi_14', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -684,7 +682,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test14', function(){
+                $(document).on('click', '#pmi_15', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -695,7 +693,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                $(document).on('click', '#pmi_test15', function(){
+                 $(document).on('click', '#pmi_16', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -706,7 +704,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test16', function(){
+                 $(document).on('click', '#pmi_17', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -717,7 +715,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test17', function(){
+                 $(document).on('click', '#pmi_18', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -728,7 +726,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test18', function(){
+                 $(document).on('click', '#pmi_19', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -739,7 +737,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test19', function(){
+                 $(document).on('click', '#pmi_20', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -750,7 +748,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test20', function(){
+                 $(document).on('click', '#pmi_21', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -761,7 +759,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test21', function(){
+                 $(document).on('click', '#pmi_22', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -772,7 +770,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test22', function(){
+                 $(document).on('click', '#pmi_23', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -783,7 +781,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test23', function(){
+                 $(document).on('click', '#pmi_24', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -794,7 +792,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test24', function(){
+                 $(document).on('click', '#pmi_25', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -805,7 +803,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test25', function(){
+                 $(document).on('click', '#pmi_26', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -816,7 +814,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test26', function(){
+                 $(document).on('click', '#pmi_27', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -827,7 +825,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test27', function(){
+                 $(document).on('click', '#pmi_28', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -838,7 +836,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test28', function(){
+                 $(document).on('click', '#pmi_29', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -849,7 +847,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test29', function(){
+                 $(document).on('click', '#pmi_30', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -860,7 +858,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test30', function(){
+                 $(document).on('click', '#pmi_31', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -871,7 +869,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test31', function(){
+                 $(document).on('click', '#pmi_32', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -882,7 +880,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test32', function(){
+                 $(document).on('click', '#pmi_33', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -893,7 +891,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test33', function(){
+                 $(document).on('click', '#pmi_34', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -904,7 +902,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test34', function(){
+                 $(document).on('click', '#pmi_35', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -915,18 +913,7 @@
                 // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 });
 
-                 $(document).on('click', '#pmi_test35', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test36', function(){
+                 $(document).on('click', '#pmi_36', function(){
 
                 // console.log('qwe');
                 let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
@@ -953,7 +940,7 @@
                     },
                     success: function(response){
                         if(response['result'] == 1){
-                            window.location.href = "pmi-01";
+                            window.location.href = "PMI";
                         }
                     },
 

@@ -33,7 +33,7 @@ function AddPmiFcrpCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['titles'] === undefined){
                     $("#selectAddPmiFcrpTitle").removeClass('is-invalid');
                     $("#selectAddPmiFcrpTitle").attr('title', '');
@@ -163,6 +163,32 @@ function GetPmiFcrpByIdToEdit(pmi_fcrpId){
             console.log(response);
 
             if(pmi_fcrp_category.length > 0){
+                if(pmi_fcrp_category[0].g_ng == 'Good'){
+                    console.log(pmi_fcrp_category[0].g_ng);
+                    $("#txtEditPmiFcrpGood").prop("checked", true);
+                }else if (pmi_fcrp_category[0].g_ng == 'Not Good'){
+                    console.log(pmi_fcrp_category[0].g_ng);
+                    $("#txtEditPmiFcrpNotGoodLast").prop("checked", true);
+                }
+                else if (pmi_fcrp_category[0].g_ng == null){
+                    console.log(pmi_fcrp_category[0].g_ng);
+                    $("#txtEditPmiFcrpNotGood").prop("checked", false);
+                    $("#txtEditPmiFcrpGood").prop("checked", false);
+                }
+
+                if(pmi_fcrp_category[0].g_ng_last == 'Good'){
+                    console.log(pmi_fcrp_category[0].g_ng_last);
+                    $("#txtEditPmiFcrpGoodLast").prop("checked", true);
+                }else if (pmi_fcrp_category[0].g_ng_last == 'Not Good'){
+                    console.log(pmi_fcrp_category[0].g_ng_last);
+                    $("#txtEditPmiFcrpNotGoodLast").prop("checked", true);
+                }
+                else if (pmi_fcrp_category[0].g_ng_last == null){
+                    console.log(pmi_fcrp_category[0].g_ng_last);
+                    $("#txtEditPmiFcrpNotGoodLast").prop("checked", false);
+                    $("#txtEditPmiFcrpGoodLast").prop("checked", false);
+                }
+
                 $("#selectEditPmiFcrpTitle")                        .val(pmi_fcrp_category[0].titles).trigger('change');
                 $("#txtEditPmiFcrpControlObjectives")                .val(pmi_fcrp_category[0].control_objectives);
                 $("#txtEditPmiFcrpInternalControls")                 .val(pmi_fcrp_category[0].internal_controls);
@@ -217,7 +243,7 @@ function EditPmiFcrpCategory(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['status'] === undefined){
                     $("#selectEditPmiFcrpTitle").removeClass('is-invalid');
                     $("#selectEditPmiFcrpTitle").attr('title', '');
@@ -343,15 +369,15 @@ function ChangeClcCategoryPmiFcrpStatus(){
         success: function(response){
 
             if(response['validation'] == 'hasError'){
-                toastr.error('User activation failed!');
+                toastr.error('Activation failed!');
             }else{
                 if(response['result'] == 1){
                     if($("#txtChangeClcCategoryPmiFcrpStat").val() == 1){
-                        toastr.success('User activation success!');
+                        toastr.success('Activation success!');
                         $("#txtChangeClcCategoryPmiFcrpStat").val() == 2;
                     }
                     else{
-                        toastr.success('User deactivation success!');
+                        toastr.success('Deactivation success!');
                         $("#txtChangeClcCategoryPmiFcrpStat").val() == 1;
                     }
                 }
@@ -372,5 +398,3 @@ function ChangeClcCategoryPmiFcrpStatus(){
         }
     });
 }
-
-

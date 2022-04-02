@@ -15,6 +15,7 @@ class CreateTblPLCModules extends Migration
     {
         Schema::create('tbl_plc_modules', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedTinyInteger('status')->default(0)->comment = '1-active,2-Inactive';
             $table->String('process_owner');
             $table->String('revision_date');
             $table->integer('version_no');

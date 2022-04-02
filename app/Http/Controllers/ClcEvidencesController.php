@@ -12,12 +12,12 @@ use DataTables;
 
 //MODEL
 Use App\ClcEvidences;
+Use App\SelectClcEvidence;
 Use App\RapidXUser;
 
 class ClcEvidencesController extends Controller
 {
     public function view_clc_evidences(){
-
         $clc_evidences = ClcEvidences::where('logdel',0)->get();
         // return $clc_evidences;
         return DataTables::of($clc_evidences)
@@ -26,7 +26,7 @@ class ClcEvidencesController extends Controller
             $result = "";
             // $result .= "<a href='download_file_clc_evidence/" . $clc_evidences->id . "'  > $clc_evidences->uploaded_file</a>";
             if($clc_evidences->uploaded_file != null){
-                $add_multiple_file_upload = explode(", ", $clc_evidences->uploaded_file);
+                $add_multiple_file_upload = explode("/", $clc_evidences->uploaded_file);
                 foreach($add_multiple_file_upload as $file){
                     // $result = $file;
                     $result .=  "<a href='download_file_clc_evidence/" . $file . "' > $file </a><br>";
@@ -46,7 +46,29 @@ class ClcEvidencesController extends Controller
         ->make(true);  
     }
 
+    // =========================================================== VIEW PMI CLC ===========================================================
     public function view_pmi_clc_evidences_file(Request $request){
+        // $clc_evidences = ClcEvidences::where('logdel',0)->where('clc_category', $request->category)->get();
+        $clc_evidences = SelectClcEvidence::with(['pmi_clc_id', 'clc_evidences'])->where('pmi_clc_id','!=', 'null')->where('pmi_clc_id', $request->id)->get();
+        return DataTables::of($clc_evidences)
+        ->addColumn('uploaded_file', function($clc_evidences){
+            $result = "<center>";
+            // $result .= "<a href='download_file_clc_evidence/" . $clc_evidences->clc_evidences->id . "'  > $clc_evidences->uploaded_fil.</a>";
+            $result .= "<a href='download_file_clc_evidence/" . $clc_evidences->clc_evidences->id ."'>".$clc_evidences->clc_evidences->uploaded_file."</a>";
+            $result .= '</center>';
+            return $result;
+        })
+        // ->addColumn('action', function($clc_evidences){
+        //     $result = '<center>';
+        //     $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" data-toggle="modal" data-target="#modalEditClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
+        //     $result .= '</center>';
+        //     return $result;   
+        // })
+        ->rawColumns(['uploaded_file']) // to format the added columns(status & action) as html format
+        ->make(true);  
+    }
+
+    public function view_select_pmi_clc_evidences_file(Request $request){
         $clc_evidences = ClcEvidences::where('logdel',0)->where('clc_category', $request->category)->get();
         // return $clc_evidences;
         return DataTables::of($clc_evidences)
@@ -56,11 +78,36 @@ class ClcEvidencesController extends Controller
             $result .= '</center>';
             return $result;
         })
-        ->rawColumns(['uploaded_file']) // to format the added columns(status & action) as html format
+        ->addColumn('action', function($clc_evidences){
+            $result = '<center>';
+            if($clc_evidences->filter == 0){
+                $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add File</button>&nbsp;';
+            }else{
+                $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="0" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Delete File</button>&nbsp;';
+            }
+                $result .= '</center>';
+            return $result;   
+        })
+        ->rawColumns(['uploaded_file', 'action']) // to format the added columns(status & action) as html format
         ->make(true);  
     }
 
+    // =========================================================== VIEW PMI FCRP ===========================================================
     public function view_pmi_fcrp_evidences_file(Request $request){
+        $clc_evidences = SelectClcEvidence::with(['pmi_fcrp_id', 'clc_evidences'])->where('pmi_fcrp_id','!=', 'null')->where('pmi_fcrp_id', $request->id)->get();
+        // return $clc_evidences;
+        return DataTables::of($clc_evidences)
+        ->addColumn('uploaded_file', function($clc_evidences){
+            $result = "<center>";
+            $result .= "<a href='download_file_clc_evidence/" . $clc_evidences->clc_evidences->id ."'>".$clc_evidences->clc_evidences->uploaded_file."</a>";
+            $result .= '</center>';
+            return $result;
+        })
+        ->rawColumns(['uploaded_file']) // to format the added columns(status & action) as html format
+        ->make(true);  
+    }
+
+    public function view_select_pmi_fcrp_evidences_file(Request $request){
         $clc_evidences = ClcEvidences::where('logdel',0)->where('clc_category', $request->category)->get();
         // return $clc_evidences;
         return DataTables::of($clc_evidences)
@@ -70,10 +117,22 @@ class ClcEvidencesController extends Controller
             $result .= '</center>';
             return $result;
         })
-        ->rawColumns(['uploaded_file']) // to format the added columns(status & action) as html format
+
+        ->addColumn('action', function($clc_evidences){
+            $result = '<center>';
+            if($clc_evidences->filter == 0){
+                $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add File</button>&nbsp;';
+            }else{
+                $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="0" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Delete File</button>&nbsp;';
+            }
+                $result .= '</center>';
+            return $result;   
+        })
+        ->rawColumns(['uploaded_file', 'action']) // to format the added columns(status & action) as html format
         ->make(true);  
     }
 
+    // =========================================================== VIEW PMI IT-CLC ===========================================================
     public function view_pmi_it_clc_evidences_file(Request $request){
         $clc_evidences = ClcEvidences::where('logdel',0)->where('clc_category', $request->category)->get();
         // return $clc_evidences;
@@ -85,6 +144,31 @@ class ClcEvidencesController extends Controller
             return $result;
         })
         ->rawColumns(['uploaded_file']) // to format the added columns(status & action) as html format
+        ->make(true);  
+    }
+
+    public function view_select_pmi_it_clc_evidences_file(Request $request){
+        $clc_evidences = ClcEvidences::where('logdel',0)->where('clc_category', $request->category)->get();
+        // return $clc_evidences;
+        return DataTables::of($clc_evidences)
+        ->addColumn('uploaded_file', function($clc_evidences){
+            $result = "<center>";
+            $result .= "<a href='download_file_clc_evidence/" . $clc_evidences->id . "'  > $clc_evidences->uploaded_file</a>";
+            $result .= '</center>';
+            return $result;
+        })
+
+        ->addColumn('action', function($clc_evidences){
+            $result = '<center>';
+            if($clc_evidences->filter == 0){
+                $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add File</button>&nbsp;';
+            }else{
+                $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionSelectClcEvidences" style="width:105px;margin:2%;" clc_evidences-id="' . $clc_evidences->id . '" filter="0" data-toggle="modal" data-target="#modalSelectClcEvidences" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Delete File</button>&nbsp;';
+            }
+                $result .= '</center>';
+            return $result;   
+        })
+        ->rawColumns(['uploaded_file', 'action']) // to format the added columns(status & action) as html format
         ->make(true);  
     }
 
@@ -121,7 +205,7 @@ class ClcEvidencesController extends Controller
                     array_push($arr_upload_file, $original_filename);
                     Storage::putFileAs('public/clc_evidences', $file,  $original_filename);
                 }
-                $multiple_file_uploaded = implode(', ', $arr_upload_file);
+                $multiple_file_uploaded = implode('/', $arr_upload_file);
 
                 ClcEvidences::insert([
                     'date_uploaded' => $request->date_uploaded,
@@ -140,9 +224,9 @@ class ClcEvidencesController extends Controller
     //====================================== DOWNLOAD FILE ======================================
     public function download_file_clc_evidence(Request $request, $id){
         // $clc_evidences = ClcEvidences::where('id', $id)->first();
-        $file =  storage_path() . "/app/public/clc_evidences/" . $id;
+        // $file =  storage_path() . "/app/public/clc_evidences/" . $id;
         // return $clc_evidences;
-        return Response::download($file, $id);  
+        // return Response::download($file, "test");  
     }
 
     //============================== GET CLC CATEGORY BY ID TO EDIT ==============================
@@ -203,5 +287,29 @@ class ClcEvidencesController extends Controller
     //         return response()->json(['result' => "0", 'tryCatchError' => $e->getMessage()]);
     //     }
     // }
+
+    //============================== SELECT CLC EVIDENCE ==============================
+    public function select_clc_evidences(Request $request){        
+        date_default_timezone_set('Asia/Manila');
+
+        $data = $request->all(); // collect all input fields
+
+        $validator = Validator::make($data, [
+            'select_clc_evidences_id' => 'required',
+            'filter' => 'required',
+        ]);
+
+        if($validator->passes()){
+            ClcEvidences::where('id', $request->select_clc_evidences_id)
+            ->update([
+                'filter' => $request->filter,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+            return response()->json(['result' => "1"]);
+        }
+        else{
+            return response()->json(['validation' => "hasError", 'error' => $validator->messages()]);
+        }
+    }
 
 }

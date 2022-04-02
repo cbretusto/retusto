@@ -183,31 +183,30 @@
                 </div>
             </div><!-- EDIT MODAL END -->
 
-        {{-- DELETE MODAL START --}}
-        {{-- <div class="modal fade" id="modalDeleteClcEvidences">
-            <div class="modal-dialog">
-                <div class="modal-content modal-sm">
-                    <div class="modal-header bg-dark">
-                        <h4 class="modal-title"><i class="fas fa-trash-alt"></i> Delete CLC Evidence</h4>
-                        <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form method="post" id="formDeleteClcEvidence">
-                        @csrf
-                        <div class="modal-body">
-                            <label>Are you sure you want to delete this record?</label>
-                            <input type="hidden" id="txtDeleteClcEvidenceId" name="delete_evidence">
+            {{-- DELETE MODAL START --}}
+            {{-- <div class="modal fade" id="modalDeleteClcEvidences">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-sm">
+                        <div class="modal-header bg-dark">
+                            <h4 class="modal-title"><i class="fas fa-trash-alt"></i> Delete CLC Evidence</h4>
+                            <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                            <button type="submit" id="btnDeleteClcEvidence" class="btn btn-dark"><i id="iBtnDeleteClcEvidenceIcon" class="fa fa-check"></i> Yes</button>
-                        </div>
-                    </form>
-                </div>    
-            </div>
-        </div><!-- DELETE MODAL END --> --}}
-
+                        <form method="post" id="formDeleteClcEvidence">
+                            @csrf
+                            <div class="modal-body">
+                                <label>Are you sure you want to delete this record?</label>
+                                <input type="hidden" id="txtDeleteClcEvidenceId" name="delete_evidence">
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="submit" id="btnDeleteClcEvidence" class="btn btn-dark"><i id="iBtnDeleteClcEvidenceIcon" class="fa fa-check"></i> Yes</button>
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div><!-- DELETE MODAL END --> --}}
         </section>
     </div>
 
@@ -348,7 +347,6 @@
                 //     event.preventDefault();
                 //     DeleteClcEvidence();
                 // });
-
 
         }); // JQUERY DOCUMENT READY END
     </script>                  

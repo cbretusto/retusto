@@ -33,7 +33,7 @@ function AddClcEvidences(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['date_uploaded'] === undefined){
                     $("#txtAddDate").removeClass('is-invalid');
                     $("#txtAddDate").attr('title', '');
@@ -168,7 +168,7 @@ function EditClcEvidences(){
         },
         success: function(response){
             if(response['validation'] == 'hasError'){
-                toastr.error('Saving User Failed!');
+                toastr.error('Saving Failed!');
                 if(response['error']['date_uploaded'] === undefined){
                     $("#txtEditDate").removeClass('is-invalid');
                     $("#txtEditDate").attr('title', '');
@@ -266,3 +266,64 @@ function EditClcEvidences(){
 //         }
 //     });
 // }
+
+//============================== SELECT CLC EVIDENCES ==============================
+function SelectClcEvidencesFile(){
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "3000",
+        "timeOut": "3000",
+        "extendedTimeOut": "3000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    };
+
+    $.ajax({
+        url: "select_clc_evidences",
+        method: "post",
+        data: $('#formSelectClcEvidences').serialize(),
+        dataType: "json",
+        beforeSend: function(){
+            $("#iBtnSelectClcEvidencesIcon").addClass('fa fa-spinner fa-pulse');
+            $("#selectClcEvidencesFile").prop('disabled', 'disabled');
+        },
+        success: function(response){
+
+            if(response['validation'] == 'hasError'){
+                toastr.error('Activation failed!');
+            }else{
+                if(response['result'] == 1){
+                    if($("#selectClcEvidencesFile").val() == 0){
+                        toastr.success('Deleted!');
+                        $("#selectClcEvidencesFile").val() == 1;
+                    }
+                    else{
+                        toastr.success('Success!');
+                        $("#selectClcEvidencesFile").val() == 0;
+                    }
+                }
+                $("#modalSelectClcEvidences").modal('hide');
+                $("#formSelectClcEvidences")[0].reset();
+                dataTableSelectClcEvidences.draw();
+            }
+            $("#iBtnSelectClcEvidencesIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#selectClcEvidencesFile").removeAttr('disabled');
+            $("#iBtnSelectClcEvidencesIcon").addClass('fa fa-check');
+        },
+        error: function(data, xhr, status){
+            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+            $("#iBtnSelectClcEvidencesIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#selectClcEvidencesFile").removeAttr('disabled');
+            $("#iBtnSelectClcEvidencesIcon").addClass('fa fa-check');
+        }
+    });
+}

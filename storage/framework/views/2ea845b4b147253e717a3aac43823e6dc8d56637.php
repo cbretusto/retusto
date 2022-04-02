@@ -21,44 +21,45 @@
                         <p>Return to RapidX</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
+                
+                <li class="nav-item has-treeview" id="dashboard">
                     <a href="<?php echo e(route('dashboard')); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p><strong>Dashboard</strong></p>
                     </a>
                 </li>
 
-                <li class="nav-header font-weight-bold">Administrator Management</li>
-                <li class="nav-item has-treeview">
+                <li class="nav-header font-weight-bold"><strong>Administrator Management</strong></li>
+                <li class="nav-item has-treeview d-none" id="user_management_id">
                     <a href="<?php echo e(route('user_management')); ?>" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
-                        <p>User Manangment</p>
+                        <p>User Mananagement</p>
                     </a>
                 </li>
 
                 <li class="nav-header"></li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="plc_dashboard_id">
                     <a href="<?php echo e(route('plc_dashboard')); ?>" class="nav-link">
                         <i class="nav-icon far fa-clipboard"></i>
                         <p>PLC Dashboard</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="plc_category_id" >
                     <a href="<?php echo e(route('plc_category')); ?>" class="nav-link">
                         <i class="nav-icon far fa-folder"></i>
                         <p>PLC Category</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="plc_evidences_id">
                     <a href="<?php echo e(route('plc_evidences')); ?>" class="nav-link">
                         <i class="nav-icon fas fa-file-upload"></i>
                         <p>PLC Evidences</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="jsox_plc_matrix_id">
                     <a href="<?php echo e(route('jsox_plc_matrix')); ?>" class="nav-link">
                         <i class="nav-icon fas fa-file-upload"></i>
                         <p>Jsox PLC Matrix</p>
@@ -66,14 +67,14 @@
                 </li>
 
                 <li class="nav-header"></li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="clc_dashboard_id">
                     <a href="<?php echo e(route('clc_dashboard')); ?>" class="nav-link">
                         <i class="nav-icon far fa-clipboard"></i>
                         <p>CLC Dashboard</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="clc_category_id">
                     <a href="<?php echo e(route('clc_category')); ?>" class="nav-link">
                         <i class="nav-icon far fa-folder"></i>
                         <p>CLC Category</p>
@@ -81,7 +82,7 @@
                 </li>
 
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview d-none" id="clc_evidences_id">
                     <a href="<?php echo e(route('clc_evidences')); ?>" class="nav-link">
                         <i class="nav-icon far fa-file"></i>
                         <p>CLC Evidences</p>

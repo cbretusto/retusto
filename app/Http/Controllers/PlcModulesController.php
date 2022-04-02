@@ -7,27 +7,49 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\PLCModule;
+use App\PLCModuleFlowChart;
 use DataTables;
 use App\RapidXUser;
+use App\RapidXDepartment;
+use App\UserManagement;
 use Carbon\Carbon;
 
 class PlcModulesController extends Controller
     {
         public function view_plc_modules(Request $request)
         {
-            $plc_module = PLCModule::where('category', $request->session)->where('logdel', 0)->get();
+            $plc_module = PLCModule::with([
+                'rapidx_user_details',
+                'rapidx_user_details1'
+                ])
+            ->where('category', $request->session)->where('logdel', 0)->get();
+
+            // return $plc_module;
 
             return DataTables::of($plc_module)
+
+            ->addColumn('status', function($user){
+                $result = "<center>";
+                if($user->status == 1){
+                    $result .= '<span class="badge badge-pill badge-success">Active</span>';
+                }
+                else{
+                    $result .= '<span class="badge badge-pill badge-danger">Inactive</span>';
+                }
+                    $result .= '</center>';
+                    return $result;
+            })
+
             ->addColumn('action', function ($plc_module){
                 $result = "";
-                // if ($plc_module->logdel == 0) {
-                    $result .= '<button class="btn btn-primary btn-sm  text-center actionEditRevisionHistory" revision_history-id="' . $plc_module->id . '" data-toggle="modal" data-target="#modalEditRevisionHistory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
-                    $result .= '<button class="btn btn-danger btn-sm text-center actionDeleteHistory" revision_history-id="' . $plc_module->id . '"  data-toggle="modal" data-target="#modalDeleteHistory" data-keyboard="false"><i class ="fa fa-ban"></i>  Delete</button>';
-
-                // } else {
-                //     $result .= '<button class="btn btn-success btn-sm text-center actionActivateHistory" revision_history-id="' . $plc_module->id . '"  data-toggle="modal" data-target="#modalActivateHistory" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
-                // }
-
+                $result = "<center>";
+                if ($plc_module->status == 1) {
+                    $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditRevisionHistory" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" data-toggle="modal" data-target="#modalEditRevisionHistory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
+                    $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionDeactivateHistory" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" data-toggle="modal" data-target="#modalDeactivateHistory" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                } else {
+                    $result .= '<button class="btn btn-success btn-sm text-center actionActivateHistory" revision_history-id="' . $plc_module->id . '"  data-toggle="modal" data-target="#modalActivateHistory" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
+                }
+                $result .= '</center>';
                 return $result;
             })
             ->addColumn('revision_date', function($plc_module){
@@ -45,6 +67,19 @@ class PlcModulesController extends Controller
             return $result;
 
             })
+
+            ->addColumn('version_no', function($plc_module){
+                $result = "";
+                $result = "<center>";
+
+                $result .= $plc_module->version_no;
+
+
+                $result .= '</center>';
+                return $result;
+
+            })
+
             ->addColumn('reason_for_revision', function($plc_module){
                 $result = "";
                 $result .= $plc_module->reason_for_revision;
@@ -53,7 +88,19 @@ class PlcModulesController extends Controller
 
             })
 
-                ->rawColumns(['action','revision_date','reason_for_revision'])
+            ->addColumn('concerned_dept', function($plc_module){
+                $result = "";
+                $result = "<center>";
+
+                $result .= $plc_module->concerned_dept;
+
+
+                $result .= '</center>';
+                return $result;
+
+            })
+
+                ->rawColumns(['status', 'action','revision_date','reason_for_revision','version_no','concerned_dept'])
                 ->make(true);
 
         }
@@ -76,7 +123,7 @@ class PlcModulesController extends Controller
                 'add_reason_for_revision' => 'required',
                 'concerned_dept' => 'required',
                 'add_details_of_revision' => 'required',
-                'in_charge' => 'required'
+                'process_in_charge' => 'required'
 
                 ]);
 
@@ -137,9 +184,24 @@ class PlcModulesController extends Controller
                                 'reason_for_revision' => $request->add_reason_for_revision,
                                 'concerned_dept' =>  $request->concerned_dept,
                                 'details_of_revision' =>  $request->add_details_of_revision,
-                                'in_charge' =>  $request->in_charge,
+                                'in_charge' =>  $request->process_in_charge,
                                 'logdel' => 0
                         ]);
+
+
+                    $get_rev_history_id = PLCModule::where('revision_date', $request->revision_date)->get();
+
+                    $get_id_to_flow_chart_id = $get_rev_history_id[0]->id;
+
+                    // return $get_id_to_flow_chart_id;
+
+
+                    PLCModuleFlowChart::insert([
+                        'category'          => $request->category_name,
+                        // 'control_no'        => $request->add_control_id,
+                        'process_owner'        => $request->process_owner,
+                        'rev_history_id'       => $get_id_to_flow_chart_id,
+                    ]);
 
                         return response()->json(['result' => "1"]);
 
@@ -274,6 +336,15 @@ class PlcModulesController extends Controller
 
                     ]);
 
+                    PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)
+                    ->update([
+                        // 'category'          => $request->category_name,
+                        'process_owner' => $request->edit_revision_history_process_owner,
+
+                        // 'control_no'        => $request->edit_control_id,
+                        // 'internal_control'  => $request->edit_internal_control,
+                    ]);
+
 
                 /*DB::commit();*/
                 return response()->json(['result' => "1"]);
@@ -282,17 +353,17 @@ class PlcModulesController extends Controller
     }
 
     //============================== DEACTIVATE PLC CATEGORY ==============================
-    public function delete_revision_history(Request $request)
+    public function deactivate_revision_history(Request $request)
     {
         date_default_timezone_set('Asia/Manila');
         session_start();
 
         $data = $request->all();
 
-        PLCModule::where('id', $request->delete_revision_history_id)
+        PLCModule::where('id', $request->deactivate_revision_history_id)
             ->update([
-                'logdel' => 1,
-                // 'status' => 1
+                // 'logdel' => 1,
+                'status' => 2
             ]);
 
         return response()->json(['result' => "1"]);
@@ -307,8 +378,8 @@ class PlcModulesController extends Controller
 
          PLCModule::where('id', $request->activate_history_id)
          ->update([
-             'logdel' => 0
-            //  'status' => 0
+            //  'logdel' => 0
+             'status' => 1
          ]);
 
          return response()->json(['result' => "1"]);
@@ -323,10 +394,32 @@ class PlcModulesController extends Controller
         date_default_timezone_set('Asia/Manila');
         session_start();
 
-        // $_SESSION['goto_id'] = $request->userApproverStat;
-        // Session::put('goto_id', $request->userApproverStat);
-        session(['goto_id' => $request->useSession]);
+        session(['pmi_plc_category_id' => $request->useSession]);
 
         return response()->json(['result' => 1]);
      }
+
+     public function load_user_management_rev(Request $request){
+        // $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
+        $users = UserManagement::where('user_level_id', 2)->get();
+        // return $users;
+        return response()->json(['users' => $users]);
+    }
+
+    public function load_user_management_process_owner(Request $request){
+        // $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
+        $users = UserManagement::where('user_level_id', 2)->get();
+        // return $users;
+        return response()->json(['users' => $users]);
+    }
+
+    public function load_concerned_department(Request $request){
+        // $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
+        $users_department = RapidXDepartment::all();
+
+        // return $users_department;
+
+        // $users = UserManagement::where('user_level_id', 2)->get();
+        return response()->json(['users_department' => $users_department]);
+    }
 }
