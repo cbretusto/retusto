@@ -221,7 +221,7 @@ class PlcModulesRcmController extends Controller
         }
     }
 
-    //============================== CHANGE PMI CLC STAT ==============================
+    //============================== CHANGE PMI RCM STAT ==============================
     public function change_plc_rcm_stat(Request $request){
         date_default_timezone_set('Asia/Manila');
 
@@ -234,9 +234,25 @@ class PlcModulesRcmController extends Controller
         if($validator->passes()){
             PLCModuleRCM::where('id', $request->clc_plc_rcm_id)
             ->update([
-                'status' => $request->status,
+                'status' => $request->status, 
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
+
+            $rcm_status = PLCModuleRCM::where('id', $request->clc_plc_rcm_id)->get();
+            if($rcm_status[0]->status == 2){
+                PLCModuleSA::where('id', $request->clc_plc_rcm_id)
+                ->update([
+                    'logdel' => 1, 
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
+            }else if($rcm_status[0]->status == 1){
+                PLCModuleSA::where('id', $request->clc_plc_rcm_id)
+                ->update([
+                    'logdel' => 0, 
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
+            }
+
             return response()->json(['result' => "1"]);
         }
         else{

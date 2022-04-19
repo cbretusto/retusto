@@ -34,29 +34,29 @@ class UsersExports implements  WithMultipleSheets
 
     use Exportable;
     protected $date;
-    protected $plc_module_sa;
-    protected $status_check_array;
-    protected $assessment_status_array_dic;
-    protected $second_half_status_check_array;
-    protected $second_assessment_status_array;
     protected $plc_module_sa_NG;
-    // protected $plc_module_sa_category1;
-    // protected $approver_status_array;
+    protected $plc_module_sa_category1;
+    protected $approver_status_array;
+    protected $status_check_array;
+    protected $assessment_status_array;
+    protected $second_assessment_status_array;
+    protected $second_half_status_check_array;
+    protected $plc_module_sa;
     // protected $fy_summary_first_half_assessment;
 
 
     //
-    function __construct($date,$plc_module_sa,$status_check_array,$assessment_status_array_dic,$second_half_status_check_array,$second_assessment_status_array, $plc_module_sa_NG)
+    function __construct($date, $plc_module_sa_NG,$plc_module_sa_category1,$approver_status_array, $status_check_array,$assessment_status_array,$second_assessment_status_array,$second_half_status_check_array,$plc_module_sa)
     {
         $this->date = $date;
-        $this->plc_module_sa = $plc_module_sa;
-        $this->status_check_array = $status_check_array;
-        $this->assessment_status_array_dic = $assessment_status_array_dic;
-        $this->second_half_status_check_array = $second_half_status_check_array;
-        $this->second_assessment_status_array = $second_assessment_status_array;
         $this->plc_module_sa_NG = $plc_module_sa_NG;
-        // $this->plc_module_sa_category1 = $plc_module_sa_category1;
-        // $this->approver_status_array = $approver_status_array;
+        $this->plc_module_sa = $plc_module_sa;
+        $this->plc_module_sa_category1 = $plc_module_sa_category1;
+        $this->approver_status_array = $approver_status_array;
+        $this->status_check_array = $status_check_array;
+        $this->assessment_status_array = $assessment_status_array;
+        $this->second_assessment_status_array = $second_assessment_status_array;
+        $this->second_half_status_check_array = $second_half_status_check_array;
         // $this->fy_summary_first_half_assessment = $fy_summary_first_half_assessment;
     }
 
@@ -65,7 +65,7 @@ class UsersExports implements  WithMultipleSheets
     {
         $sheets = [];
 
-        $sheets[] = new audit_result($this->date, $this->plc_module_sa, $this->status_check_array,$this->assessment_status_array_dic,  $this->second_half_status_check_array, $this->second_assessment_status_array,$this->plc_module_sa_NG );
+        $sheets[] = new audit_result($this->date, $this->plc_module_sa_NG, $this->plc_module_sa, $this->plc_module_sa_category1, $this->approver_status_array,$this->status_check_array,$this->assessment_status_array,$this->second_assessment_status_array,$this->second_half_status_check_array);
         $sheets[] = new fy_summary($this->date,$this->plc_module_sa_NG);
         $sheets[] = new firsthalf($this->date);
         $sheets[] = new rollforward($this->date);

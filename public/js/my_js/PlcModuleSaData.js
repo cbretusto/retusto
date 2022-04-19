@@ -1,56 +1,56 @@
-// ============================== DELETE SA DATA ==============================
-function DeleteSaData(){
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "3000",
-        "timeOut": "3000",
-        "extendedTimeOut": "3000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut",
-    };
+// // ============================== DELETE SA DATA ==============================
+// function DeleteSaData(){
+//     toastr.options = {
+//         "closeButton": false,
+//         "debug": false,
+//         "newestOnTop": true,
+//         "progressBar": true,
+//         "positionClass": "toast-top-right",
+//         "preventDuplicates": false,
+//         "onclick": null,
+//         "showDuration": "300",
+//         "hideDuration": "3000",
+//         "timeOut": "3000",
+//         "extendedTimeOut": "3000",
+//         "showEasing": "swing",
+//         "hideEasing": "linear",
+//         "showMethod": "fadeIn",
+//         "hideMethod": "fadeOut",
+//     };
 
-    $.ajax({
-        url: "delete_sa_data",
-        method: "post",
-        data: $('#deleteSaForm').serialize(),
-        dataType: "json",
-        beforeSend: function(){
-            $("#iBtnDeleteSaDataIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteSaData").prop('disabled', 'disabled');
-        },
-        success: function(response){
-            let result = response['result'];
-            if(result == 1){
-                $("#modalDeleteSaData").modal('hide');
-                $("#deleteSaForm")[0].reset();
-                toastr.success('SA Data successfully deleted');
-                dataTablePlcModuleSa.draw();
-            }
-            else{
-                toastr.warning('No SA Data found!');
-            }
+//     $.ajax({
+//         url: "delete_sa_data",
+//         method: "post",
+//         data: $('#deleteSaForm').serialize(),
+//         dataType: "json",
+//         beforeSend: function(){
+//             $("#iBtnDeleteSaDataIcon").addClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteSaData").prop('disabled', 'disabled');
+//         },
+//         success: function(response){
+//             let result = response['result'];
+//             if(result == 1){
+//                 $("#modalDeleteSaData").modal('hide');
+//                 $("#deleteSaForm")[0].reset();
+//                 toastr.success('SA Data successfully deleted');
+//                 dataTablePlcModuleSa.draw();
+//             }
+//             else{
+//                 toastr.warning('No SA Data found!');
+//             }
 
-            $("#iBtnDeleteSaDataIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteSaData").removeAttr('disabled');
-            $("#iBtnDeleteSaDataIcon").addClass('fa fa-check');
-        },
-        error: function(data, xhr, status){
-            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#iBtnDeleteSaDataIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeleteSaData").removeAttr('disabled');
-            $("#iBtnDeleteSaDataIcon").addClass('fa fa-check');
-        }
-    });
-}
+//             $("#iBtnDeleteSaDataIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteSaData").removeAttr('disabled');
+//             $("#iBtnDeleteSaDataIcon").addClass('fa fa-check');
+//         },
+//         error: function(data, xhr, status){
+//             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+//             $("#iBtnDeleteSaDataIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeleteSaData").removeAttr('disabled');
+//             $("#iBtnDeleteSaDataIcon").addClass('fa fa-check');
+//         }
+//     });
+// }
 
 //============================== EDIT USER BY ID TO EDIT ==============================
 function GetSaData(saDataId){

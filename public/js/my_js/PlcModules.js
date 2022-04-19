@@ -352,7 +352,114 @@ function EditRevisionHistory(){
     });
 }
 
-function DeactivateRevisionHistory() {
+// function DeactivateRevisionHistory() {
+//     toastr.options = {
+//         "closeButton": false,
+//         "debug": false,
+//         "newestOnTop": true,
+//         "progressBar": true,
+//         "positionClass": "toast-top-right",
+//         "preventDuplicates": false,
+//         "onclick": null,
+//         "showDuration": "300",
+//         "hideDuration": "3000",
+//         "timeOut": "3000",
+//         "extendedTimeOut": "3000",
+//         "showEasing": "swing",
+//         "hideEasing": "linear",
+//         "showMethod": "fadeIn",
+//         "hideMethod": "fadeOut",
+//     };
+
+//     $.ajax({
+//         url: "deactivate_revision_history",
+//         method: "post",
+//         data: $('#deactivateHistoryForm').serialize(),
+//         dataType: "json",
+//         beforeSend: function () {
+//             $("#deactivateHistoryIcon").addClass('fa fa-spinner fa-pulse');
+//             $("#btnDeactivateHistory").prop('disabled', 'disabled');
+//         },
+//         success: function (response) {
+//             let result = response['result'];
+//             if (result == 1) {
+//                 $("#modalDeactivateHistory").modal('hide');
+//                 $("#deactivateHistoryForm")[0].reset();
+//                 toastr.success('PLC Category successfully deactivated!');
+//                 dataTablePlcModuleRevisionHistory.draw();
+//             }
+//             else {
+//                 toastr.warning('PLC Category already deactivated!');
+//             }
+
+//             $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeactivateHistory").removeAttr('disabled');
+//             $("#deactivateHistoryIcon").addClass('fa fa-check');
+//         },
+//         error: function (data, xhr, status) {
+//             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+//             $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnDeactivateHistory").removeAttr('disabled');
+//             $("#deactivateHistoryIcon").addClass('fa fa-check');
+//         }
+//     });
+// }
+
+// function ActivateRevisionHistory() {
+//     toastr.options = {
+//         "closeButton": false,
+//         "debug": false,
+//         "newestOnTop": true,
+//         "progressBar": true,
+//         "positionClass": "toast-top-right",
+//         "preventDuplicates": false,
+//         "onclick": null,
+//         "showDuration": "300",
+//         "hideDuration": "3000",
+//         "timeOut": "3000",
+//         "extendedTimeOut": "3000",
+//         "showEasing": "swing",
+//         "hideEasing": "linear",
+//         "showMethod": "fadeIn",
+//         "hideMethod": "fadeOut",
+//     };
+
+//     $.ajax({
+//         url: "activate_revision_history",
+//         method: "post",
+//         data: $('#activateHistoryForm').serialize(),
+//         dataType: "json",
+//         beforeSend: function () {
+//             $("#activateHistoryIcon").addClass('fa fa-spinner fa-pulse');
+//             $("#btnActivateHistory").prop('disabled', 'disabled');
+//         },
+//         success: function (response) {
+//             let result = response['result'];
+//             if (result == 1) {
+//                 $("#modalActivateHistory").modal('hide');
+//                 $("#activateHistoryForm")[0].reset();
+//                 toastr.success('PLC Category successfully activated!');
+//                 dataTablePlcModuleRevisionHistory.draw();
+//             }
+//             else {
+//                 toastr.warning('PLC Category already deactivated!');
+//             }
+
+//             $("#activateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnActivateHistory").removeAttr('disabled');
+//             $("#activateHistoryIcon").addClass('fa fa-check');
+//         },
+//         error: function (data, xhr, status) {
+//             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+//             $("#activateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnActivateHistory").removeAttr('disabled');
+//             $("#activateHistoryIcon").addClass('fa fa-check');
+//         }
+//     });
+// }
+
+//============================== CHANGE USER STATUS ==============================
+function ChangePlcRevisionHistoryStatus(){
     toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -372,92 +479,46 @@ function DeactivateRevisionHistory() {
     };
 
     $.ajax({
-        url: "deactivate_revision_history",
+        url: "change_plc_revision_history_stat",
         method: "post",
-        data: $('#deactivateHistoryForm').serialize(),
+        data: $('#formChangePlcRevisionHistoryStat').serialize(),
         dataType: "json",
-        beforeSend: function () {
-            $("#deactivateHistoryIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnDeactivateHistory").prop('disabled', 'disabled');
+        beforeSend: function(){
+            $("#iBtnChangePlcRevisionHistoryStatIcon").addClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRevisionHistoryStat").prop('disabled', 'disabled');
         },
-        success: function (response) {
-            let result = response['result'];
-            if (result == 1) {
-                $("#modalDeactivateHistory").modal('hide');
-                $("#deactivateHistoryForm")[0].reset();
-                toastr.success('PLC Category successfully deactivated!');
+        success: function(response){
+
+            if(response['validation'] == 'hasError'){
+                toastr.error('Category activation failed!');
+            }else{
+                if(response['result'] == 1){
+                    if($("#txtChangePlcRevisionHistoryStat").val() == 1){
+                        toastr.success('Activation success!');
+                        $("#txtChangePlcRevisionHistoryStat").val() == 2;
+                    }
+                    else{
+                        toastr.success('Deactivation success!');
+                        $("#txtChangePlcRevisionHistoryStat").val() == 1;
+                    }
+                }
+                $("#modalChangePlcRevisionHistoryStat").modal('hide');
+                $("#formChangePlcRevisionHistoryStat")[0].reset();
                 dataTablePlcModuleRevisionHistory.draw();
             }
-            else {
-                toastr.warning('PLC Category already deactivated!');
-            }
 
-            $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeactivateHistory").removeAttr('disabled');
-            $("#deactivateHistoryIcon").addClass('fa fa-check');
+            $("#iBtnChangePlcRevisionHistoryStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRevisionHistoryStat").removeAttr('disabled');
+            $("#iBtnChangePlcRevisionHistoryStatIcon").addClass('fa fa-check');
         },
-        error: function (data, xhr, status) {
+        error: function(data, xhr, status){
             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#deactivateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnDeactivateHistory").removeAttr('disabled');
-            $("#deactivateHistoryIcon").addClass('fa fa-check');
+            $("#iBtnChangePlcRevisionHistoryStatIcon").removeClass('fa fa-spinner fa-pulse');
+            $("#txtChangePlcRevisionHistoryStat").removeAttr('disabled');
+            $("#iBtnChangePlcRevisionHistoryStatIcon").addClass('fa fa-check');
         }
     });
 }
-
-function ActivateRevisionHistory() {
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "3000",
-        "timeOut": "3000",
-        "extendedTimeOut": "3000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut",
-    };
-
-    $.ajax({
-        url: "activate_revision_history",
-        method: "post",
-        data: $('#activateHistoryForm').serialize(),
-        dataType: "json",
-        beforeSend: function () {
-            $("#activateHistoryIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnActivateHistory").prop('disabled', 'disabled');
-        },
-        success: function (response) {
-            let result = response['result'];
-            if (result == 1) {
-                $("#modalActivateHistory").modal('hide');
-                $("#activateHistoryForm")[0].reset();
-                toastr.success('PLC Category successfully activated!');
-                dataTablePlcModuleRevisionHistory.draw();
-            }
-            else {
-                toastr.warning('PLC Category already deactivated!');
-            }
-
-            $("#activateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnActivateHistory").removeAttr('disabled');
-            $("#activateHistoryIcon").addClass('fa fa-check');
-        },
-        error: function (data, xhr, status) {
-            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#activateHistoryIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnActivateHistory").removeAttr('disabled');
-            $("#activateHistoryIcon").addClass('fa fa-check');
-        }
-    });
-}
-
 
 function LoadUserListRev(cboElement)
 {

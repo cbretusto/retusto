@@ -18,7 +18,7 @@ class SelectPlcEvidenceController extends Controller
     public function view_select_plc_evidences(){
     $test = SelectPlcEvidence::with(['category_details','sa_details', 'plc_evidences_details'])
         ->where('logdel', 0)
-        ->where('filter', 1)
+        ->where('filter', 0)
         ->get();
         return $test;
     }
@@ -59,5 +59,4 @@ class SelectPlcEvidenceController extends Controller
             }
         }
     }
-    
 }

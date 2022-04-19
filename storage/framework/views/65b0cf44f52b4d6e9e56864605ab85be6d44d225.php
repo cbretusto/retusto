@@ -515,65 +515,33 @@ $layout = 'layouts.super_user_layout';
         </div>
     </div><!-- EDIT MODAL END -->
 
-    <!-- DEACTIVATE REVISION HISTORY START -->
-    <div class="modal fade" id="modalDeactivateHistory">
+    
+
+    <!-- CHANGE STAT MODAL START -->
+    <div class="modal fade" id="modalChangePlcRevisionHistoryStat">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h4 class="modal-title"><i class="far fa-file"></i>&nbsp;&nbsp;Deactivate History</h4>
-                    <button type="button" style="color: #fff" class="close" data-dismiss="modal"
-                        aria-label="Close">
+            <div class="modal-content modal-sm">
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title" id="h4ChangePlcRevisionHistoryStat"><i class=""></i> Change Status</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="deactivateHistoryForm">
+                <form method="post" id="formChangePlcRevisionHistoryStat">
                     <?php echo csrf_field(); ?>
                     <div class="modal-body">
-                        <div class="row d-flex justify-content-center">
-                            <label class="text-secondary mt-2">Are you sure you want to deactivate this History?</label>
-                            <input type="hidden" class="form-control" name="deactivate_revision_history_id"
-                                id="txtDeactivateRevisionHistoryID">
-                        </div>
+                        <label id="lblChangePlcRevisionHistoryStatLabel"></label>
+                        <input type="text" name="plc_revision_history_id" id="txtChangePlcRevisionHistoryId">
+                        <input type="text" name="status" id="txtChangePlcRevisionHistoryStat">
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnDeactivateHistory" class="btn btn-danger"><i
-                                id="deactivateHistoryIcon" class="fa fa-check"></i> Deactivate</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnChangeRevisionHistoryStat" class="btn btn-dark"><i id="iBtnChangePlcRevisionHistoryStatIcon" class="fa fa-check"></i> Yes</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div><!-- DEACTIVATE REVISION HISTORY END -->
-
-    <!-- ACTIVATE REVISION HISTORY MODAL START -->
-    <div class="modal fade" id="modalActivateHistory">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h4 class="modal-title"><i class="far fa-file"></i>&nbsp;&nbsp;Activate History</h4>
-                    <button type="button" style="color: #fff" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="post" id="activateHistoryForm">
-                    <?php echo csrf_field(); ?>
-                    <div class="modal-body">
-                        <div class="row d-flex justify-content-center">
-
-                            <label class="text-secondary mt-2">Activate this History?</label>
-                            <input type="hidden" class="form-control" name="activate_history_id" id="activateHistoryID">
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnActivateHistory" class="btn btn-success"><i id="activateHistoryIcon"
-                                class="fa fa-check"></i> Activate</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div><!-- ACTIVATE REVISION HISTORY MODAL END -->
+    </div> <!-- CHANGE STAT MODAL END -->
 
     
     <!-- ADD FLOW CHART MODAL-->
@@ -697,8 +665,8 @@ $layout = 'layouts.super_user_layout';
                     <?php echo csrf_field(); ?>
                     <div class="modal-body">
                         <label id="lblChangePlcFlowChartStatLabel"></label>
-                        <input type="hidden" name="plc_flow_chart_id" id="txtChangePlcFlowChartId">
-                        <input type="hidden" name="flow_chart_status" id="txtChangePlcFlowChartStat">
+                        <input type="text" name="plc_flow_chart_id" id="txtChangePlcFlowChartId">
+                        <input type="text" name="flow_chart_status" id="txtChangePlcFlowChartStat">
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
@@ -1427,7 +1395,7 @@ $layout = 'layouts.super_user_layout';
                             <div class="col-sm-12">
                                 <div class="form-group col-sm-3 flex-column d-flex">
                                     <input type="hidden" name="category_name" id="txtCategoryNameId" value="<?php echo e(Session::get('pmi_plc_category_id')); ?>">
-                                        <input type="hidden" name="sa_id" id="txtSAId"value="">
+                                        <input type="hidden" name="sa_id" id="txtSAId" value="">
                                         <input type="hidden" name="plc_category_name" id="txtPlcCategoryName" value="<?php echo e($pmi_category); ?>">
                                 </div>
 
@@ -1680,31 +1648,7 @@ $layout = 'layouts.super_user_layout';
     </div><!-- EDIT MODAL END -->
 
     <!-- DELETE MODAL START -->
-    <div class="modal fade" id="modalDeleteSaData">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-dark">
-                    <h4 class="modal-title"><i class="fa fa-user"></i> Delete SA Data</h4>
-                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="post" id="deleteSaForm">
-                    <?php echo csrf_field(); ?>
-                    <div class="modal-body">
-                        <div class="row">
-                            <label id="lblDeleteUser" class="text-secondary mt-2">Are you sure you want to delete this SA Data?</label>
-                            <input type="hidden" class="form-control" name="sa_data_id" id="txtDeleteSADataID">
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnDeleteSaData" class="btn btn-primary"><i id="iBtnDeleteSaDataIcon" class="fa fa-check"></i> Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div><!-- DELETE MODAL END -->
+    
 
     
     <input type="hidden" class="form-control" name="get_category" id="txtGetCategory1" value="<?php echo e($pmi_category); ?>">
@@ -1765,6 +1709,7 @@ $layout = 'layouts.super_user_layout';
                                     <tr style="text-align:center">
                                     <th>PLC Category</th>
                                     <th>PLC Evidences File</th>
+                                    <th>Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -1791,11 +1736,11 @@ $layout = 'layouts.super_user_layout';
                     <div class="modal-body">
                         <label id="lblSelectClcEvidences"></label>
                         <h5><strong>Are you sure you want to add this record?</strong></h5>
-                        <input type="text" name="button" id="txtButton">
+                        <input type="hidden" name="button" id="txtButton">
                         <input type="hidden" name="category_id" id="txtCategoryId" value="<?php echo e(Session::get('pmi_plc_category_id')); ?>">
                         <input type="hidden" name="sa_id" id="txtSaId">
                         <input type="hidden" name="select_clc_evidences_id" id="selectPlcEvidencesId">
-                        <input type="hidden" name="filter" id="selectPlcEvidencesFile">
+                        <input type="text" name="filter" id="selectPlcEvidencesFile">
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
@@ -1806,8 +1751,35 @@ $layout = 'layouts.super_user_layout';
         </div>
     </div> <!-- FILTER ADD MODAL END -->
 
-    <!-- Darren March 22, 2022 -->
+    <!--Chan April 19, 2022 -->
+    <!-- DELETE REFERENCE DOCUMENT MODAL START -->
+    <div class="modal fade" id="modalDeleteReferenceDocument">
+        <div class="modal-dialog">
+            <div class="modal-content modal-sm">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="h4DeleteReferenceDocument"><i class="fab fa-stack-overflow"></i> Delete PLC Evidence</h4>
+                    <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="formDeleteReferenceDocument">
+                    <?php echo csrf_field(); ?>
+                    <div class="modal-body">
+                        <label id="lblDeleteReferenceDocument"></label>
+                        <h5><strong>Are you sure you want to delete this record?</strong></h5>
+                        <input type="text" name="reference_document_id" id="txtDeleteReferenceId">
+                        <input type="text" name="filter" id="deleteReferenceDocument">
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnDeleteReferenceDocument" class="btn btn-danger"><i id="iBtnDeleteReferenceDocument" class="fa fa-check"></i> Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- FILTER ADD MODAL END -->
 
+    <!-- Darren March 22, 2022 -->
     <!-- APPROVE MODAL START -->
     <div class="modal fade" id="modalApproveSaData">
         <div class="modal-dialog">
@@ -1977,6 +1949,17 @@ $layout = 'layouts.super_user_layout';
             });
             //VIEW PLC MODULES DATATABLES END
 
+            // ========================= RELOAD DATATABLE =========================
+            function reloadDataTablePlcModule() {
+                dataTablePlcModuleRevisionHistory.draw();
+                dataTablePlcModuleFlowChart.draw();
+            }
+            $("#modalChangePlcRevisionHistoryStat").on('hidden.bs.modal', function () {
+                console.log('PLC Revision History Reload Successfully');
+                console.log('PLC Flow Chart Reload Successfully');
+                reloadDataTablePlcModule();
+            });
+
             //===============================VIEW PLC MODULES FLOW CHART====================================
             dataTablePlcModuleFlowChart = $("#plcModuleFlowChartDataTables").DataTable({
                 "processing": false,
@@ -2091,6 +2074,17 @@ $layout = 'layouts.super_user_layout';
                 reloadDataTablePlcRcm();
             });
 
+            // ========================= RELOAD DATATABLE =========================
+            function reloadDataTablePlcRcm() {
+                dataTablePlcModuleRCM.draw();
+                dataTablePlcModuleSa.draw();
+            }
+            $("#modalChangePlcRcmStat").on('hidden.bs.modal', function () {
+                console.log('PLC RCM Reload Successfully');
+                console.log('PLC SA Reload Successfully');
+                reloadDataTablePlcRcm();
+            });
+
             //VIEW PLC MODULES SA DATATABLES
             dataTablePlcModuleSa = $("#plcModulesSaDataTables").DataTable({
                 "processing": false,
@@ -2167,6 +2161,7 @@ $layout = 'layouts.super_user_layout';
                 "columns":[
                     { "data" : "category_details.plc_category" },
                     { "data" : "plc_evidences" },
+                    { "data" : "action" },
                 ],
             });// END OF DATATABLE
 
@@ -2256,6 +2251,25 @@ $layout = 'layouts.super_user_layout';
             $("#formSelectPlcEvidences").submit(function(event){
                 event.preventDefault();
                 AddPlcEvidencesFile();
+            });
+
+             // Chan April 19, 2022
+            //============================== SELECT ADD CLC EVIDENCES FILE ==============================
+            $(document).on('click', '.actionDeleteReferenceDocument', function(){
+                let deleteplcevidenceId = $(this).attr('plc_evidences-id');
+                let deletetplcevidence = $(this).attr('filter');
+
+                console.log('Delete Reference Document');
+                console.log(' *Delete Button ID:', deleteplcevidenceId);
+                console.log(' *Filter ID:', deletetplcevidence);
+
+                $("#txtDeleteReferenceId").val(deleteplcevidenceId);
+                $("#deleteReferenceDocument").val(deletetplcevidence);
+            });
+
+            $("#formDeleteReferenceDocument").submit(function(event){
+                event.preventDefault();
+                DeleteReferenceDocument();
             });
 
             // ========================= RELOAD DATATABLE =========================
@@ -2363,32 +2377,55 @@ $layout = 'layouts.super_user_layout';
                 EditRevisionHistory();
             });
 
-            // DEACTIVATE REVISION HISTORY
-            $(document).on('click', '.actionDeactivateHistory', function() {
+            // // DEACTIVATE REVISION HISTORY
+            // $(document).on('click', '.actionDeactivateHistory', function() {
 
-                let revisionHistoryID = $(this).attr('revision_history-id');
+            //     let revisionHistoryID = $(this).attr('revision_history-id');
 
-                $("#txtDeactivateRevisionHistoryID").val(revisionHistoryID);
+            //     $("#txtDeactivateRevisionHistoryID").val(revisionHistoryID);
+            // });
+            // $("#deactivateHistoryForm").submit(function(event) {
+            //     event.preventDefault();
+            //     DeactivateRevisionHistory();
+            // });
+            // // DEACTIVATE REVISION HISTORY END
+
+            // // ACTIVATE REVISION HISTORY
+            // $(document).on('click', '.actionActivateHistory', function() {
+
+            //     let revisionHistoryID = $(this).attr('revision_history-id');
+
+            //     $("#activateHistoryID").val(revisionHistoryID);
+            // });
+
+            // $("#activateHistoryForm").submit(function(event) {
+            //     event.preventDefault();
+            //     ActivateRevisionHistory();
+            // });
+            // // ACTIVATE REVISION HISTORY END
+
+              //============================== CHANGE PLC REVISION HISTORY STATUS ==============================
+                $(document).on('click', '.actionChangePlcRevisionHistoryStat', function(){
+                    let plcrevisionhistoryId = $(this).attr('revision_history-id'); 
+                let plcrevisionhistoryStat = $(this).attr('status');
+                console.log('Revision History ID:', plcrevisionhistoryId);
+                console.log('Status:', plcrevisionhistoryStat);
+                $("#txtChangePlcRevisionHistoryId").val(plcrevisionhistoryId); 
+                $("#txtChangePlcRevisionHistoryStat").val(plcrevisionhistoryStat); 
+
+                if(plcrevisionhistoryStat == 1){
+                    $("#lblChangePlcRevisionHistoryStatLabel").text('Are you sure to activate?');
+                    $("#h4ChangePlcRevisionHistoryStat").html('<i class="fa fa-check"></i> Activate!');
+                }
+                else{
+                    $("#lblChangePlcRevisionHistoryStatLabel").text('Are you sure to deactivate?');
+                    $("#h4ChangePlcRevisionHistoryStat").html('<i class="fa fa-times"></i>  Deactivate!');
+                }
             });
-            $("#deactivateHistoryForm").submit(function(event) {
+            $("#formChangePlcRevisionHistoryStat").submit(function(event){
                 event.preventDefault();
-                DeactivateRevisionHistory();
+                ChangePlcRevisionHistoryStatus();
             });
-            // DEACTIVATE REVISION HISTORY END
-
-            // ACTIVATE REVISION HISTORY
-            $(document).on('click', '.actionActivateHistory', function() {
-
-                let revisionHistoryID = $(this).attr('revision_history-id');
-
-                $("#activateHistoryID").val(revisionHistoryID);
-            });
-
-            $("#activateHistoryForm").submit(function(event) {
-                event.preventDefault();
-                ActivateRevisionHistory();
-            });
-            // ACTIVATE REVISION HISTORY END
 
             $(document).on('click', '.actionUploadFlowChart', function() {
                 $.ajax({

@@ -231,28 +231,28 @@ class PlcModulesSaController extends Controller
         ->addColumn('approval_status', function($plc_module_sa) {
 			$result = "";
 			$result .= '<center>';
-            if($plc_module_sa->approver_status == 0){
-                if($plc_module_sa->assessed_by == null){
-                    $result .= '<span class="badge badge badge-info mt-5 nowrap">For Update</span>';
-                }else{
-                    $result .= '<span class="badge badge badge-warning mt-5 nowrap">For Appproval <br> -Jr. Auditor</span>';
+                if($plc_module_sa->approver_status == 0){
+                    if($plc_module_sa->assessed_by == null){
+                        $result .= '<span class="badge badge badge-info mt-5 nowrap">For Update</span>';
+                    }else{
+                        $result .= '<span class="badge badge badge-warning mt-5 nowrap">For Appproval <br> -Jr. Auditor</span>';
+                    }
                 }
-            }
-            else if($plc_module_sa->approver_status == 1){
-				$result .= '<span class="badge badge badge-warning mt-5 nowrap">For Approval <br> -IAS Manager</span>';
-            }
-            else if($plc_module_sa->approver_status == 2){
-				$result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
-				$result .= '<span class="badge badge badge-warning mt-5 nowrap"><strong>(Second Half) <br> For Approval <br> -Jr Auditor</br></strong></span>';
-            }
-            else if($plc_module_sa->approver_status == 3){
-                $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
-				$result .= '<span class="badge badge badge-warning mt-5 nowrap"><strong>(Second Half) <br> For Approval <br> -IAS Manager</br></strong></span>';
-            }
-            else if($plc_module_sa->approver_status == 4){
-                $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
-                $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(Second Half) <br> Approved</strong></span>';
-            }
+                else if($plc_module_sa->approver_status == 1){
+                    $result .= '<span class="badge badge badge-warning mt-5 nowrap">For Approval <br> -IAS Manager</span>';
+                }
+                else if($plc_module_sa->approver_status == 2){
+                    $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
+                    $result .= '<span class="badge badge badge-warning mt-5 nowrap"><strong>(Second Half) <br> For Approval <br> -Jr Auditor</br></strong></span>';
+                }
+                else if($plc_module_sa->approver_status == 3){
+                    $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
+                    $result .= '<span class="badge badge badge-warning mt-5 nowrap"><strong>(Second Half) <br> For Approval <br> -IAS Manager</br></strong></span>';
+                }
+                else if($plc_module_sa->approver_status == 4){
+                    $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(First Half) <br> Approved</strong></span>';
+                    $result .= '<span class="badge badge badge-success mt-5 nowrap"><strong>(Second Half) <br> Approved</strong></span>';
+                }
 			$result .= '</center>';
 			return $result;
 		})
@@ -263,8 +263,8 @@ class PlcModulesSaController extends Controller
             $result .= '<br>';
             $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditSaData"  style="width:85px;margin:2%;" sa_data-id="' . $plc_module_sa->id . '" data-toggle="modal" data-target="#modalEditSaData" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit </button>';
             $result .= '<br>';
-            $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionDeleteSaData" style="width:85px;margin:2%;" sa_data-id="' . $plc_module_sa->id . '"  data-toggle="modal" data-target="#modalDeleteSaData" data-keyboard="false"><i class="nav-icon fas fa-ban">&nbsp;</i>Delete</button>&nbsp;';
-            $result .= '<br>';
+            // $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionDeleteSaData" style="width:85px;margin:2%;" sa_data-id="' . $plc_module_sa->id . '"  data-toggle="modal" data-target="#modalDeleteSaData" data-keyboard="false"><i class="nav-icon fas fa-ban">&nbsp;</i>Delete</button>&nbsp;';
+            // $result .= '<br>';
             $result .= '<button type="button" class="btn btn-dark btn-sm text-center actionYecApprovedDate" style="width:85px;margin:2%;" sa_data-id="' . $plc_module_sa->id . '"  data-toggle="modal" data-target="#modalYecApprovedDate" data-keyboard="false"><i class="far fa-calendar-check">&nbsp;</i>Date</button>&nbsp;';
             $result .= '<br>';
 
@@ -403,7 +403,6 @@ class PlcModulesSaController extends Controller
             }else{
                 $fu = null;
             }
-
             PLCModuleSA::where('id', $request->sa_data_id)
             ->update([
                 'category'                  => $request->category_name,

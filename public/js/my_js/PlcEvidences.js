@@ -238,3 +238,57 @@ function EditPlcEvidences(){
         }
     });
 }
+
+// ============================== DELETE REFERENCE DOCUMENT ==============================
+function DeleteReferenceDocument(){
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "3000",
+        "timeOut": "3000",
+        "extendedTimeOut": "3000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    };
+
+    $.ajax({
+        url: "delete_reference_document",
+        method: "post",
+        data: $('#formDeleteReferenceDocument').serialize(),
+        dataType: "json",
+        beforeSend: function(){
+            $("#iBtnDeleteReferenceDocument").addClass('fa fa-spinner fa-pulse');
+            $("#btnDeleteReferenceDocument").prop('disabled', 'disabled');
+        },
+        success: function(response){
+            let result = response['result'];
+            if(result == 1){
+                $("#modalDeleteReferenceDocument").modal('hide');
+                $("#formDeleteReferenceDocument")[0].reset();
+                toastr.success('Data successfully deleted');
+                dataTableViewPlcEvidences.draw();
+            }
+            else{
+                toastr.warning('No Data found!');
+            }
+
+            $("#iBtnDeleteReferenceDocument").removeClass('fa fa-spinner fa-pulse');
+            $("#btnDeleteReferenceDocument").removeAttr('disabled');
+            $("#iBtnDeleteReferenceDocument").addClass('fa fa-check');
+        },
+        error: function(data, xhr, status){
+            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+            $("#iBtnDeleteReferenceDocument").removeClass('fa fa-spinner fa-pulse');
+            $("#btnDeleteReferenceDocument").removeAttr('disabled');
+            $("#iBtnDeleteReferenceDocument").addClass('fa fa-check');
+        }
+    });
+}

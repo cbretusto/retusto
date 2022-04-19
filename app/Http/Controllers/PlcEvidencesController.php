@@ -91,7 +91,7 @@ class PlcEvidencesController extends Controller
         ->addColumn('action',function($plc_evidences){
             $result = "";
             $result = '<center>';
-            $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectPlcEvidences" plc_evidences-id="' . $plc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalSelectPlcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add Reference Document</button>';
+            $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionSelectPlcEvidences" plc_evidences-id="' . $plc_evidences->id . '" filter="0" data-toggle="modal" data-target="#modalSelectPlcEvidences" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Add Reference Document</button>';
             $result .= '</center>';
             return $result;
         })
@@ -111,13 +111,12 @@ class PlcEvidencesController extends Controller
     }
 
     // Chan March 16, 2022
-    public function view_pmi_plc_evidences_file(Request $request)
-    {
+    public function view_pmi_plc_evidences_file(Request $request){
         // $plc_evidences = PlcEvidences::where('logdel', 0)->get();
         $plc_evidences = SelectPlcEvidence::with(['category_details','sa_details', 'plc_evidences_details'])
         ->where('plc_sa_id', $request->id)
         ->where('assessment_details_and_findings', $request->buttonid)
-        ->where('filter', 1)
+        ->where('filter', 0)
         ->get();
         // return $plc_evidences;
         return DataTables::of($plc_evidences)
@@ -133,7 +132,16 @@ class PlcEvidencesController extends Controller
             }
                 return $result;
         })
-            ->rawColumns(['plc_evidences'])
+
+        ->addColumn('action', function ($plc_evidences) {
+            $result = "";
+            $result = '<center>';
+            $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionDeleteReferenceDocument"  style="width:85px;margin:2%;" plc_evidences-id="' . $plc_evidences->id . '" filter="1" data-toggle="modal" data-target="#modalDeleteReferenceDocument" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Delete </button>';
+            $result .= '</center>';
+
+            return $result;
+        })
+            ->rawColumns(['plc_evidences', 'action'])
             ->make(true);
     }
 
@@ -291,25 +299,18 @@ class PlcEvidencesController extends Controller
                 // $original_filename1 = $request->file('edit_uploaded_file')->getClientOriginalName();
                 // return $original_filename1;
 
-                  $files = $request->file('edit_uploaded_file');
+                $files = $request->file('edit_uploaded_file');
                         foreach($files as $file){
                             $edit_uploaded_file_orig = $file->getClientOriginalName();
                             array_push($edit_arr_uploaded_file, $edit_uploaded_file_orig);
                             Storage::putFileAs('public/plc_evidences', $file,  $edit_uploaded_file_orig);
 
                         }
-
-                        // return $arr_uploaded_file;
-
-
+                    // return $arr_uploaded_file;
                     // return $request->uploaded_file;
-
                     // get original file name
                     // $original_filename = $request->file('uploaded_file')->getClientOriginalName();
-
                     // return $original_filename;
-
-
                     $imploaded_arr_uploaded_file_orig_edit = implode('/', $edit_arr_uploaded_file);
                 // Storage::putFileAs('public/plc_evidences', $request->edit_uploaded_file,  $original_filename1);
                 PlcEvidences::where('id', $request->plc_evidence_id)
@@ -327,8 +328,28 @@ class PlcEvidencesController extends Controller
         }
     }
 
+    //============================== DELETE REFERENCE DOCUMENT PLC EVIDENCES ==============================
+    public function delete_reference_document(Request $request){
+        date_default_timezone_set('Asia/Manila');
 
+        $data = $request->all(); // collect all input fields
 
+        try{
+            SelectPlcEvidence::where('id', $request->reference_document_id)
+            ->update([
+                'filter' => $request->filter, // deleted
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
+            /*DB::commit();*/
+            return response()->json(['result' => "1"]);
+        }
+        catch(\Exception $e) {
+            DB::rollback();
+            // throw $e;
+            return response()->json(['result' => "0", 'tryCatchError' => $e->getMessage()]);
+        }
+    }
 }
 
 

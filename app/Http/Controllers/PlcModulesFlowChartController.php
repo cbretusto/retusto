@@ -16,7 +16,9 @@ class PlcModulesFlowChartController extends Controller
     public function view_plc_modules_flow_chart(Request $request)
         {
             $plc_module_flow_chart = PLCModuleFlowChart::with('rapidx_user_details')
-            ->where('category', $request->session)->get();
+            ->where('category', $request->session)
+            ->where('flow_chart_status', 1)
+            ->get();
 
             return DataTables::of($plc_module_flow_chart)
 
@@ -36,19 +38,19 @@ class PlcModulesFlowChartController extends Controller
                 $result = '<center>';
                 if($plc_module_flow_chart->flow_chart_status == 1){
                     if ($plc_module_flow_chart->flow_chart == NULL){
-                        $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionUploadFlowChart" style="width:105px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalAddFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Upload Flow Chart</button>&nbsp;';
-                        $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                        $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionUploadFlowChart" style="width:125px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalAddFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Upload Flow Chart</button>&nbsp;';
+                        // $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
                         $result .= '<br>';
                     }
                     else{
                         $result .= '<br>';
-                        $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionEditFlowChart" style="width:105px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalEditFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
+                        // $result .= '<button type="button" class="btn btn-primary btn-sm  text-center actionEditFlowChart" style="width:105px;margin:2%;" flow_chart-id="' . $plc_module_flow_chart->id . '" data-toggle="modal" data-target="#modalEditFlowChart" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
                         $result .= '<br>';
-                        $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                        // $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="2" data-toggle="modal" data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
                         $result .= '<br>';
                     }
                 }else{
-                    $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="1" data-toggle="modal"  data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-check"></i> Active</button>&nbsp;';
+                    // $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangePlcFlowChartStat" style="width:105px;margin:2%;" plc_module_flow_chart-id="' . $plc_module_flow_chart->id . '" flow_chart_status="1" data-toggle="modal"  data-target="#modalChangePlcFlowChartStat" data-keyboard="false"><i class="nav-icon fas fa-check"></i> Active</button>&nbsp;';
                 }
                 $result .= '</center>';
                 return $result;
@@ -209,7 +211,7 @@ class PlcModulesFlowChartController extends Controller
         }
     }
 
-    //============================== CHANGE PMI CLC STAT ==============================
+    //============================== CHANGE PMI PLC STAT ==============================
     public function change_plc_flow_chart_stat(Request $request){
         date_default_timezone_set('Asia/Manila');
 

@@ -56,7 +56,7 @@
             $test_array = array();
             $test = "";
             for($i = 0; $i < count($data); $i++){
-                if($data[$i]->category == 1){
+                if($data[$i]->category == 8){
                     if(!$i == count($data)) {
                         $test .= $data[$i]->control_no."<br>";
                         // array_push($test_array, '1nd if');
@@ -282,7 +282,7 @@
     <tr>
         <td>PMI-08</td>
         <td>Verifying Monthly Data (With Sakura)</td>
-
+        
         <td>='Audit Status'!E12</td>
         <td>='Audit Status'!E12</td>
 
@@ -505,7 +505,7 @@
         <td>Handling Incorrect YEC Invoices</td>
         <td>='Audit Status'!E19</td>
         <td>='Audit Status'!E19</td>
-
+        
         <?php
             $test_array = array();
             $test = "";

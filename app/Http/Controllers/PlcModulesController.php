@@ -45,13 +45,14 @@ class PlcModulesController extends Controller
                 $result = "<center>";
                 if ($plc_module->status == 1) {
                     $result .= '<button type="button" class="btn btn-primary btn-sm text-center actionEditRevisionHistory" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" data-toggle="modal" data-target="#modalEditRevisionHistory" data-keyboard="false"><i class="nav-icon fas fa-edit"></i> Edit</button>&nbsp;';
-                    $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionDeactivateHistory" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" data-toggle="modal" data-target="#modalDeactivateHistory" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
+                    $result .= '<button type="button" class="btn btn-danger btn-sm text-center actionChangePlcRevisionHistoryStat" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" status="2" data-toggle="modal" data-target="#modalChangePlcRevisionHistoryStat" data-keyboard="false"><i class="nav-icon fas fa-ban"></i> Deactivate</button>&nbsp;';
                 } else {
-                    $result .= '<button class="btn btn-success btn-sm text-center actionActivateHistory" revision_history-id="' . $plc_module->id . '"  data-toggle="modal" data-target="#modalActivateHistory" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
+                    $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangePlcRevisionHistoryStat" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" status="1" data-toggle="modal" data-target="#modalChangePlcRevisionHistoryStat" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
                 }
                 $result .= '</center>';
                 return $result;
             })
+
             ->addColumn('revision_date', function($plc_module){
                 $result = "";
                 $date =$plc_module->revision_date;
@@ -198,15 +199,11 @@ class PlcModulesController extends Controller
 
                     PLCModuleFlowChart::insert([
                         'category'          => $request->category_name,
-                        // 'control_no'        => $request->add_control_id,
                         'process_owner'        => $request->process_owner,
                         'rev_history_id'       => $get_id_to_flow_chart_id,
                     ]);
 
                         return response()->json(['result' => "1"]);
-
-
-
                 }
 
         }
@@ -327,8 +324,6 @@ class PlcModulesController extends Controller
                     PLCModule::where('id', $request->revision_history_id)
                     ->update([ // The update method expects an array of column and value pairs representing the columns that should be updated.
                         'process_owner' => $request->edit_revision_history_process_owner,
-                        // 'revision_date' => $request->edit_revision_history_date,
-                        // 'version_no' => $request->edit_revision_history_process_owner,
                         'reason_for_revision' => $request->edit_reason_for_revision,
                         'concerned_dept' => $request->edit_revision_history_concerned_dept,
                         'details_of_revision' => $request->edit_details_of_revision,
@@ -338,11 +333,7 @@ class PlcModulesController extends Controller
 
                     PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)
                     ->update([
-                        // 'category'          => $request->category_name,
                         'process_owner' => $request->edit_revision_history_process_owner,
-
-                        // 'control_no'        => $request->edit_control_id,
-                        // 'internal_control'  => $request->edit_internal_control,
                     ]);
 
 
@@ -352,54 +343,88 @@ class PlcModulesController extends Controller
         }
     }
 
-    //============================== DEACTIVATE PLC CATEGORY ==============================
-    public function deactivate_revision_history(Request $request)
-    {
-        date_default_timezone_set('Asia/Manila');
-        session_start();
+    // //============================== DEACTIVATE PLC CATEGORY ==============================
+    // public function deactivate_revision_history(Request $request)
+    // {
+    //     date_default_timezone_set('Asia/Manila');
+    //     session_start();
 
-        $data = $request->all();
+    //     $data = $request->all();
 
-        PLCModule::where('id', $request->deactivate_revision_history_id)
-            ->update([
-                // 'logdel' => 1,
-                'status' => 2
-            ]);
+    //     PLCModule::where('id', $request->deactivate_revision_history_id)
+    //         ->update([
+    //             // 'logdel' => 1,
+    //             'status' => 2
+    //         ]);
 
+    //     return response()->json(['result' => "1"]);
+    // }
+    //  //============================== ACTIVATE PLC CATEGORY ==============================
+    //  public function activate_revision_history(Request $request)
+    //  {
+    //      date_default_timezone_set('Asia/Manila');
+    //      session_start();
+
+    //      $data = $request->all();
+
+    //      PLCModule::where('id', $request->activate_history_id)
+    //      ->update([
+    //         //  'logdel' => 0
+    //          'status' => 1
+    //      ]);
+
+    //      return response()->json(['result' => "1"]);
+    //  }
+
+    //============================== CHANGE PMI CLC STAT ==============================
+    public function change_plc_revision_history_stat(Request $request){        
+    date_default_timezone_set('Asia/Manila');
+
+    $data = $request->all(); // collect all input fields
+
+    $validator = Validator::make($data, [
+        'plc_revision_history_id' => 'required',
+        'status' => 'required',
+    ]);
+
+    if($validator->passes()){
+        PLCModule::where('id', $request->plc_revision_history_id)
+        ->update([
+            'status' => $request->status,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        
+        // PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)
+        // ->update([
+        //     'flow_chart_status' => $request->flow_chart_status,
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        PLCModuleFlowChart::where('id', $request->plc_revision_history_id)
+        ->update([
+            'flow_chart_status' => $request->status,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        
         return response()->json(['result' => "1"]);
     }
-     //============================== ACTIVATE PLC CATEGORY ==============================
-     public function activate_revision_history(Request $request)
-     {
-         date_default_timezone_set('Asia/Manila');
-         session_start();
-
-         $data = $request->all();
-
-         PLCModule::where('id', $request->activate_history_id)
-         ->update([
-            //  'logdel' => 0
-             'status' => 1
-         ]);
-
-         return response()->json(['result' => "1"]);
-     }
-
-     //========================================================
+    else{
+        return response()->json(['validation' => "hasError", 'error' => $validator->messages()]);
+    }
+}
 
 
 
-
-     public function go_to_plc_category_session(Request $request){
+    public function go_to_plc_category_session(Request $request){
         date_default_timezone_set('Asia/Manila');
         session_start();
 
         session(['pmi_plc_category_id' => $request->useSession]);
 
         return response()->json(['result' => 1]);
-     }
+    }
 
-     public function load_user_management_rev(Request $request){
+    public function load_user_management_rev(Request $request){
         // $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
         $users = UserManagement::where('user_level_id', 2)->get();
         // return $users;
