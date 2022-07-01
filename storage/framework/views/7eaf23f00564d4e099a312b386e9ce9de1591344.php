@@ -33,6 +33,48 @@
                             <div class="info-box-content">
 
                                 <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-10 PO Placement to CNPPS Suppliers</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_10" status="10"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-19 Billing</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_19" status="19"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-28 Physical Count-PPS</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_28" status="28"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
                                     <h2 class="card-title mb-0">PMI-02 Shipment Preparation</h2><br>
                                 </div>
                             </div>
@@ -48,6 +90,48 @@
                             <div class="info-box-content">
 
                                 <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-11 Changing POs for CNPPS Suppliers</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_11" status="11"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-20 Offset Arrangement to YEC</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_20" status="20"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-29 Handling Invoices from CNPPS Suppliers</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_29" status="29"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
                                     <h2 class="card-title mb-0">PMI-03 Changing Sales Prices</h2><br>
                                 </div>
                             </div>
@@ -57,6 +141,20 @@
                         </div>
                     </div>
 
+                    <div class="col-3">
+                        <div class="info-box bg-info">
+                            <div class="info-box-content">
+
+                                <div class="mb-3">
+                                    <h2 class="card-title mb-0">PMI-12 Receiving Shipments from YEC</h2><br>
+                                </div>
+                            </div>
+                                <div class="col-3 text-right"><br>
+                                    <a class="text-white" id="pmi_12" status="12"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                </div>
+                        </div>
+                    </div>
+                    
                     <div class="col-3">
                         <div class="info-box bg-info">
                             <div class="info-box-content">
@@ -142,47 +240,10 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
+                    
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-10 PO Placement to CNPPS Suppliers</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_10" status="10"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-11 Changing POs for CNPPS Suppliers</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_11" status="11"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-12 Receiving Shipments from YEC</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_12" status="12"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
+                    
+                   
 
                     <div class="col-3">
                         <div class="info-box bg-info">
@@ -268,33 +329,9 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
+                    
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-19 Billing</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_19" status="19"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-20 Offset Arrangement to YEC</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_20" status="20"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="col-3">
                         <div class="info-box bg-info">
@@ -394,33 +431,9 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
+                   
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-28 Physical Count-PPS</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_28" status="28"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-29 Handling Invoices from CNPPS Suppliers</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_29" status="29"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="col-3">
                         <div class="info-box bg-info">
@@ -469,7 +482,7 @@
                             <div class="info-box-content">
 
                                 <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-33 Handling Discrepancies(Supplier Invoice vs Purchase Order) to CNPPS Suppliers</h2><br>
+                                    <h2 class="card-title mb-0">PMI-33 Handling Discrepancies (Supplier Invoice vs Purchase Order) to CNPPS Suppliers</h2><br>
                                 </div>
                             </div>
                                 <div class="col-3 text-right"><br>
@@ -940,7 +953,7 @@
                     },
                     success: function(response){
                         if(response['result'] == 1){
-                            window.location.href = "PMI";
+                            window.location = "PMI";
                         }
                     },
 

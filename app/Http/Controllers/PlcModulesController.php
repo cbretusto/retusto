@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+
+use DataTables;
+use Carbon\Carbon;
+
 use App\PLCModule;
 use App\PLCModuleFlowChart;
-use DataTables;
 use App\RapidXUser;
 use App\RapidXDepartment;
 use App\UserManagement;
-use Carbon\Carbon;
 
 class PlcModulesController extends Controller
     {
@@ -22,7 +25,7 @@ class PlcModulesController extends Controller
                 'rapidx_user_details',
                 'rapidx_user_details1'
                 ])
-            ->where('category', $request->session)->where('logdel', 0)->get();
+            ->where('category', $request->session)->where('logdel', 0) ->orderBy('id', 'desc')->get();
 
             // return $plc_module;
 
@@ -50,6 +53,7 @@ class PlcModulesController extends Controller
                     $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangePlcRevisionHistoryStat" style="width:105px;margin:2%;" revision_history-id="' . $plc_module->id . '" status="1" data-toggle="modal" data-target="#modalChangePlcRevisionHistoryStat" data-keyboard="false"><i class ="fa fa-key">  Activate</button>';
                 }
                 $result .= '</center>';
+
                 return $result;
             })
 
@@ -110,102 +114,101 @@ class PlcModulesController extends Controller
             //===== ADD REVISION HISTORY FUNCTION ====//
         public function add_revision_history(Request $request)
         {
-                date_default_timezone_set('Asia/Manila');
-                session_start();
+            date_default_timezone_set('Asia/Manila');
+            session_start();
 
-                $data = $request->all();
+            $data = $request->all();
 
-                // return $data;
+            // return $data;
+            // return $request->process_owner;
 
-                $validator = Validator::make($data, [
-                'process_owner' => 'required',
-                'revision_date' => 'required',
-                'version_no' => 'required',
-                'add_reason_for_revision' => 'required',
-                'concerned_dept' => 'required',
-                'add_details_of_revision' => 'required',
-                'process_in_charge' => 'required'
 
+            $validator = Validator::make($data, [
+            'process_owner' => 'required',
+            'revision_date' => 'required',
+            'version_no' => 'required',
+            'add_reason_for_revision' => 'required',
+            'concerned_dept' => 'required',
+            'add_details_of_revision' => 'required',
+            'process_in_charge' => 'required'
+
+            ]);
+
+            if ($validator->fails())
+            {
+                return response()->json(['validation' => 'hasError', 'error' => $validator->messages()]);
+            }
+            else{
+                // $revision_array = array();
+                // $add_revision = "reason_for_revision_";
+
+                // for ($index=1; $index <= $request->txt_max_row_reason; $index++) {
+                //     if($request->txt_max_row_reason >= 1){
+                //         $revision_data = $add_revision.$index;
+
+                //         $rules["reason_for_revision_$index"] = ['required'];
+
+                //         $revision_array[] = $request->$revision_data;
+
+                //     }
+                //     else{
+                //         $rules["reason_for_revision_$index"] = [''];
+
+                //     }
+
+                // }
+                // $reason_revision = implode(", ", $revision_array);
+                    // return $reason_revision;
+
+
+                // $revision_details_array = array();
+                // $add_revision_details = "details_of_revision_";
+
+                // for ($index=1; $index <= $request->txt_max_row_reason_details; $index++) {
+                //     if($request->txt_max_row_reason_details >= 1){
+                //         $revision_details_data = $add_revision_details.$index;
+
+                //         $rules["details_of_revision_$index"] = ['required'];
+
+                //         $revision_details_array[] = $request->$revision_details_data;
+
+                //     }
+                //     else{
+                //         $rules["details_of_revision_$index"] = [''];
+
+                //     }
+
+                // }
+                $add_revision_process_owner = implode(" / ", $request->process_owner);
+                $add_concerned_department = implode(" / ", $request->concerned_dept);
+                // return $add_revision_process_owner;
+                $get_rev_history_id = PLCModule::insertGetId([
+                    'category' => $request->category_name,
+                    'process_owner' => $add_revision_process_owner,
+                    'revision_date' => $request->revision_date,
+                    'version_no' =>    $request->version_no,
+                    'reason_for_revision' => $request->add_reason_for_revision,
+                    'concerned_dept' =>  $add_concerned_department,
+                    'details_of_revision' =>  $request->add_details_of_revision,
+                    'in_charge' =>  $request->process_in_charge,
+                    'logdel' => 0,
+                ]);
+                
+                // $get_rev_history_id = PLCModule::where('id', $request->id)->get();
+
+                // $get_id_to_flow_chart_id = $get_rev_history_id[0]->id;
+                // return $get_id_to_flow_chart_id;
+
+                PLCModuleFlowChart::insert([
+                    'rev_history_id'    => $get_rev_history_id,
+                    'category'          => $request->category_name,
+                    'process_owner'     => $add_revision_process_owner,
+                    'revision_date'     => $request->revision_date,
+                    'version_no'        => $request->version_no,
                 ]);
 
-                if ($validator->fails())
-                {
-                    return response()->json(['validation' => 'hasError', 'error' => $validator->messages()]);
-                }
-                else{
-                    // $revision_array = array();
-                    // $add_revision = "reason_for_revision_";
-
-                    // for ($index=1; $index <= $request->txt_max_row_reason; $index++) {
-                    //     if($request->txt_max_row_reason >= 1){
-                    //         $revision_data = $add_revision.$index;
-
-                    //         $rules["reason_for_revision_$index"] = ['required'];
-
-                    //         $revision_array[] = $request->$revision_data;
-
-                    //     }
-                    //     else{
-                    //         $rules["reason_for_revision_$index"] = [''];
-
-                    //     }
-
-                    // }
-                    // $reason_revision = implode(", ", $revision_array);
-                     // return $reason_revision;
-
-
-                    // $revision_details_array = array();
-                    // $add_revision_details = "details_of_revision_";
-
-                    // for ($index=1; $index <= $request->txt_max_row_reason_details; $index++) {
-                    //     if($request->txt_max_row_reason_details >= 1){
-                    //         $revision_details_data = $add_revision_details.$index;
-
-                    //         $rules["details_of_revision_$index"] = ['required'];
-
-                    //         $revision_details_array[] = $request->$revision_details_data;
-
-                    //     }
-                    //     else{
-                    //         $rules["details_of_revision_$index"] = [''];
-
-                    //     }
-
-                    // }
-                    // $reason_details_revision = implode(", ", $revision_details_array);
-
-
-
-                        PLCModule::insert([
-                                'category' => $request->category_name,
-                                'process_owner' => $request->process_owner,
-                                'revision_date' => $request->revision_date,
-                                'version_no' =>    $request->version_no,
-                                'reason_for_revision' => $request->add_reason_for_revision,
-                                'concerned_dept' =>  $request->concerned_dept,
-                                'details_of_revision' =>  $request->add_details_of_revision,
-                                'in_charge' =>  $request->process_in_charge,
-                                'logdel' => 0
-                        ]);
-
-
-                    $get_rev_history_id = PLCModule::where('revision_date', $request->revision_date)->get();
-
-                    $get_id_to_flow_chart_id = $get_rev_history_id[0]->id;
-
-                    // return $get_id_to_flow_chart_id;
-
-
-                    PLCModuleFlowChart::insert([
-                        'category'          => $request->category_name,
-                        'process_owner'        => $request->process_owner,
-                        'rev_history_id'       => $get_id_to_flow_chart_id,
-                    ]);
-
-                        return response()->json(['result' => "1"]);
-                }
-
+                    return response()->json(['result' => "1"]);
+            }
         }
         //===== ADD REVISION HISTORY FUNCTION END ====//
 
@@ -272,73 +275,84 @@ class PlcModulesController extends Controller
             return response()->json(['validation' => 'hasError', 'error' => $validator->messages()]);
         }
         else{
-                    // $edit_revision_array = array();
+            // $edit_revision_array = array();
 
-                    // for ($index=0; $index < $request->txt_max_row_reason; $index++) {
-                    //     if($request->txt_max_row_reason > 0 ){
+            // for ($index=0; $index < $request->txt_max_row_reason; $index++) {
+            //     if($request->txt_max_row_reason > 0 ){
 
-                    //         // $revision_data = $edit_revision.$index;
-                    //         // return $request->reasonIndex;
+            //         // $revision_data = $edit_revision.$index;
+            //         // return $request->reasonIndex;
 
-                    //         $edit_revision_reason = $request->input("edit_revision_history_reason_$index");
+            //         $edit_revision_reason = $request->input("edit_revision_history_reason_$index");
 
-                    //         $rules["edit_revision_history_reason_$index"] = ['required'];
+            //         $rules["edit_revision_history_reason_$index"] = ['required'];
 
-                    //         array_push($edit_revision_array, $edit_revision_reason);
+            //         array_push($edit_revision_array, $edit_revision_reason);
 
-                    //     }
-                    //     else{
-                    //         $rules["edit_revision_history_reason_$index"] = [''];
+            //     }
+            //     else{
+            //         $rules["edit_revision_history_reason_$index"] = [''];
 
-                    //     }
+            //     }
 
-                    // }
-                    // $edit_reason_revision = implode(", ", $edit_revision_array);
-                    // //  return $reason_revision;
+            // }
+            // $edit_reason_revision = implode(", ", $edit_revision_array);
+            // //  return $reason_revision;
 
-                    // $edit_revision_details_array = array();
+            // $edit_revision_details_array = array();
 
-                    // for ($index=0; $index < $request->txt_max_row_reason; $index++) {
-                    //     if($request->txt_max_row_reason > 0 ){
+            // for ($index=0; $index < $request->txt_max_row_reason; $index++) {
+            //     if($request->txt_max_row_reason > 0 ){
 
-                    //         // $revision_data = $edit_revision.$index;
-                    //         // return $request->reasonIndex;
+            //         // $revision_data = $edit_revision.$index;
+            //         // return $request->reasonIndex;
 
-                    //         $edit_revision_details = $request->input("edit_revision_history_details_$index");
+            //         $edit_revision_details = $request->input("edit_revision_history_details_$index");
 
-                    //         $rules["edit_revision_history_details_$index"] = ['required'];
+            //         $rules["edit_revision_history_details_$index"] = ['required'];
 
-                    //         array_push($edit_revision_details_array, $edit_revision_details);
+            //         array_push($edit_revision_details_array, $edit_revision_details);
 
-                    //     }
-                    //     else{
-                    //         $rules["edit_revision_history_details_$index"] = [''];
+            //     }
+            //     else{
+            //         $rules["edit_revision_history_details_$index"] = [''];
 
-                    //     }
+            //     }
 
-                    // }
-                    // $edit_reason_details = implode(", ", $edit_revision_details_array);
-                    // //  return $reason_revision;
+            // }
+            // $edit_reason_details = implode(", ", $edit_revision_details_array);
+            // //  return $reason_revision;
 
+            $edit_revision_process_owner = implode(" / ", $request->edit_revision_history_process_owner);
+            $edit_revision_history_concerned_department = implode(" / ", $request->edit_revision_history_concerned_dept);
+            PLCModule::where('id', $request->revision_history_id)
+            ->update([ // The update method expects an array of column and value pairs representing the columns that should be updated.
+                'process_owner' => $edit_revision_process_owner,
+                'revision_date' => $request->edit_revision_history_date,
+                'version_no' =>    $request->edit_version_no,
+                'reason_for_revision' => $request->edit_reason_for_revision,
+                'concerned_dept' => $edit_revision_history_concerned_department,
+                'details_of_revision' => $request->edit_details_of_revision,
+                'in_charge' => $request->edit_revision_history_in_charge
+            ]);
 
-                    PLCModule::where('id', $request->revision_history_id)
-                    ->update([ // The update method expects an array of column and value pairs representing the columns that should be updated.
-                        'process_owner' => $request->edit_revision_history_process_owner,
-                        'reason_for_revision' => $request->edit_reason_for_revision,
-                        'concerned_dept' => $request->edit_revision_history_concerned_dept,
-                        'details_of_revision' => $request->edit_details_of_revision,
-                        'in_charge' => $request->edit_revision_history_in_charge
+            if(PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)->exists()){
+                PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)
+                ->update([
+                    'process_owner' => $edit_revision_process_owner,
+                ]);    
+            }else{
+                PLCModuleFlowChart::insert([
+                    'category'      => $request->category_name,
+                    'process_owner' => $edit_revision_process_owner,
+                    'revision_date' => $request->edit_revision_history_date,
+                    'version_no'    => $request->edit_version_no,    
 
-                    ]);
+                ]);
+            }    
 
-                    PLCModuleFlowChart::where('rev_history_id', $request->revision_history_id)
-                    ->update([
-                        'process_owner' => $request->edit_revision_history_process_owner,
-                    ]);
-
-
-                /*DB::commit();*/
-                return response()->json(['result' => "1"]);
+            /*DB::commit();*/
+            return response()->json(['result' => "1"]);
 
         }
     }
@@ -418,7 +432,7 @@ class PlcModulesController extends Controller
     public function go_to_plc_category_session(Request $request){
         date_default_timezone_set('Asia/Manila');
         session_start();
-
+        // return $request->useSession;
         session(['pmi_plc_category_id' => $request->useSession]);
 
         return response()->json(['result' => 1]);
@@ -433,7 +447,7 @@ class PlcModulesController extends Controller
 
     public function load_user_management_process_owner(Request $request){
         // $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
-        $users = UserManagement::where('user_level_id', 2)->get();
+        $users = UserManagement::where('logdel', 0)->where('user_level_id', 2)->orWhere('user_level_id', 3)->get();
         // return $users;
         return response()->json(['users' => $users]);
     }
@@ -447,4 +461,5 @@ class PlcModulesController extends Controller
         // $users = UserManagement::where('user_level_id', 2)->get();
         return response()->json(['users_department' => $users_department]);
     }
+
 }

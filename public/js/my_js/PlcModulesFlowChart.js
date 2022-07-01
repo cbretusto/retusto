@@ -1,108 +1,108 @@
-//============================== ADD FLOW CHART==============================
-function AddFlowChart(){
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "3000",
-        "timeOut": "3000",
-        "extendedTimeOut": "3000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut",
-    };
+// //============================== ADD FLOW CHART==============================
+// function AddFlowChart(){
+//     toastr.options = {
+//         "closeButton": false,
+//         "debug": false,
+//         "newestOnTop": true,
+//         "progressBar": true,
+//         "positionClass": "toast-top-right",
+//         "preventDuplicates": false,
+//         "onclick": null,
+//         "showDuration": "300",
+//         "hideDuration": "3000",
+//         "timeOut": "3000",
+//         "extendedTimeOut": "3000",
+//         "showEasing": "swing",
+//         "hideEasing": "linear",
+//         "showMethod": "fadeIn",
+//         "hideMethod": "fadeOut",
+//     };
 
-    let formData = new FormData($('#formAddFlowChart')[0]);
+//     let formData = new FormData($('#formAddFlowChart')[0]);
 
-	$.ajax({
-        url: "add_flow_chart",
-        method: "post",
-        processData: false,
-        contentType: false,
-        data: formData,
-        dataType: "json",
-        beforeSend: function(){
-            $("#BtnAddFlowChartIcon").addClass('fa fa-spinner fa-pulse');
-            $("#btnAddFlowChart").prop('disabled', 'disabled');
-        },
-        success: function(response){
-            if(response['validation'] == 'hasError'){
-                toastr.error('Saving Failed!');
+// 	$.ajax({
+//         url: "add_flow_chart",
+//         method: "post",
+//         processData: false,
+//         contentType: false,
+//         data: formData,
+//         dataType: "json",
+//         beforeSend: function(){
+//             $("#BtnAddFlowChartIcon").addClass('fa fa-spinner fa-pulse');
+//             $("#btnAddFlowChart").prop('disabled', 'disabled');
+//         },
+//         success: function(response){
+//             if(response['validation'] == 'hasError'){
+//                 toastr.error('Saving Failed!');
 
-                if(response['error']['name_of_process_owner'] === undefined){
-                    $("#txtAddNameofProcessOwner").removeClass('is-invalid');
-                    $("#txtAddNameofProcessOwner").attr('title', '');
-                }
-                else{
-                    $("#txtAddNameofProcessOwner").addClass('is-invalid');
-                    $("#txtAddNameofProcessOwner").attr('title', response['error']['name_of_process_owner']);
-                }
+//                 if(response['error']['name_of_process_owner'] === undefined){
+//                     $("#txtAddNameofProcessOwner").removeClass('is-invalid');
+//                     $("#txtAddNameofProcessOwner").attr('title', '');
+//                 }
+//                 else{
+//                     $("#txtAddNameofProcessOwner").addClass('is-invalid');
+//                     $("#txtAddNameofProcessOwner").attr('title', response['error']['name_of_process_owner']);
+//                 }
 
-                if(response['error']['uploaded_flow_chart'] === undefined){
-                    $("#txtAddUploadedFlowChart").removeClass('is-invalid');
-                    $("#txtAddUploadedFlowChart").attr('title', '');
-                }
-                else{
-                    $("#txtAddUploadedFlowChart").addClass('is-invalid');
-                    $("#txtAddUploadedFlowChart").attr('title', response['error']['uploaded_flow_chart']);
-                }
+//                 if(response['error']['uploaded_flow_chart'] === undefined){
+//                     $("#txtAddUploadedFlowChart").removeClass('is-invalid');
+//                     $("#txtAddUploadedFlowChart").attr('title', '');
+//                 }
+//                 else{
+//                     $("#txtAddUploadedFlowChart").addClass('is-invalid');
+//                     $("#txtAddUploadedFlowChart").attr('title', response['error']['uploaded_flow_chart']);
+//                 }
 
 
-                if(response['error']['flow_chart_uploaded_date'] === undefined){
-                    $("#txtAddFlowChartUploadedDate").removeClass('is-invalid');
-                    $("#txtAddFlowChartUploadedDate").attr('title', '');
-                }
-                else{
-                    $("#txtAddFlowChartUploadedDate").addClass('is-invalid');
-                    $("#txtAddFlowChartUploadedDate").attr('title', response['error']['flow_chart_uploaded_date']);
-                }
+//                 if(response['error']['flow_chart_uploaded_date'] === undefined){
+//                     $("#txtAddFlowChartUploadedDate").removeClass('is-invalid');
+//                     $("#txtAddFlowChartUploadedDate").attr('title', '');
+//                 }
+//                 else{
+//                     $("#txtAddFlowChartUploadedDate").addClass('is-invalid');
+//                     $("#txtAddFlowChartUploadedDate").attr('title', response['error']['flow_chart_uploaded_date']);
+//                 }
 
-                if(response['error']['name_of_uploader_flow_chart'] === undefined){
-                    $("#txtAddNameofUploaderFlowChart").removeClass('is-invalid');
-                    $("#txtAddNameofUploaderFlowChart").attr('title', '');
-                }
-                else{
-                    $("#txtAddNameofUploaderFlowChart").addClass('is-invalid');
-                    $("#txtAddNameofUploaderFlowChart").attr('title', response['error']['name_of_uploader_flow_chart']);
-                }
-            }
-            else if(response['result'] == 1){
-                $("#modalAddFlowChart").modal('hide');
-                $("#formAddFlowChart")[0].reset();
-                toastr.success('Succesfully Saved!');
-                dataTablePlcModuleFlowChart.draw(); // reload the tables after insertion
-            }
-            else if(response['result'] == 0){
-                $("#modalAddFlowChart").modal('hide');
-                $("#formAddFlowChart")[0].reset();
-                toastr.success("Succesfully Saved!" + ' ' + "<span class='text-warning'>Upload your file to finish your report</span>");
-                dataTablePlcModuleFlowChart.draw(); // reload the tables after insertion
-            }
-            else if(response['result'] == 2){
-                $("#modalAddFlowChart").modal('hide');
-                $("#formAddFlowChart")[0].reset();
-                toastr.error("Invalid File type. Please upload excel file only.");
-                dataTablePlcEvidences.draw(); // reload the tables after insertion
-            }
+//                 if(response['error']['name_of_uploader_flow_chart'] === undefined){
+//                     $("#txtAddNameofUploaderFlowChart").removeClass('is-invalid');
+//                     $("#txtAddNameofUploaderFlowChart").attr('title', '');
+//                 }
+//                 else{
+//                     $("#txtAddNameofUploaderFlowChart").addClass('is-invalid');
+//                     $("#txtAddNameofUploaderFlowChart").attr('title', response['error']['name_of_uploader_flow_chart']);
+//                 }
+//             }
+//             else if(response['result'] == 1){
+//                 $("#modalAddFlowChart").modal('hide');
+//                 $("#formAddFlowChart")[0].reset();
+//                 toastr.success('Succesfully Saved!');
+//                 dataTablePlcModuleFlowChart.draw(); // reload the tables after insertion
+//             }
+//             else if(response['result'] == 0){
+//                 $("#modalAddFlowChart").modal('hide');
+//                 $("#formAddFlowChart")[0].reset();
+//                 toastr.success("Succesfully Saved!" + ' ' + "<span class='text-warning'>Upload your file to finish your report</span>");
+//                 dataTablePlcModuleFlowChart.draw(); // reload the tables after insertion
+//             }
+//             else if(response['result'] == 2){
+//                 $("#modalAddFlowChart").modal('hide');
+//                 $("#formAddFlowChart")[0].reset();
+//                 toastr.error("Invalid File type. Please upload excel file only.");
+//                 dataTablePlcEvidences.draw(); // reload the tables after insertion
+//             }
 
-            $("#BtnAddFlowChartIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnAddFlowChart").removeAttr('disabled');
-            $("#BtnAddFlowChartIcon").addClass('fa fa-check');
-        },
-        error: function(data, xhr, status){
-            toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
-            $("#BtnAddFlowChartIcon").removeClass('fa fa-spinner fa-pulse');
-            $("#btnAddFlowChart").removeAttr('disabled');
-            $("#BtnAddFlowChartIcon").addClass('fa fa-check');
-        }
-    });
-}
+//             $("#BtnAddFlowChartIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnAddFlowChart").removeAttr('disabled');
+//             $("#BtnAddFlowChartIcon").addClass('fa fa-check');
+//         },
+//         error: function(data, xhr, status){
+//             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+//             $("#BtnAddFlowChartIcon").removeClass('fa fa-spinner fa-pulse');
+//             $("#btnAddFlowChart").removeAttr('disabled');
+//             $("#BtnAddFlowChartIcon").addClass('fa fa-check');
+//         }
+//     });
+// }
 
 //============================== EDIT USER BY ID TO EDIT ==============================
 function GetFlowChart(flowChartID){
@@ -140,28 +140,42 @@ function GetFlowChart(flowChartID){
             if(flowChart.length > 0){
                 $("#txtEditProcessOwnerId").val(flowChart[0].process_owner);
                 $("#txtEditReuploadedFlowChart").val(flowChart[0].flow_chart)
+                // $("#txtEditFlowChartRevisedBy").val(flowChart[0].uploaded_by)
                 $('#modalEditFlowChart').on('hide', function() {
                     // window.location.reload();
                 });
-                $('#check_box').on('click', function() {
-                    $('#check_box').attr('checked', 'checked');
-                    if($(this).is(":checked")){
-                        $("#txtEditReuploadedFlowChart").addClass('d-none');
-                        $("#txtEditUploadedFlowChart").removeClass('d-none');
-                        $("#btnEditFlowChart").removeClass('d-none');
-                    }
-                    else{
-                        $("#txtEditReuploadedFlowChart").removeClass('d-none');
-                        $("#txtEditUploadedFlowChart").addClass('d-none');
-                        $("#btnEditFlowChart").addClass('d-none');
-                    }
-                    $(document).ready(function(){
-                        $('#modalEditFlowChart').on('hide.bs.modal', function() {
-                            $('#check_box').attr('checked', false);
-                            // window.location.reload();
+                // console.log(flowChart[0].flow_chart);
+                if(flowChart[0].flow_chart == null){
+                    console.log('walang laman')
+                    $("#txtEditUploadedFlowChart").removeClass('d-none');
+                    $("#txtEditReuploadedFlowChart").addClass('d-none');
+                    $(".show_checkbox").addClass('d-none');
+                }else{
+                    console.log('may laman')
+                    $("#txtEditUploadedFlowChart").addClass('d-none');
+                    $("#txtEditReuploadedFlowChart").removeClass('d-none');
+                    $(".show_checkbox").removeClass('d-none');
+
+                    $('#check_box').on('click', function() {
+                        $('#check_box').attr('checked', 'checked');
+                        if($(this).is(":checked")){
+                            $("#txtEditReuploadedFlowChart").addClass('d-none');
+                            $("#txtEditUploadedFlowChart").removeClass('d-none');
+                            $("#btnEditFlowChart").removeClass('d-none');
+                        }
+                        else{
+                            $("#txtEditReuploadedFlowChart").removeClass('d-none');
+                            $("#txtEditUploadedFlowChart").addClass('d-none');
+                            $("#btnEditFlowChart").addClass('d-none');
+                        }
+                        $(document).ready(function(){
+                            $('#modalEditFlowChart').on('hide.bs.modal', function() {
+                                $('#check_box').attr('checked', false);
+                                // window.location.reload();
+                            });
                         });
                     });
-                });
+                }
 
             }
             else{
@@ -174,7 +188,7 @@ function GetFlowChart(flowChartID){
     });
 }
 
-//============================== EDIT PLC EVIDENCES ==============================
+//============================== EDIT FLOW CHART ==============================
 function EditFlowChart(){
     toastr.options = {
         "closeButton": false,

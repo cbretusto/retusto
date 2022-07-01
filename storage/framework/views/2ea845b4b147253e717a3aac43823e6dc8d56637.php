@@ -21,7 +21,7 @@
                         <p>Return to RapidX</p>
                     </a>
                 </li>
-                
+
                 <li class="nav-item has-treeview" id="dashboard">
                     <a href="<?php echo e(route('dashboard')); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -32,60 +32,66 @@
                 <li class="nav-header font-weight-bold"><strong>Administrator Management</strong></li>
                 <li class="nav-item has-treeview d-none" id="user_management_id">
                     <a href="<?php echo e(route('user_management')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-user"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>User Mananagement</p>
                     </a>
                 </li>
 
                 <li class="nav-header"></li>
-                <li class="nav-item has-treeview d-none" id="plc_dashboard_id">
-                    <a href="<?php echo e(route('plc_dashboard')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-clipboard"></i>
-                        <p>PLC Dashboard</p>
-                    </a>
-                </li>
-
                 <li class="nav-item has-treeview d-none" id="plc_category_id" >
                     <a href="<?php echo e(route('plc_category')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-folder"></i>
-                        <p>PLC Category</p>
-                    </a>
-                </li>
-
-                <li class="nav-item has-treeview d-none" id="plc_evidences_id">
-                    <a href="<?php echo e(route('plc_evidences')); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-file-upload"></i>
-                        <p>PLC Evidences</p>
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>PLC Listing</p>
                     </a>
                 </li>
 
                 <li class="nav-item has-treeview d-none" id="jsox_plc_matrix_id">
                     <a href="<?php echo e(route('jsox_plc_matrix')); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-file-upload"></i>
-                        <p>Jsox PLC Matrix</p>
+                        <i class="nav-icon fas fa-clipboard"></i>
+                        <p>Sample Matrix</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview d-none" id="plc_dashboard_id">
+                    <a href="<?php echo e(route('plc_dashboard')); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>3-Sets Documents</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview d-none" id="plc_evidences_id">
+                    <a href="<?php echo e(route('plc_evidences')); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-file-download"></i>
+                        <p>Evidences</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item has-treeview">
+                    <a href="<?php echo e(route('plc_capa')); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-folder"></i>
+                        <span>Corrective/Preventive <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action (CAPA)</span>
                     </a>
                 </li>
 
                 <li class="nav-header"></li>
-                <li class="nav-item has-treeview d-none" id="clc_dashboard_id">
-                    <a href="<?php echo e(route('clc_dashboard')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-clipboard"></i>
-                        <p>CLC Dashboard</p>
-                    </a>
-                </li>
-
                 <li class="nav-item has-treeview d-none" id="clc_category_id">
                     <a href="<?php echo e(route('clc_category')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-folder"></i>
-                        <p>CLC Category</p>
+                        <i class="nav-icon fas fa-file"></i>
+                        <span>CLC / FCRP / IT-CLC <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Listing</span>
                     </a>
                 </li>
 
+                <li class="nav-item has-treeview d-none" id="clc_dashboard_id">
+                    <a href="<?php echo e(route('clc_dashboard')); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <span>RCM / Self-assessment</span>
+                    </a>
+                </li>
 
                 <li class="nav-item has-treeview d-none" id="clc_evidences_id">
                     <a href="<?php echo e(route('clc_evidences')); ?>" class="nav-link">
-                        <i class="nav-icon far fa-file"></i>
-                        <p>CLC Evidences</p>
+                        <i class="nav-icon fas fa-file-download"></i>
+                        <span>Evidences </span>
                     </a>
                 </li>
             </ul>

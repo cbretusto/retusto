@@ -1,535 +1,1229 @@
 <?php $layout = 'layouts.super_user_layout'; ?>
 
-<?php if(auth()->guard()->check()): ?>
-    <?php
-        if(Auth::user()->user_level_id == 1){
-            $layout = 'layouts.super_user_layout';
-        }
-        else if(Auth::user()->user_level_id == 2){
-            $layout = 'layouts.admin_layout';
-        }
-        else if(Auth::user()->user_level_id == 3){
-            $layout = 'layouts.user_layout';
-        }
-    ?>
-<?php endif; ?>
-
 
 
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('content_page'); ?>
-    <div class="content-wrapper"  style="height: 666px; overflow: scroll;">
+    <div class="content-wrapper" style="height: 666px; overflow: scroll;">
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow mt-3 border border-dark" id="pmi_1" status="1">
                             <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-01 Receiving Orders</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-
-                                    <a class="text-white" id="pmi_test1" status="1"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                                <h2 class="card-title"><strong>PMI - 01 Receiving Orders</strong></h2><br>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                            <span class="badge badge-success text-white" id="totalNumberOfGood1" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
                                     
-
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                            <span class="badge badge-danger text-white" id="totalNumberOfNotGood1" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-warning shadow">STATUS:
+                                            <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                        </span>
+                                        <span class="badge badge-success text-white shadow d-none">STATUS:
+                                            <span class="badge badge-success text-white" id="checkDoneStatus1" style="font-size:14px;">Done</span>
+                                        </span>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_1" value="1">
+                            </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow mt-3 border border-dark" id="pmi_10" status="10">
                             <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-02 Shipment Preparation</h2><br>
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 10 PO Placement to CNPPS Suppliers</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood10" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood10" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_10" value="10">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test2" status="2"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow mt-3 border border-dark" id="pmi_19" status="19">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 19 Billing</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood19" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-03 Changing Sales Prices</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood19" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_19" value="19">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test3" status="3"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow mt-3 border border-dark" id="pmi_28" status="28">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 28 Physical Count - PPS</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood28" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-04 Changing Sales Qty</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood28" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_28" value="28">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test4" status="4"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_2" status="2">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 02 Shipment Preparation</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood2" style="font-size:15px;">--</span>
+</span>                                            </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-05 Invoice Issuance</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood2" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_2" value="2">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test5" status="5"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_11" status="11">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 11 Changing POs for CNPPS Suppliers</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood11" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-06 Changing Sales Invoice1</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood11" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_11" value="11">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test6" status="6"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_20" status="20">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 20 Offset Arrangement to YEC</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood20" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-07 Changing Sales Invoice2</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood20" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_20" value="20">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test7" status="7"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_29" status="29">
                             <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-08 Verifying Monthly Data</h2><br>
+                                <div class="">
+                                    <h2 class="card-title" style="font-size:16px;"><strong>PMI - 29 Handling Invoices from CNPPS Suppliers</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood29" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+    
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood29" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+    
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_29" value="29">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test8" status="8"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_3" status="3">
+                            <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 03 Changing Sales Prices</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood3" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood3" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_3" value="3">
+                            </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_12" status="12">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 12 Receiving Shipments from YEC</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood12" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-09 Purchase Orders</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood12" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_12" value="12">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test9" status="9"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_21" status="21">
+                            <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 21 Collection from YEC</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood21" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood21" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_21" value="21">
+                            </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_30" status="30">
+                            <div class="">
+                                <h2 class="card-title" style="font-size:15px;"><strong>PMI - 30 Handling of Discrepancies (Invoice vs Actual Shipment) to CNPPS Suppliers</strong></h2><br>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <span class="badge badge-success text-white shadow ml-2">GOOD:&nbsp;
+                                            <span class="badge badge-success text-white" id="totalNumberOfGood30" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-10 PO Placement to CNPPS Suppliers</h2><br>
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-danger text-white shadow ml-2">NOT GOOD:&nbsp;
+                                            <span class="badge badge-danger text-white" id="totalNumberOfNotGood30" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-warning shadow">STATUS:
+                                            <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                        </span>
+                                        <span class="badge badge-success text-white shadow d-none">STATUS:
+                                            <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                        </span>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_30" value="30">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test10" status="10"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_4" status="4">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 04 Changing Sales Qty</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood4" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-11 Changing POs for CNPPS Suppliers</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood4" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_4" value="4">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test11" status="11"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_13" status="13">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 13 Generation of NG Reports</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood13" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-12 Receiving Shipments from YEC</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood13" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_13" value="13">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test12" status="12"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_22" status="22">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 22 Issuing Debit and Credit Memos</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood22" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-13 Generation of NG Reports</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood22" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_22" value="22">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test13" status="13"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_31" status="31">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 31 Inventory Evaluation</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood31" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-14 Handling Correct YEC Invoices</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood31" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_31" value="31">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test14" status="14"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_5" status="5">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 05 Invoice Issuance</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood5" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-15 Handling Incorrect YEC Invoices</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood5" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_5" value="5">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test15" status="15"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_14" status="14">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 14 Handling Correct YEC Invoices</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood" style="font-size:15px;">--</span>
+                                            </span>                                           
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-16 Vouchering</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood14" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_14" value="14">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test16" status="16"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_23" status="23">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 23 Posting Collections</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood23" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-17 Check payment by Peso</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood23" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_23" value="23">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test17" status="17"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_32" status="32">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 32 Correcting Monthly Data</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood32" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-18 E-Payment by Dollar</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood32" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_32" value="32">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test18" status="18"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_6" status="6">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 06 Changing Sales Invoice1</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood6" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-19 Billing</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood6" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_6" value="6">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test19" status="19"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_15" status="15">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 15 Handling Incorrect YEC Invoices</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood15" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-20 Offset Arrangement to YEC</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood15" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_15" value="15">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test20" status="20"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_24" status="24">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 24 Physical Count</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood24" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-21 Collection from YEC</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood24" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_24" value="24">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test21" status="21"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_33" status="33">
+                            <div class="">
+                                <h4 class="card-title" style="font-size:15px;"><strong>PMI - 33 Handling Discrepancies (Supplier Invoice vs Purchase Order) to CNPPS Suppliers</strong></h4><br>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <span class="badge badge-success text-white shadow ml-2">GOOD:&nbsp;
+                                            <span class="badge badge-success text-white" id="totalNumberOfGood33" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-22 Issuing Debit and Credit Memos</h2><br>
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-danger text-white shadow ml-2">NOT GOOD:&nbsp;
+                                            <span class="badge badge-danger text-white" id="totalNumberOfNotGood33" style="font-size:15px;">--</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <span class="badge badge-warning shadow">STATUS:
+                                            <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                        </span>
+                                        <span class="badge badge-success text-white shadow d-none">STATUS:
+                                            <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                        </span>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_33" value="33">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test22" status="22"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_7" status="7">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 07 Changing Sales Invoice2</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood7" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-23 Posting Collections</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood7" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_7" value="7">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test23" status="23"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_16" status="16">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 16 Vouchering</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood16" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-24 Physical Count</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood16" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_16" value="16">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test24" status="24"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_25" status="25">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 25 Devaluation of Slow-moving</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood25" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-25 Devaluation of Slow-moving</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood25" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_25" value="25">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test25" status="25"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_34" status="34">
+                            <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 34 Sales from PPS to TS, CN</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood34" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood34" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_34" value="34">
+                            </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_8" status="8">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 08 Verifying Monthly Data</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood8" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-26 Returning Defect Materials to YEC</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood8" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_8" value="8">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test26" status="26"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_17" status="17">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 17 Check payment by Peso</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood17" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-27 Receiving Shipment from CNPPS Suppliers</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood17" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_17" value="17">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test27" status="27"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_26" status="26">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 26 Returning Defect Materials to YEC</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood26" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-28 Physical Count-PPS</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood26" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_26" value="26">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test28" status="28"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_35" status="35">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 35 Daily Cash in Bank Monitoring</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood35" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-29 Handling Invoices from CNPPS Suppliers</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood35" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_35" value="35">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test29" status="29"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_9" status="9">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 09 Purchase Orders</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood9" style="font-size:15px;">--</span>
+                                            </span>                                            
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-30 Handling of Discrepancies (Invoice vs Actual Shipment) to CNPPS Suppliers</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood9" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_9" value="9">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test30" status="30"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_18" status="18">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 18 E-Payment by Dollar</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood18" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-31 Inventory Evaluation</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood18" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_18" value="18">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test31" status="31"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_27" status="27">
                             <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-32 Correcting Monthly Data</h2><br>
+                                <div class="">
+                                    <h2 class="card-title" style="font-size:15px;"><strong>PMI - 27 Receiving Shipment from CNPPS Suppliers</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow ml-2">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood27" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+    
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow ml-2">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood27" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+    
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_27" value="27">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test32" status="32"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
+                    
+                    <div class="col-3 mb-1">
+                        <div class="info-box bg-info shadow border border-dark" id="pmi_36" status="36">
                             <div class="info-box-content">
+                                <div class="">
+                                    <h2 class="card-title"><strong>PMI - 36 Cash in Bank Monthly Monitoring</strong></h2><br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="badge badge-success text-white shadow">GOOD:&nbsp;
+                                                <span class="badge badge-success text-white" id="totalNumberOfGood36" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-33 Handling Discrepancies(Supplier Invoice vs Purchase Order) to CNPPS Suppliers</h2><br>
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-danger text-white shadow">NOT GOOD:&nbsp;
+                                                <span class="badge badge-danger text-white" id="totalNumberOfNotGood36" style="font-size:15px;">--</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="badge badge-warning shadow">STATUS:
+                                                <span class="badge badge-warning" id="checkPendingStatus1" style="font-size:14px;">Pending</span>
+                                            </span>
+                                            <span class="badge badge-success text-white shadow d-none">STATUS:
+                                                <span class="badge badge-success text-white" id="checkDoneStatus" style="font-size:14px;">Done</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="count_pmi_36" value="36">
                             </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test33" status="33"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-34 Sales from PPS to TS,CN</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test34" status="34"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-35 Daily Cash in Bank Monitoring</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test35" status="35"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="info-box bg-info">
-                            <div class="info-box-content">
-                                <div class="mb-3">
-                                    <h2 class="card-title mb-0">PMI-36 Cash in Bank Monthly Monitoring</h2><br>
-                                </div>
-                            </div>
-                                <div class="col-3 text-right"><br>
-                                    <a class="text-white" id="pmi_test36" status="36"><i class="fa fa-3x fa-arrow-right bg-info"></i></a>
-                                </div>
+                        
                         </div>
                     </div>
 
@@ -539,407 +1233,446 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<!--      -->
+<!-- JS CONTENT -->
 <?php $__env->startSection('js_content'); ?>
     <script type="text/javascript">
-            $(document).on('click', '#pmi_test1', function(){
+        $(document).ready(function () {
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-            });
-            $(document).on('click', '#pmi_test2', function(){
+            //PMI - 01
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_1').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_1', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
             });
 
-            $(document).on('click', '#pmi_test3', function(){
+            //PMI - 02
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_2').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_2', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
+            });
+
+            //PMI - 03
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_3').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_3', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 04
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_4').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_4', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 05
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_5').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_5', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 06
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_6').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_6', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 07
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_7').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_7', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 08
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_8').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_8', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 09
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_9').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_9', function(){                    
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+                console.log(useSession)                
+            });
+
+            //PMI - 10
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_10').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_10', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 11
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_11').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_11', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 12
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_12').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_12', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 13
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_13').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_13', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 14
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_14').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_14', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 15
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_15').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_15', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 16
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_16').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_16', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 17
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_17').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_17', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 18
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_18').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_18', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 19
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_19').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_19', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
+            });
+
+            //PMI - 20
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_20').val();
+                console.log('PMI -', countPmiCategory);
+
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_20', function(){
+                let useSession = $(this).attr('status');
+                use_session(useSession);
                 });
 
-                $(document).on('click', '#pmi_test4', function(){
+            //PMI - 21
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_21').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_21', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test5', function(){
+            //PMI - 22
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_22').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_22', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test6', function(){
+            //PMI - 23
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_23').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_23', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test7', function(){
+            //PMI - 24
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_24').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_24', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test8', function(){
+            //PMI - 25
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_25').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_25', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test9', function(){
+            //PMI - 26
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_26').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_26', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test10', function(){
+            //PMI - 27
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_27').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_27', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test11', function(){
+            //PMI - 28
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_28').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_28', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test12', function(){
+            //PMI - 29
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_29').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_29', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test13', function(){
+            //PMI - 30
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_30').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_30', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test14', function(){
+            //PMI - 31
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_31').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_31', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                $(document).on('click', '#pmi_test15', function(){
+            //PMI - 32
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_32').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_32', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                 $(document).on('click', '#pmi_test16', function(){
+            //PMI - 33
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_33').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_33', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                 $(document).on('click', '#pmi_test17', function(){
+            //PMI - 34
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_34').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_34', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                 $(document).on('click', '#pmi_test18', function(){
+            //PMI - 35
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_35').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_35', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
-                 $(document).on('click', '#pmi_test19', function(){
+            //PMI - 36
+            setTimeout(() => {
+                let countPmiCategory = $('#count_pmi_36').val();
+                console.log('PMI -', countPmiCategory);
 
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
+                countPmiCategoryById(countPmiCategory);
+            }, 500);
+            $(document).on('click', '#pmi_36', function(){
+                let useSession = $(this).attr('status');
                 use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test20', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test21', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test22', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test23', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test24', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test25', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test26', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test27', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test28', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test29', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test30', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test31', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test32', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test33', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test34', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test35', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
-
-                 $(document).on('click', '#pmi_test36', function(){
-
-                // console.log('qwe');
-                let useSession = $(this).attr('status'); // the status will collect the value (1-, 2-, 3-, 4-, 5-, 6- 7-)
-                // let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of UserController that will be use to collect the cash_advance-id
-                // console.log(userApproverStat);
-                use_session(useSession);
-                // $("#approvedCashAdvanceUserStat").val(userApproverStat); // collect the user status id the default is 1, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
-                // $("#approvedCashAdvanceUserId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the approvedCashAdvanceUserId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                });
+            });
 
 
             function use_session(useSession){
-
                 $.ajax({
                     url: "go_to_plc_category_session",
                     method: "get",
@@ -953,15 +1686,13 @@
                     },
                     success: function(response){
                         if(response['result'] == 1){
-                            window.location.href = "pmi-01";
+                            window.location = "PMI " ;
                         }
                     },
-
                 });
-
             }
 
-
+        }); // JQUERY DOCUMENT READY END
     </script>
 <?php $__env->stopSection(); ?>
 

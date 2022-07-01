@@ -17,9 +17,9 @@ class CreateUserManagementsTable extends Migration
             $table->bigIncrements('id');
             $table->string('rapidx_name');
             $table->string('username');
-            $table->unsignedTinyInteger('status')->default(1)->comment = '1-active,2-inactive';
-            $table->bigInteger('user_level_id')->unsigned();
-            $table->unsignedTinyInteger('logdel')->default(0)->comment = '0-show,1-hide';
+            $table->unsignedTinyInteger('status')->default(1)->comment = '1-active, 2-inactive';
+            $table->bigInteger('user_level_id')->unsigned()->comment = '1-user, 2-admin, 3-super admin';
+            $table->unsignedTinyInteger('logdel')->default(0)->comment = '0-show, 1-hide';
             $table->timestamps();
             
             // Foreign Key

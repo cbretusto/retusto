@@ -47,6 +47,7 @@
                     <?php 
                         $isAuthorized = true; 
                         $user_level = $_SESSION['rapidx_user_accesses'][$index]['user_level_id']; // Collect the user_level_id
+                        $_SESSION["rapidx_name"] = Auth::user()->name;
                     ?>
                     <?php break; ?>
                 <?php endif; ?>
@@ -148,6 +149,17 @@
                                     $('#clc_evidences_id').removeClass('d-none');
                                 }
                                 if(response['result'][i]['user_level_id'] == 2){
+                                    $('#user_management_id').removeClass('d-none');
+                                    $('#plc_dashboard_id').removeClass('d-none');
+                                    $('#plc_category_id').removeClass('d-none');
+                                    $('#plc_evidences_id').removeClass('d-none');
+                                    $('#jsox_plc_matrix_id').removeClass('d-none');
+                                    
+                                    $('#clc_dashboard_id').removeClass('d-none');
+                                    $('#clc_category_id').removeClass('d-none');
+                                    $('#clc_evidences_id').removeClass('d-none');
+                                }
+                                if(response['result'][i]['user_level_id'] == 3){
                                     $('#plc_dashboard_id').removeClass('d-none');
                                     $('#clc_dashboard_id').removeClass('d-none');
                                 }
@@ -157,12 +169,13 @@
                 });
             }
         </script>
-        </html>
         
-        <?php else: ?>
-        <script type="text/javascript">
-            window.location = "<?php echo e(url('http://rapidx/RapidX/')); ?>";
-        </script>
-        <?php endif; ?>
         
-    <?php /**PATH /var/www/Jsox/resources/views/layouts/super_user_layout.blade.php ENDPATH**/ ?>
+        
+        
+    </html>
+<?php else: ?>
+    <script type="text/javascript">
+        window.location = "../RapidX/";
+    </script>
+<?php endif; ?><?php /**PATH /var/www/Jsox/resources/views/layouts/super_user_layout.blade.php ENDPATH**/ ?>

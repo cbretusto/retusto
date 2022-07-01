@@ -160,11 +160,11 @@ class ClcCategoryPmiFcrpController extends Controller
             'titles'                                => 'required|string|max:255',
             'control_objectives'                    => 'required|string|max:555',
             'internal_controls'                     => 'required|string|max:555',
-            'g_ng'                                  => 'required|string|max:255',
-            'detected_problems_improvement_plans'   => 'required|string|max:555',
-            'review_findings'                       => 'required|string|max:555',
-            'follow_up_details'                     => 'required|string|max:555',
-            'g_ng_last'                             => 'required|string|max:255',
+            // 'g_ng'                                  => 'required|string|max:255',
+            // 'detected_problems_improvement_plans'   => 'required|string|max:555',
+            // 'review_findings'                       => 'required|string|max:555',
+            // 'follow_up_details'                     => 'required|string|max:555',
+            // 'g_ng_last'                             => 'required|string|max:255',
         ];
 
         $validator = Validator::make($data, $rules);

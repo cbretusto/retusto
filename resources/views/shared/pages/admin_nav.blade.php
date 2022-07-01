@@ -1,4 +1,4 @@
-
+{{-- 
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height: 100vh">
 
     <!-- System title and logo -->
@@ -69,7 +69,7 @@
                 <li class="nav-item has-treeview">
                     <a href="{{ route('clc_dashboard') }}" class="nav-link">
                         <i class="nav-icon far fa-clipboard"></i>
-                        <p>CLC Dashboard</p>
+                        <p>CLC / FCRP / IT-CLC1</p>
                     </a>
                 </li>
 
@@ -90,4 +90,4 @@
             </ul>
         </nav>
     </div><!-- Sidebar -->
-</aside>
+</aside> --}}

@@ -29,10 +29,10 @@
         <td rowspan="2">Status</td>
     </tr>
     <tr>
-        <td style="font-size: 10px">{{ $data[0]->assessed_by }}</td>
-        <td style="font-size: 10px">{{ $data[0]->checked_by }}</td>
-        <td style="font-size: 10px">{{ $data[0]->second_half_assessed_by }}</td>
-        <td style="font-size: 10px">{{ $data[0]->second_half_checked_by }}</td>
+        <td style="font-size: 10px">{{ $data[0]->view_assessed_by }}</td>
+        <td style="font-size: 10px">{{ $data[0]->view_checked_by }}</td>
+        <td style="font-size: 10px">{{ $data[0]->view_second_half_assessed_by }}</td>
+        <td style="font-size: 10px">{{ $data[0]->view_second_half_checked_by }}</td>
     </tr>
 
     <tr>
@@ -75,7 +75,7 @@
                     </td>";
             }else if ($assessment_status[0] == null){
             echo "<td>
-                N/A
+
                 </td>";
             }
         ?>
@@ -122,7 +122,7 @@
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -170,7 +170,7 @@
                     </td>";
             }else if ($assessment_status[1] == null){
             echo "<td>
-                N/A
+
                 </td>";
             }
         ?>
@@ -201,23 +201,23 @@
         ?>
 
         <?php
-        if($second_assessment_status[0] == 'Not tested (non-key control)'){
+        if($second_assessment_status[1] == 'Not tested (non-key control)'){
             echo "<td>
                 Not tested (non-key control)
                 </td>";
-        }elseif($second_assessment_status[0] == 'Good'){
+        }elseif($second_assessment_status[1] == 'Good'){
             echo "<td>
                 Good
                 </td>";
 
-        }elseif($second_assessment_status[0] == 'No Good'){
+        }elseif($second_assessment_status[1] == 'No Good'){
             echo "<td>
                 No Good
                 </td>";
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -265,7 +265,7 @@
                     </td>";
             }else if ($assessment_status[2] == null){
             echo "<td>
-                N/A
+
                 </td>";
             }
         ?>
@@ -296,23 +296,23 @@
         ?>
 
         <?php
-        if($second_assessment_status[0] == 'Not tested (non-key control)'){
+        if($second_assessment_status[2] == 'Not tested (non-key control)'){
             echo "<td>
                 Not tested (non-key control)
                 </td>";
-        }elseif($second_assessment_status[0] == 'Good'){
+        }elseif($second_assessment_status[2] == 'Good'){
             echo "<td>
                 Good
                 </td>";
 
-        }elseif($second_assessment_status[0] == 'No Good'){
+        }elseif($second_assessment_status[2] == 'No Good'){
             echo "<td>
                 No Good
                 </td>";
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -361,7 +361,7 @@
                     </td>";
             }else if ($assessment_status[3] == null){
             echo "<td>
-                N/A
+
                 </td>";
             }
         ?>
@@ -392,23 +392,23 @@
         ?>
 
         <?php
-        if($second_assessment_status[0] == 'Not tested (non-key control)'){
+        if($second_assessment_status[3] == 'Not tested (non-key control)'){
             echo "<td>
                 Not tested (non-key control)
                 </td>";
-        }elseif($second_assessment_status[0] == 'Good'){
+        }elseif($second_assessment_status[3] == 'Good'){
             echo "<td>
                 Good
                 </td>";
 
-        }elseif($second_assessment_status[0] == 'No Good'){
+        }elseif($second_assessment_status[3] == 'No Good'){
             echo "<td>
                 No Good
                 </td>";
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -457,7 +457,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -505,7 +505,7 @@
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -554,7 +554,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -603,7 +603,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -651,7 +651,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
 
@@ -699,7 +699,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -747,7 +747,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -794,7 +794,7 @@
             }else{
 
             echo "<td>
-                N/A
+
                 </td>";
 
         }
@@ -842,7 +842,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -889,7 +889,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -937,7 +937,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -984,7 +984,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1032,7 +1032,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1079,7 +1079,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1127,7 +1127,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1174,7 +1174,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1222,7 +1222,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1269,7 +1269,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1317,7 +1317,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1364,7 +1364,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1412,7 +1412,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1459,7 +1459,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1507,7 +1507,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1554,7 +1554,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1602,7 +1602,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
         ?>
@@ -1649,7 +1649,7 @@
         //     }else{
 
         //     echo "<td>
-        //         N/A
+        //
         //         </td>";
 
         // }
@@ -1696,7 +1696,7 @@
                     </td>";
             }else{
                 echo "<td>
-                    N/A
+
                     </td>";
             }
 
@@ -1743,7 +1743,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -1789,7 +1789,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -1836,7 +1836,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -1882,7 +1882,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -1929,7 +1929,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -1975,7 +1975,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2022,7 +2022,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2068,7 +2068,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2115,7 +2115,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2161,7 +2161,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2208,7 +2208,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2254,7 +2254,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2301,7 +2301,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2347,7 +2347,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2394,7 +2394,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2440,7 +2440,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2487,7 +2487,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2533,7 +2533,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2580,7 +2580,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2626,7 +2626,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2673,7 +2673,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2719,7 +2719,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2766,7 +2766,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2812,7 +2812,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2859,7 +2859,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2905,7 +2905,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -2952,7 +2952,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -2998,7 +2998,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -3045,7 +3045,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -3091,7 +3091,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -3138,7 +3138,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -3184,7 +3184,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -3231,7 +3231,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -3277,7 +3277,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -3324,7 +3324,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }
@@ -3370,7 +3370,7 @@
                 </td>";
         }else{
             echo "<td>
-                N/A
+
                 </td>";
         }
 
@@ -3417,7 +3417,7 @@
     //             </td>";
     //         }else{
     //         echo "<td>
-    //             N/A
+    //
     //             </td>";
 
     //     }

@@ -70,7 +70,7 @@
                 <li class="nav-item has-treeview d-none" id="clc_dashboard_id">
                     <a href="<?php echo e(route('clc_dashboard')); ?>" class="nav-link">
                         <i class="nav-icon far fa-clipboard"></i>
-                        <p>CLC Dashboard</p>
+                        <p>CLC / FCRP / IT-CLC</p>
                     </a>
                 </li>
 

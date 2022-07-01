@@ -34,6 +34,40 @@ class PlcModulesRcmController extends Controller
                 return $result;
         })
 
+        ->addColumn('description', function($plc_module_rcm){
+            $result = "<center>";
+                // if($plc_module_rcm->validity != null){
+                //     $result .= 'Validity';
+                //     $result .= '<br>';
+                // }
+                // if($plc_module_rcm->completeness != null){
+                //     $result .= 'Completeness';
+                //     $result .= '<br>';
+                // }
+                // if($plc_module_rcm->accuracy != null){
+                //     $result .= 'Accuracy';
+                //     $result .= '<br>';
+                // }
+                // if($plc_module_rcm->cut_off != null){
+                //     $result .= 'Cut Off';
+                //     $result .= '<br>';
+                // }
+                // if($plc_module_rcm->presentation != null){
+                //     $result .= 'Presentation';
+                //     $result .= '<br>';
+                // }
+                if($plc_module_rcm->key_control != null){
+                    $result .= 'Key Control';
+                    $result .= '<br>';
+                }
+                if($plc_module_rcm->it_control != null){
+                    $result .= 'IT Control';
+                    $result .= '<br>';
+                }
+            $result .= '</center>';
+            return $result;
+        })
+
         ->addColumn('action', function ($plc_module_rcm){
             $result = "";
             $result = "<center>";
@@ -50,7 +84,7 @@ class PlcModulesRcmController extends Controller
             $result .= '</center>';
             return $result;
         })
-            ->rawColumns(['action', 'status'])
+            ->rawColumns(['action', 'status', 'description'])
             ->make(true);
     }
 
@@ -240,13 +274,13 @@ class PlcModulesRcmController extends Controller
 
             $rcm_status = PLCModuleRCM::where('id', $request->clc_plc_rcm_id)->get();
             if($rcm_status[0]->status == 2){
-                PLCModuleSA::where('id', $request->clc_plc_rcm_id)
+                PLCModuleSA::where('rcm_id', $request->clc_plc_rcm_id)
                 ->update([
                     'logdel' => 1, 
                     'updated_at' => date('Y-m-d H:i:s'),
                 ]);
             }else if($rcm_status[0]->status == 1){
-                PLCModuleSA::where('id', $request->clc_plc_rcm_id)
+                PLCModuleSA::where('rcm_id', $request->clc_plc_rcm_id)
                 ->update([
                     'logdel' => 0, 
                     'updated_at' => date('Y-m-d H:i:s'),

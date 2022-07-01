@@ -157,7 +157,7 @@ class ClcCategoryPmiItClcController extends Controller
             'status'   => 'required|string|max:555',
             'detected_problems_improvement_plans'   => 'required|string|max:555',
             'review_findings'                       => 'required|string|max:555',
-            'follow_ups'                            => 'required|string|max:555',
+            // 'follow_ups'                            => 'required|string|max:555',
             'status_last'                            => 'required|string|max:555',
         ];      
 

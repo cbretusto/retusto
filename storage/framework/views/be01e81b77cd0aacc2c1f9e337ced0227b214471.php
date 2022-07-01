@@ -34,7 +34,7 @@
         }
 
         table.table thead th{
-            padding-top: 5px; 
+            padding-top: 5px;
             padding-bottom: 5px;
             padding-right: 5px;
             padding-left: 5px;
@@ -68,14 +68,15 @@
                                 <h3 class="card-title">PMI FCRP</h3>
                             </div>
 
-                            <div class="card-body table-responsive">                            
-                                <div style="float: right;">                   
+                            <div class="card-body table-responsive">
+                                <div style="float: right;">
                                     <button class="btn btn-info" data-toggle="modal" data-target="#modalAddPmiFcrpCategory" id="btnShowAddPmiFcrpCategoryModal"><i class="fa fa-plus"></i>  Add PMI FCRP  </button>
                                 </div> <br><br>
                                 <div class="table-responsive">
-                                    <table id="tblClcCategoryPmiFcrp" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                                    <table id="tblClcCategoryPmiFcrp" class="table table-sm table-bordered table-striped table-hover" style="width: 100%; white-space: pre-wrap;">
                                         <thead>
                                             <tr style="text-align:center">
+                                                <th>ID</th>
                                                 <th style="width: 5%"></th>
                                                 <th style="width: 10%">Title</th>
                                                 <th>Control Objectives</th>
@@ -113,7 +114,7 @@
                     <?php echo csrf_field(); ?>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
@@ -130,27 +131,28 @@
                                         <option value="Significant accounts">Significant accounts</option>
                                         <option value="Reclassification of accounts">Reclassification of accounts</option>
                                         <option value="Year-end adjusting entries">Year-end adjusting entries</option>
-                                    </select>                                        
-                                </div> 
+                                        <option value="Consolidation Package">Consolidation Package</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Control Objective:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
                                     <textarea type="text" class="form-control" id="txtAddPmiFcrpControlObjectives" name="control_objectives"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Internal Control:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
                                     <textarea type="text" class="form-control" id="txtAddPmiFcrpInternalControls" name="internal_controls"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
@@ -162,35 +164,39 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input dollar radioBtn" type="radio" id="txtAddPmiFcrpGNg" name="g_ng" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
-                                    </div>                                        
-                                </div> 
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtAddPmiFcrpNA" name="g_ng" value="N/A">
+                                        <label class="form-check-label" for="inlineRadio2">N/A</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Detected Problems & Improvement Plans:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
                                     <textarea type="text" class="form-control" id="txtAddPmiFcrpDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Review Findings:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
                                     <textarea type="text" class="form-control" id="txtAddPmiFcrpReviewFindings" name="review_findings"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Follow-up Details:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
                                     <textarea type="text" class="form-control" id="txtAddPmiFcrpFollowupDetails" name="follow_up_details"></textarea>
                                 </div>
                             </div>
-                            
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
@@ -202,13 +208,17 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtAddPmiFcrpGNgLast" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
-                                    </div>    
-                                </div> 
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtAddPmiFcrpNALast" value="N/A">
+                                        <label class="form-check-label" for="inlineRadio2">N/A</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 
-                                <input type="hidden" class="form-control" id="txtCreatedBy" name="created_by" readonly>       
+                                <input type="hidden" class="form-control" id="txtCreatedBy" name="created_by" readonly>
                             </div>
                         </div>
                     </div>
@@ -226,7 +236,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> PMI CLC CATEGORY</h4>
+                    <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> PMI FCRP CATEGORY</h4>
                     <button type="button" style="color: #fff;" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -234,9 +244,9 @@
                 <form method="post" id="formEditPmiFcrpCategory" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="pmi_fcrp_category_id" id="txtEditPmiFcrpCategoryId"> 
+                        <input type="hidden" class="form-control" name="pmi_fcrp_category_id" id="txtEditPmiFcrpCategoryId">
                         <div class="row">
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Title: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
@@ -253,27 +263,28 @@
                                         <option value="Significant accounts">Significant accounts</option>
                                         <option value="Reclassification of accounts">Reclassification of accounts</option>
                                         <option value="Year-end adjusting entries">Year-end adjusting entries</option>
-                                    </select>                                        
-                                </div> 
+                                        <option value="Consolidation Package">Consolidation Package</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Control Objective:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiFcrpControlObjectives" name="control_objectives" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiFcrpControlObjectives" name="control_objectives" readonly></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Internal Control:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
-                                    <textarea type="text" class="form-control" id="txtEditPmiFcrpInternalControls" name="internal_controls" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiFcrpInternalControls" name="internal_controls"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
@@ -285,35 +296,39 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiFcrpNotGood" name="g_ng" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
-                                    </div>                                        
-                                </div> 
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiFcrpNA" name="g_ng" value="N/A">
+                                        <label class="form-check-label" for="inlineRadio2">N/A</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Detected Problems & Improvement Plans:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiFcrpDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiFcrpDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Review Findings:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiFcrpReviewFindings" name="review_findings"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiFcrpReviewFindings" name="review_findings"></textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
-                                <div class="form-group col-sm-12"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
+                                <div class="form-group col-sm-12">
                                     <label class="col-form-label">Follow-up Details:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiFcrpFollowupDetails" name="follow_up_details"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiFcrpFollowupDetails" name="follow_up_details"></textarea>
                                 </div>
                             </div>
-                            
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default"><strong>Good or Not Good: </strong></span>
@@ -325,13 +340,17 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input dollar radioBtn" type="radio" name="g_ng_last" id="txtEditPmiFcrpNotGoodLast" value="Not Good">
                                         <label class="form-check-label" for="inlineRadio2">NOT GOOD</label>
-                                    </div>    
-                                </div> 
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input dollar radioBtn" type="radio" id="txtEditPmiFcrpNALast" name="g_ng_last" value="N/A">
+                                        <label class="form-check-label" for="inlineRadio2">N/A</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                            <div class="form-group col-sm-12 flex-column d-flex">
                                 
-                                <input type="hidden" class="form-control" id="txtUpdatedBy" name="updated_by" readonly>       
+                                <input type="hidden" class="form-control" id="txtUpdatedBy" name="updated_by" readonly>
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" name="checkbox" id="check_box">
                                     <label >Do you wish to continue editing?</label>
@@ -386,7 +405,7 @@
                     </div>
 
                     
-                    <div class="form-group col-sm-12"> 
+                    <div class="form-group col-sm-12">
                         <input type="text" id="uploaded_file_id">
                     </div>
 
@@ -403,7 +422,7 @@
                                     <th>Category</th>
                                     <th>CLC Uploaded File</th>
                                     </tr>
-                                </thead>            
+                                </thead>
                             </table>
                         </div>
                     </div>
@@ -423,7 +442,7 @@
                     </button>
                 </div>
 
-                <div class="form-group col-sm-12"> 
+                <div class="form-group col-sm-12">
                     <input type="text" name="pmi_fcrp_id" id="txtPmiFcrpId">
                     <input type="text" name="pmi_category_id" id="txtPmiCategoryId" value="2">
                 </div>
@@ -442,7 +461,7 @@
                                 <th>CLC Uploaded File</th>
                                 <th>Action</th>
                                 </tr>
-                            </thead>            
+                            </thead>
                         </table>
                     </div>
                 </div>
@@ -488,7 +507,7 @@
         let dataTableSelectClcEvidences;
 
         $(document).ready(function () {
-            
+
             bsCustomFileInput.init();
             //Initialize Select2 Elements
             $('.select2').select2();
@@ -503,15 +522,17 @@
                 $(this).closest('tr').addClass('table-active');
             });
 
-            // ======================= PMI FCRP CATEGORY DATA TABLE =======================        
-            dataTableClcCategoryPmiFcrp = $("#tblClcCategoryPmiFcrp").DataTable({ 
+            // ======================= PMI FCRP CATEGORY DATA TABLE =======================
+            dataTableClcCategoryPmiFcrp = $("#tblClcCategoryPmiFcrp").DataTable({
                 "processing" : false,
                 "serverSide" : true,
+                "ordering" : false,
                 "ajax" : {
                     url: "view_clc_category_pmi_fcrp",
                 },
 
                 "columns":[
+                    { "data" : "id" },
                     { "data" : "status" },
                     { "data" : "titles" },
                     { "data" : "control_objectives" },
@@ -526,8 +547,8 @@
                 ],
             });// END OF DATATABLE
 
-            // // ======================= CLC EVIDENCES DATA TABLE =======================        
-            // dataTableClcEvidences = $("#tblClcEvidences").DataTable({ 
+            // // ======================= CLC EVIDENCES DATA TABLE =======================
+            // dataTableClcEvidences = $("#tblClcEvidences").DataTable({
             //     "processing" : false,
             //     "serverSide" : true,
             //     "ajax" : {
@@ -543,8 +564,8 @@
             //     ],
             // });// END OF DATATABLE
 
-            // // ======================= CLC EVIDENCES DATA TABLE =======================        
-            // dataTableSelectClcEvidences = $("#tblSelectClcEvidences").DataTable({ 
+            // // ======================= CLC EVIDENCES DATA TABLE =======================
+            // dataTableSelectClcEvidences = $("#tblSelectClcEvidences").DataTable({
             //     "processing" : false,
             //     "serverSide" : true,
             //     "ajax" : {
@@ -567,7 +588,7 @@
                     url: "get_rapidx_user",
                     method: "get",
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         let result = response['get_user'];
@@ -609,20 +630,21 @@
             // actionEditPmiFcrpCategory is generated by datatables and open the modalEditPmiFcrpCategory(modal) to collect the id of the specified rows
             $(document).on('click', '.actionEditPmiFcrpCategory', function(){
                 // the pmi_fcrp-id(attr) is inside the datatables of ClcCategoryPmiFcrpController that will be use to collect the pmi_fcrp-id
-                let pmi_fcrpId = $(this).attr('pmi_fcrp-id'); 
+                let pmi_fcrpId = $(this).attr('pmi_fcrp-id');
 
-                // after clicking the actionEditPmiFcrpCategory(button) the pmi_fcrpId will be pass to the txtEditPmiFcrpCategoryId(input=hidden) and when the form is submitted this 
+                // after clicking the actionEditPmiFcrpCategory(button) the pmi_fcrpId will be pass to the txtEditPmiFcrpCategoryId(input=hidden) and when the form is submitted this
                 // will be pass to ajax and collect pmi_fcrp-id that will be use to query the pmi_fcrp-id in the ClcCategoryPmiFcrpController to update the report
                 $("#txtEditPmiFcrpCategoryId").val(pmi_fcrpId);
 
                 // COLLECT THE pmi_fcrpId AND PASS TO INPUTS, BASED ON THE CLICKED ROWS //
-                    //GetPmiFcrpByIdToEdit() function is inside ClcCategoryPmiFcrp.js and pass the pmi_fcrpId as an argument when passing the ajax that will be use to query 
-                    // the pmi_fcrp-id of get_clc_category_by_id() method inside ClcCategoryPmiFcrpController and pass the fetched report based on that query as $clc_category_pmi_fcrp_id(variable) 
+                    //GetPmiFcrpByIdToEdit() function is inside ClcCategoryPmiFcrp.js and pass the pmi_fcrpId as an argument when passing the ajax that will be use to query
+                    // the pmi_fcrp-id of get_clc_category_by_id() method inside ClcCategoryPmiFcrpController and pass the fetched report based on that query as $clc_category_pmi_fcrp_id(variable)
                     // to pass the values in the inputs of modalEditPmiFcrpCategory and also to validate the fetched values, inside GetPmiFcrpByIdToEdit under ClcCategoryPmiFcrp.js
-                    GetPmiFcrpByIdToEdit(pmi_fcrpId); 
+                    GetPmiFcrpByIdToEdit(pmi_fcrpId);
 
                 // READ ONLY
                 $("#selectEditPmiFcrpTitle").attr('disabled', 'disabled');
+                $("#txtEditPmiFcrpInternalControls").attr('disabled', 'disabled');
                 $("#txtEditPmiFcrpDetectedProblemsImprovementPlans").attr('disabled', 'disabled');
                 $("#txtEditPmiFcrpReviewFindings").attr('disabled', 'disabled');
                 $("#txtEditPmiFcrpFollowupDetails").attr('disabled', 'disabled');
@@ -642,6 +664,7 @@
                 $('#check_box').attr('checked', 'checked');
                 if($(this).is(":checked")){
                     $("#selectEditPmiFcrpTitle").removeAttr('disabled', false);
+                    $("#txtEditPmiFcrpInternalControls").removeAttr('disabled', false);
                     $("#txtEditPmiFcrpDetectedProblemsImprovementPlans").removeAttr('disabled', false);
                     $("#txtEditPmiFcrpReviewFindings").removeAttr('disabled', false);
                     $("#txtEditPmiFcrpFollowupDetails").removeAttr('disabled', false);
@@ -651,6 +674,7 @@
                 }
                 else{
                     $("#selectEditPmiFcrpTitle").attr('disabled', 'disabled');
+                    $("#txtEditPmiFcrpInternalControls").attr('disabled', 'disabled');
                     $("#txtEditPmiFcrpDetectedProblemsImprovementPlans").attr('disabled', 'disabled');
                     $("#txtEditPmiFcrpReviewFindings").attr('disabled', 'disabled');
                     $("#txtEditPmiFcrpFollowupDetails").attr('disabled', 'disabled');
@@ -675,7 +699,7 @@
                 $("#txtChangeClcCategoryPmiFcrpId").val(clccategorypmifcrpId); // after clicking the actionChangeClcCategoryPmiFcrpStat(button) the clccategorypmifcrpId will be pass to the clc_category_pmi_fcrp_id(input=hidden) and when the form is submitted this will be pass to ajax and collect pmi_fcrp-id that will be use to query the pmi_fcrp-id in the ClcCategoryPmiFcrpController to update the status of the pmi_fcrp
 
                 if(clccategorypmifcrpStat == 1){
-                    $("#lblChangeClcCategoryPmiFcrpStatLabel").text('Are you sure to activate?'); 
+                    $("#lblChangeClcCategoryPmiFcrpStatLabel").text('Are you sure to activate?');
                     $("#h4ChangeClcCategoryPmiFcrpStat").html('<i class="fa fa-user"></i> Activate!');
                 }
                 else{
@@ -694,15 +718,15 @@
 
             // //============================== SELECT CLC EVIDENCES FILE ==============================
             // $(document).on('click', '.actionSelectClcEvidences', function(){
-            //     let selectclcevidence = $(this).attr('filter'); 
-            //     let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
+            //     let selectclcevidence = $(this).attr('filter');
+            //     let selectclcevidenceId = $(this).attr('clc_evidences-id');
             //     console.log(selectclcevidence);
             //     console.log(selectclcevidenceId);
-            //     $("#selectClcEvidencesFile").val(selectclcevidence); 
-            //     $("#selectClcEvidencesId").val(selectclcevidenceId); 
+            //     $("#selectClcEvidencesFile").val(selectclcevidence);
+            //     $("#selectClcEvidencesId").val(selectclcevidenceId);
 
             //     if(selectclcevidence == 0){
-            //         $("#lblSelectClcEvidences").text('Are you sure to delete this record?'); 
+            //         $("#lblSelectClcEvidences").text('Are you sure to delete this record?');
             //         $("#h4SelectClcEvidences").html('<i class="fa fa-times"></i> Delete Record');
             //     }
             //     else{
@@ -718,32 +742,32 @@
             //============================== SELECT ADD CLC EVIDENCES FILE ==============================
             $(document).on('click', '.actionSelectClcEvidences', function(){
                 let pmifcrpId  = $('#txtPmiFcrpId').val();
-                let selectclcevidenceId = $(this).attr('clc_evidences-id'); 
-                let selectclcevidence = $(this).attr('filter'); 
+                let selectclcevidenceId = $(this).attr('clc_evidences-id');
+                let selectclcevidence = $(this).attr('filter');
 
                     console.log('Add Record');
                     console.log('Pmi Fcrp ID:', pmifcrpId);
                     console.log('Add File Evidence ID:', selectclcevidenceId);
                     console.log('Filter ID:', selectclcevidence);
 
-                $("#selectPmiFcrpId").val(pmifcrpId); 
-                $("#selectClcEvidencesId").val(selectclcevidenceId); 
-                $("#selectClcEvidencesFile").val(selectclcevidence); 
+                $("#selectPmiFcrpId").val(pmifcrpId);
+                $("#selectClcEvidencesId").val(selectclcevidenceId);
+                $("#selectClcEvidencesFile").val(selectclcevidence);
             });
             $("#formSelectClcEvidences").submit(function(event){
                 event.preventDefault();
                 AddClcEvidencesFile();
             });
 
-            // =============================== GET SELECT FILE & CATEGORY ID =============================== 
+            // =============================== GET SELECT FILE & CATEGORY ID ===============================
             $(document).on('click', '.actionSelectFiles', function(){
-                let pmifcrpId  = $(this).attr('pmi_fcrp-id'); 
-                let pmicategoryId  = $('#txtPmiCategoryId').val(); 
+                let pmifcrpId  = $(this).attr('pmi_fcrp-id');
+                let pmicategoryId  = $('#txtPmiCategoryId').val();
                     console.log('Select File ID:', pmifcrpId);
                     console.log('Category ID:', pmicategoryId);
-                $("#txtPmiFcrpId").val(pmifcrpId); 
+                $("#txtPmiFcrpId").val(pmifcrpId);
             });
-            
+
             // ========================= GET UPLOADED FILE ID =========================
             $(document).on('click','.actionViewUploadedFile', function(){
                 let id  = $(this).attr('pmi_fcrp-id');
@@ -759,7 +783,7 @@
             $("#modalSelectFiles").on('hidden.bs.modal', function () {
                 console.log('PMI FCRP Reload Successfully');
                 reloadDataTableClcCategoryPmiFcrp();
-            });        
+            });
 
             // ========================= RESIZE TEXTAREA =========================
             document.querySelectorAll("textarea").forEach(function (size) {

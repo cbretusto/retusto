@@ -16,6 +16,7 @@ class CreateTblPLCModuleRcm extends Migration
         Schema::create('tbl_plc_module_rcm', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedTinyInteger('status')->default(0)->comment = '1-active,2-Inactive';
+            $table->string('category');
             $table->string('control_objective');
             $table->longText('risk_summary');
             $table->longText('risk_detail');
@@ -36,6 +37,7 @@ class CreateTblPLCModuleRcm extends Migration
             $table->string('manual');
             $table->string('automatic');
             $table->string('system');
+            $table->unsignedTinyInteger('logdel')->default(0)->comment = '0-show,1-hide';
             $table->timestamps();
         });
     }

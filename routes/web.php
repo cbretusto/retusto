@@ -23,7 +23,6 @@ Route::get('/plc_dashboard', function () {
     return view('PLC Dashboard/plc_dashboard');
 })->name('plc_dashboard');
 
-
 Route::get('/PMI', function () {
     return view('PLC Dashboard/PMI');
 });
@@ -43,6 +42,10 @@ Route::get('/plc_evidences', function () {
 Route::get('/jsox_plc_matrix', function () {
     return view('jsox_plc_matrix');
 })->name('jsox_plc_matrix');
+
+Route::get('/plc_capa', function () {
+    return view('plc_capa');
+})->name('plc_capa');
 
 Route::get('/clc_dashboard', function () {
     return view('clc_dashboard');
@@ -149,12 +152,13 @@ Route::get('/get_sa_data_to_edit', 'PlcModulesSaController@get_sa_data_to_edit')
 // Route::post('/delete_sa_data', 'PlcModulesSaController@delete_sa_data');
 Route::post('/edit_sa_module', 'PlcModulesSaController@edit_sa_module');
 Route::get('/get_uploaded_file', 'PlcModulesSaController@get_uploaded_file');
-Route::get('/load_user_management_SA', 'PlcModulesSaController@load_user_management_SA');
-Route::get('/load_user_SA', 'PlcModulesSaController@load_user_SA');
+Route::get('/load_assessed_by_SA', 'PlcModulesSaController@load_assessed_by_SA');
+// Route::get('/load_user_SA', 'PlcModulesSaController@load_user_SA');
 Route::post('/approved_sa_data', 'PlcModulesSaController@approved_sa_data');
 Route::post('/disapproved_sa_data', 'PlcModulesSaController@disapproved_sa_data');
 Route::post('/yec_approved_date', 'PlcModulesSaController@yec_approved_date')->name('yec_approved_date');
 Route::get('/get_yec_approved_date', 'PlcModulesSaController@get_yec_approved_date')->name('get_yec_approved_date');
+Route::get('/count_pmi_category_by_id', 'PlcModulesSaController@count_pmi_category_by_id');
 
 //============================= SELECT PLC EVIDENCE CONTROLLER ================================
 Route::get('/view_select_plc_evidences', 'SelectPlcEvidenceController@view_select_plc_evidences');
@@ -214,7 +218,18 @@ Route::post('/change_clc_category_pmi_it_clc_stat', 'ClcCategoryPmiItClcControll
 
 Route::get('/export/{id}', 'InvExcelController@export');
 
+//============================= PLC CAPA CONTROLLER ================================
+Route::get('/view_plc_capa', 'PlcCapaController@view_plc_capa');
+Route::get('/get_plc_capa_id_to_edit', 'PlcCapaController@get_plc_capa_id_to_edit');
+Route::post('/edit_plc_capa', 'PlcCapaController@edit_plc_capa');
 
+// Route::get('/export_capa/{id}/{concerned_dept}', 'PlcCapaController@export_capa');
+Route::get('/export_capa/{year_id}/{fiscal_year_id}/{dept_id}', 'PlcCapaController@export_capa');
+
+//============================== CLC EXPORT =======================================
+Route::get('/export_clc_summary/{year_id}', 'ExportClcController@export_clc_summary');
+Route::get('/export_it_clc_summary/{year_id}', 'ExportItClcController@export_it_clc_summary');
+Route::get('/export_fcrp_clc_summary/{year_id}', 'ExportFcrpClcController@export_fcrp_clc_summary');
 
 
 

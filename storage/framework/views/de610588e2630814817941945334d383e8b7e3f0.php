@@ -76,6 +76,7 @@
                                     <table id="tblClcCategoryPmiItClc" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
                                         <thead>
                                             <tr style="text-align:center">
+                                                <th>ID</th>
                                                 <th style="width: 5%"></th>
                                                 <th>Control Objectives</th>
                                                 <th>Internal Controls</th>
@@ -203,7 +204,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Control Objective:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiItClcControlObjectives" name="control_objectives" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiItClcControlObjectives" name="control_objectives" readonly></textarea>
                                 </div>
                             </div>
 
@@ -211,7 +212,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Internal Control:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
-                                    <textarea type="text" class="form-control" id="txtEditPmiItClcInternalControls" name="internal_controls" readonly></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiItClcInternalControls" name="internal_controls"></textarea>
                                 </div>
                             </div>
 
@@ -227,7 +228,7 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Detected Problems & Improvement Plans:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiItClcDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiItClcDetectedProblemsImprovementPlans" name="detected_problems_improvement_plans"></textarea>
                                 </div>
                             </div>
 
@@ -235,14 +236,14 @@
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Review Findings:</label>
                                     <input type="hidden" class="form-control" name="" rows="4" cols="50">
-                                    <textarea type="text" class="form-control" id="txtEditPmiItClcReviewFindings" name="review_findings"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiItClcReviewFindings" name="review_findings"></textarea>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 flex-column d-flex"> 
                                 <div class="form-group col-sm-12"> 
                                     <label class="col-form-label">Follow up:</label>
                                     <input type="hidden" class="form-control" name="" rows="4">
-                                    <textarea type="text" class="form-control" id="txtEditPmiItClcFollowups" name="follow_ups"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="txtEditPmiItClcFollowups" name="follow_ups"></textarea>
                                 </div>
                             </div>
 
@@ -330,11 +331,13 @@
             dataTableClcCategoryPmiItClc = $("#tblClcCategoryPmiItClc").DataTable({ 
                 "processing" : false,
                 "serverSide" : true,
+                "ordering" : false,
                 "ajax" : {
                     url: "view_clc_category_pmi_it_clc",
                 },
 
                 "columns":[
+                    { "data" : "id" },
                     { "data" : "it_clc_status" },
                     { "data" : "control_objectives" },
                     { "data" : "internal_controls" },
@@ -445,6 +448,7 @@
 
                 // READ ONLY
                 $("#txtEditPmiItClcStatus").attr('disabled', 'disabled');
+                $("#txtEditPmiItClcInternalControls").attr('disabled', 'disabled');
                 $("#txtEditPmiItClcDetectedProblemsImprovementPlans").attr('disabled', 'disabled');
                 $("#txtEditPmiItClcReviewFindings").attr('disabled', 'disabled');
                 $("#txtEditPmiItClcFollowups").attr('disabled', 'disabled');
@@ -464,6 +468,7 @@
                 $('#check_box').attr('checked', 'checked');
                 if($(this).is(":checked")){
                     $("#txtEditPmiItClcStatus").removeAttr('disabled', false);
+                    $("#txtEditPmiItClcInternalControls").removeAttr('disabled', false);
                     $("#txtEditPmiItClcDetectedProblemsImprovementPlans").removeAttr('disabled', false);
                     $("#txtEditPmiItClcReviewFindings").removeAttr('disabled', false);
                     $("#txtEditPmiItClcFollowups").removeAttr('disabled', false);
@@ -474,6 +479,7 @@
                 }
                 else{
                     $("#txtEditPmiItClcStatus").attr('disabled', 'disabled');
+                    $("#txtEditPmiItClcInternalControls").attr('disabled', 'disabled');
                     $("#txtEditPmiItClcDetectedProblemsImprovementPlans").attr('disabled', 'disabled');
                     $("#txtEditPmiItClcReviewFindings").attr('disabled', 'disabled');
                     $("#txtEditPmiItClcFollowups").attr('disabled', 'disabled');

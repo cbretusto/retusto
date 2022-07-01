@@ -269,10 +269,20 @@ function GetRevisionHistoryId(revisionHistoryId){
             //             $('input[name="edit_revision_history_details_'+implodedArrLoop1+'"]', $('#editRevisionHistoryForm')).val(implodedDetailsArr[implodedArrLoop1]);
             //             $('#txtMaxRowDetailsIdForEdit').val(implodedArrLoop1);
             //     }
-                $("#selectEditProcessOwner").val(history_revision[0].process_owner).trigger('change');;
+            let editRevisionHistoryForm = $('#editRevisionHistoryForm');
+            let process_owner_splitted = history_revision[0].process_owner.split('/')
+                console.log(history_revision[0].process_owner);
+                console.log(process_owner_splitted);
+                $("#selectEditProcessOwner").val('');
+                for(i = 0; i<process_owner_splitted.length; i++){
+                    let process_owner = '<option selected value="' + process_owner_splitted[i] + '">' + process_owner_splitted[i] + '</option>';
+                    $('select[name="edit_revision_history_process_owner[]"]', editRevisionHistoryForm).append(process_owner);  
+                }
+                // $("#selectEditProcessOwner").val(history_revision[0].process_owner).trigger('change');
+                $("#txtEditVersionNo").val(history_revision[0].version_no);
                 $("#txtEditRevisionHistoryDate").val(history_revision[0].revision_date);
-                $("#selectEditDepartment").val(history_revision[0].concerned_dept).trigger('change');;
-                $("#selectEditProcessInCharge").val(history_revision[0].in_charge).trigger('change');;
+                $("#selectEditDepartment").val(history_revision[0].concerned_dept).trigger('change');
+                $("#selectEditProcessInCharge").val(history_revision[0].in_charge).trigger('change');
                 $("#txteditReasonForRevision").val(history_revision[0].reason_for_revision);
                 $("#txteditDetailsOfRevision").val(history_revision[0].details_of_revision);
             }
@@ -581,7 +591,7 @@ function LoadUserListProcessOwner(cboElement)
         success: function(response){
             result = '';
             if(response['users'].length > 0){
-                result = '<option selected disabled>-- Select Process Owner -- </option>';
+                // result = '<option selected disabled>-- Select Process Owner -- </option>';
                 for(let index = 0; index < response['users'].length; index++){
                     // let disabled = '';
                     result += '<option value="' + response['users'][index].rapidx_name + '">' + response['users'][index].rapidx_name + '</option>';
@@ -626,7 +636,7 @@ function LoadConcernedDepartment(cboElement)
         success: function(response){
             result = '';
             if(response['users_department'].length > 0){
-                result = '<option selected disabled>-- Select Concerned Department -- </option>';
+                // result = '<option selected disabled>-- Select Concerned Department -- </option>';
                 for(let index = 0; index < response['users_department'].length; index++){
                     // let disabled = '';
                     // console.log(response['users_department'][index].id);

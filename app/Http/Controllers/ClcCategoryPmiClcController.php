@@ -21,6 +21,7 @@ class ClcCategoryPmiClcController extends Controller
     public function view_clc_category_pmi_clc(){
 
         $pmi_clc = ClcCategoryPmiClc::where('logdel',0)->get();
+        // $pmi_clc = collect($pmi_clc)->sortByAsc('id');
         // return $pmi_clc;
         return DataTables::of($pmi_clc)
 
@@ -61,11 +62,11 @@ class ClcCategoryPmiClcController extends Controller
                 $result .= '<button type="button" class="btn btn-success btn-sm text-center actionChangeClcCategoryPmiClcStat" style="width:105px;margin:2%;" pmi_clc-id="' . $pmi_clc->id . '" status="1" data-toggle="modal"  data-target="#modalChangeClcCategoryPmiClcStat" data-keyboard="false"><i class="nav-icon fas fa-check"></i> Active</button>&nbsp;';
             }
             $result .= '</center>';
-            return $result;   
+            return $result;
         })
 
         ->rawColumns(['status', 'uploaded_file', 'action']) // to format the added columns(status & action) as html format
-        ->make(true);  
+        ->make(true);
     }
 
     //====================================== AUTO ADD CREATED BY ======================================
@@ -80,7 +81,7 @@ class ClcCategoryPmiClcController extends Controller
     // ========================================= ADD PMI CLC CATEGORY ===================================================
     public function add_pmi_clc_category(Request $request){
         date_default_timezone_set('Asia/Manila');
-        
+
         $data = $request->all();
 
         $rules = [
@@ -140,7 +141,7 @@ class ClcCategoryPmiClcController extends Controller
     //     $pmi_clc = ClcCategoryPmiClc::where('id', $id)->first();
     //     $file =  storage_path() . "/app/public/pmi_clc_category/" . $pmi_clc->uploaded_file;
     //     // return $pmi_clc;
-    //     return Response::download($file, $pmi_clc->uploaded_file);  
+    //     return Response::download($file, $pmi_clc->uploaded_file);
     // }
 
     //============================== GET PMI CLC CATEGORY BY ID TO EDIT ==============================
@@ -153,7 +154,7 @@ class ClcCategoryPmiClcController extends Controller
     // ========================================= EDIT PMI CLC CATEGORY ===================================================
     public function edit_pmi_clc_category(Request $request){
         date_default_timezone_set('Asia/Manila');
-        
+
         $data = $request->all();
         // return $data;
         $rules = [
@@ -161,10 +162,10 @@ class ClcCategoryPmiClcController extends Controller
             'control_objectives'                    => 'required',
             'internal_controls'                     => 'required',
             'g_ng'                                  => 'required',
-            'detected_problems_improvement_plans'   => 'required',
-            'review_findings'                       => 'required',
-            'follow_up_details'                     => 'required',
-            'g_ng_last'                             => 'required',
+            // 'detected_problems_improvement_plans'   => 'required',
+            // 'review_findings'                       => 'required',
+            // 'follow_up_details'                     => 'required',
+            // 'g_ng_last'                             => 'required',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -214,7 +215,7 @@ class ClcCategoryPmiClcController extends Controller
     }
 
     //============================== CHANGE PMI CLC STAT ==============================
-    public function change_clc_category_pmi_clc_stat(Request $request){        
+    public function change_clc_category_pmi_clc_stat(Request $request){
         date_default_timezone_set('Asia/Manila');
 
         $data = $request->all(); // collect all input fields

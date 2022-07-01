@@ -18,4 +18,43 @@
 
     </tr>
 
-</table><?php /**PATH /var/www/Jsox_testing/resources/views/exports/roll_forward.blade.php ENDPATH**/ ?>
+    <?php
+        for($i = 0; $i < count($rf_details); $i++){
+            // if($i < $concerned_dept[$i]->category){
+
+                $department = $rf_details[$i]->concerned_dept;
+                $affected_control_no = $rf_details[$i]->control_no;
+                $assessment_findings = $rf_details[$i]->rf_assessment;
+                $process_name = $rf_details[$i]['plc_categories']->plc_category;
+                // $statement_of_findings = $rf_details[$i]->rf_assessment;
+                echo "<tr>
+                    <td>
+                        $department
+                        </td>
+
+                        <td>
+                            1
+                            </td>
+
+                            <td>
+                                $process_name
+                                </td>
+
+                            <td>
+                                $affected_control_no
+                                </td>
+
+                            <td>
+                                $assessment_findings
+                                </td>
+
+
+                    </tr>";
+            // }
+
+        }
+
+    ?>
+
+</table>
+<?php /**PATH /var/www/Jsox_testing/resources/views/exports/roll_forward.blade.php ENDPATH**/ ?>

@@ -100,7 +100,7 @@
         </section>
         </div>
 
-                <!-- ADD PLC EVIDENCES -->
+        <!-- ADD PLC EVIDENCES -->
         <div class="modal fade" id="modalAddPlcEvidences">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -130,7 +130,7 @@
 
                         <div class="form-group">
                             <label>Upload PLC Evidences</label> <br>
-                            <input type="file" class ="" name="uploaded_file[]" id="txtAddReportUploadedFile" accept="application/pdf" multiple>
+                            <input type="file" class ="" name="uploaded_file[]" id="txtAddReportUploadedFile" accept=".xlsx, .xls, .csv, application/pdf" multiple>
                         </div>
 
                         <div class="form-group">
@@ -180,7 +180,7 @@
                                         <label>Re-upload PLC Evidence</label>
                                         <input type="text" class="form-control" name="uploadedfile" id="txtEditReportUploaded_File">
                                         <br>
-                                        <input type="file" class="d-none" name="edit_uploaded_file[]" id="txtEditUploadedFile"  accept="application/pdf" required multiple><br>
+                                        <input type="file" class="d-none" name="edit_uploaded_file[]" id="txtEditUploadedFile"  accept=".xlsx, .xls, .csv, application/pdf" required multiple><br>
                                         <label>Revised by</label>
                                         <input type="text" class="form-control" name="revised_by" id="txtEditPlcUploadedById" readonly>
                                         <input type="hidden" class="" name="revised_date" id="txtRevisedDate" value="<?php echo e(\Carbon\Carbon::now()->format('M. d, Y')); ?>" readonly>
