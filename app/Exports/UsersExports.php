@@ -76,7 +76,7 @@ class UsersExports implements  WithMultipleSheets
         $sheets = [];
 
         $sheets[] = new audit_result($this->date, $this->plc_module_sa, $this->status_check_array,$this->assessment_status_array_dic,  $this->second_half_status_check_array, $this->second_assessment_status_array );
-        $sheets[] = new fy_summary($this->date,$this->assessment_status_array_dic,$this->yec_date_arr,$this->first_half_affected_status_arr,$this->second_assessment_status_array_rf,$this->fu_affected_internal_control_arr,$this->second_assessment_status_array_fu);
+        $sheets[] = new fy_summary($this->date, $this->plc_module_sa,$this->assessment_status_array_dic,$this->yec_date_arr,$this->first_half_affected_status_arr,$this->second_assessment_status_array_rf,$this->fu_affected_internal_control_arr,$this->second_assessment_status_array_fu);
         $sheets[] = new firsthalf($this->date,$this->plc_module_sa_concerned_dept);
         $sheets[] = new rollforward($this->date,$this->plc_module_rf_details);
 

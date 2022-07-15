@@ -232,6 +232,10 @@ Route::get('/export_it_clc_summary/{year_id}', 'ExportItClcController@export_it_
 Route::get('/export_fcrp_clc_summary/{year_id}', 'ExportFcrpClcController@export_fcrp_clc_summary');
 
 
+Route::get('/export_summary/{year_id}/{select_category}', 'ExportSummaryController@export_summary');
+
+
+
 
 
 

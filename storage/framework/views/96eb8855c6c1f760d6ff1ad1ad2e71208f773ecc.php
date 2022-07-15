@@ -4,7 +4,7 @@ $layout = 'layouts.super_user_layout';
     
     <?php $__env->startSection('title', 'Dashboard'); ?>
 <?php $__env->startSection('content_page'); ?>
-    
+
     <?php
     if (Session::get('pmi_plc_category_id') == 1) {
         $pmi_category = 'PMI-01';
@@ -197,6 +197,10 @@ $layout = 'layouts.super_user_layout';
                                         <div class="text-right mt-4">
                                             <button class="btn btn-info" data-toggle="modal" data-target="#modalNoRevision" id="btnNoRevisionModal" style="float: right;"><i class="far fa-edit"></i> No Revision</button>
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddRevision" id="btnAddRevisionModal" style="float: right; margin-right: 10px;"><i class="far fa-edit"></i> Add Revision</button>
+                                            <button class="btn btn-primary mr-2" data-toggle="modal"
+                                            data-target="#modalExportSummary"
+                                            style="float: right;"><i class="fas fa-download"></i> Export Summary
+                                            </button>
                                         </div>
                                         <br><br>
 
@@ -332,6 +336,91 @@ $layout = 'layouts.super_user_layout';
         </section>
     </div>
 
+    <!-- MODALS -->
+    <div class="modal fade" id="modalExportSummary">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title"><i class="fab fa-stack-overflow"></i> Export Summary</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Select Category:</label>
+                            <select name="select_category" id="selectCategoryId">
+                                <option value="1">PMI-01 Receiving Orders</option>
+                                <option value="2">PMI-02 Shipment Preparation</option>
+                                <option value="3">PMI-03 Changing Sales Prices</option>
+                                <option value="4">PMI-04 Changing Sales Qty</option>
+                                <option value="5">PMI-05 Invoice Issuance</option>
+                                <option value="6">PMI-06 Changing Sales Invoice1</option>
+                                <option value="7">PMI-07 Changing Sales Invoice2</option>
+                                <option value="8">PMI-08 Verifying Monthly Data</option>
+                                <option value="9">PMI-09 Purchase Orders</option>
+                                <option value="10">PMI-10 PO Placement to CNPPS Suppliers</option>
+                                <option value="11">PMI-11 Changing POs for CNPPS Suppliers</option>
+                                <option value="12">PMI-12 Receiving Shipments from YEC</option>
+                                <option value="13">PMI-13 Generation of NG Reports</option>
+                                <option value="14">PMI-14 Handling Correct YEC Invoices</option>
+                                <option value="15">PMI-15 Handling Incorrect YEC Invoices</option>
+                                <option value="16">PMI-16 Vouchering</option>
+                                <option value="17">PMI-17 Check Payment by Peso</option>
+                                <option value="18">PMI-18 E-Payment by Dollar</option>
+                                <option value="19">PMI-19 Billing</option>
+                                <option value="20">PMI-20 Offset Arrangement with YEC</option>
+                                <option value="21">PMI-21 Collection from YEC</option>
+                                <option value="22">PMI-22 Issuing Debit and Credit Memos</option>
+                                <option value="23">PMI-23 Posting Collections</option>
+                                <option value="24">PMI-24 Physical Count</option>
+                                <option value="25">PMI-25 Devaluation of Slow-moving</option>
+                                <option value="26">PMI-26 Returning Defect Materials to YEC</option>
+                                <option value="27">PMI-27 Receiving Shipment from CNPPS Suppliers</option>
+                                <option value="28">PMI-28 Physical Count-PPS</option>
+                                <option value="29">PMI-29 Handling Invoices from CNPPS Suppliers</option>
+                                <option value="30">PMI-30 Handling of Discrepancies (Invoice vs Actual Shipment) to CNPPS Suppliers</option>
+                                <option value="31">PMI-31 Inventory Valuation</option>
+                                <option value="32">PMI-32 Correcting Monthly Data</option>
+                                <option value="33">PMI-33 Handling Discrepancies (Supplier Invoice vs Purchase Order) to CNPPS Suppliers</option>
+                                <option value="34">PMI-34 Sales from PPS to TS,CN</option>
+                                <option value="35">PMI-35 Daily Cash in Bank Monitoring</option>
+                                <option value="36">PMI -36 Cash in Bank Monthly Monitoring</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Year:</label>
+                            <select name="select_year" id="selectYearId">
+                                <?php
+                                    $year_now = date('Y');
+
+                                    for($i = 2021; $i <= $year_now; $i++){
+                                        echo "<option value =".$i.">
+                                            ".$i."
+                                            </option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="submit" id="btnExportSummary" class="btn btn-dark"><i id="BtnExportSummaryIcon" class="fa fa-check"></i> Export</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+  <!-- /.modal -->
+
     
     <!-- ADD REVISION -->
     <div class="modal fade" id="modalAddRevision">
@@ -369,25 +458,41 @@ $layout = 'layouts.super_user_layout';
                                         <input type="number" class="form-control" name="version_no" id="txtVersionNo" autocomplete="off">
                                     </div>
                                 </div>
-
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label>Reason for Revision</label>
-                                        <textarea type="text" class="form-control" rows="5" name="add_reason_for_revision" id="txtAddReasonForRevisionId"></textarea>
-                                    </div>
-
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label>Details of Revision</label>
-                                        <textarea type="text" class="form-control" rows="5" name="add_details_of_revision" id="txtAddDetailsOfRevision"></textarea>
+                                <hr>
+                                <div class="card" id="cardAddReasonForRevision">
+                                    <div class="card-header">
+                                        <div id="divAddReasonForRevision">
+                                            <input type="hidden" name="add_reason_for_revision_counter" id="addReasonForRevisionCounter" value="1">
+                                            <div class="form-group">
+                                                <span class="badge badge-secondary"># 1.</span>
+                                                <label>Reason for Revision:</label>
+                                                <button type="button" class="btn btn-sm btn-dark float-right mb-2" id="addAddRowReasonForRevision"><i class="fa fa-plus"></i> Add Row</button>
+                                                <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 d-none" id="removeAddRowReasonForRevision"><i class="fas fa-times"></i> Remove Row</button>
+                                                <textarea type="text" class="form-control" name="reason_for_revision1" id="txtAddReasonForRevision"  rows="3" autocomplete= "off"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
+                                <hr>
+                                <div class="card" id="cardAddDetailsOfRevision">
+                                    <div class="card-header">
+                                        <div id="divAddDetailsOfRevision">
+                                            <input type="hidden" name="add_details_of_revision_counter" id="addDetailsOfRevisionCounter" value="1">
+                                            <div class="form-group">
+                                                <span class="badge badge-secondary"># 1.</span>
+                                                <label>Details of Revision:</label>
+                                                <button type="button" class="btn btn-sm btn-dark float-right mb-2" id="addAddRowDetailsOfRevision"><i class="fa fa-plus"></i> Add Row</button>
+                                                <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 d-none" id="removeAddRowDetailsOfRevision"><i class="fas fa-times"></i> Remove Row</button>
+                                                <textarea type="text" class="form-control" name="details_of_revision1" id="txtAddDetailsOfRevision"  rows="3" autocomplete= "off"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row justify-content-between text-left">
                                     <div class="form-group col-sm-6 flex-column d-flex">
                                         <label>Concerned Dept/Section</label>
                                         <select class="form-control sel-user-concerned-department select2bs4" id="selectAddDepartment" name="concerned_dept[]" multiple></select>
-
                                     </div>
 
                                     <div class="form-group col-sm-6 flex-column d-flex">
@@ -480,18 +585,38 @@ $layout = 'layouts.super_user_layout';
                                         <input type="number" class="form-control" name="edit_version_no" id="txtEditVersionNo" autocomplete="off">
                                     </div>
                                 </div>
-
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label>Reason for Revision</label>
-                                        <textarea type="text" class="form-control" rows="5" name="edit_reason_for_revision" id="txteditReasonForRevision"></textarea>
-                                    </div>
-
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label>Details of Revision</label>
-                                        <textarea type="text" class="form-control" rows="5" name="edit_details_of_revision" id="txteditDetailsOfRevision"></textarea>
+                                <hr>
+                                <div class="card" id="cardEditReasonForRevision">
+                                    <div class="card-header">
+                                        <div id="divEditReasonForRevision">
+                                            <input type="hidden" name="edit_reason_for_revision_counter" id="editReasonForRevisionCounter" value="1">
+                                            <div class="form-group">
+                                                <span class="badge badge-secondary"># 1.</span>
+                                                <label>Reason for Revision:</label>
+                                                <button type="button" class="btn btn-sm btn-dark float-right mb-2" id="addEditRowReasonForRevision"><i class="fa fa-plus"></i> Add Row</button>
+                                                <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 d-none" id="removeEditRowReasonForRevision"><i class="fas fa-times"></i> Remove Row</button>
+                                                <textarea type="text" class="form-control" name="reason_for_revision1" id="txtEditReasonForRevision1"  rows="3" autocomplete= "off"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <hr>
+
+                                <div class="card" id="cardEditDetailsOfRevision">
+                                    <div class="card-header">
+                                        <div id="divEditDetailsOfRevision">
+                                            <input type="hidden" name="edit_details_of_revision_counter" id="editDetailsOfRevisionCounter" value="1">
+                                            <div class="form-group">
+                                                <span class="badge badge-secondary"># 1.</span>
+                                                <label>Details of Revision:</label>
+                                                <button type="button" class="btn btn-sm btn-dark float-right mb-2" id="addEditRowDetailsOfRevision"><i class="fa fa-plus"></i> Add Row</button>
+                                                <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 d-none" id="removeEditRowDetailsOfRevision"><i class="fas fa-times"></i> Remove Row</button>
+                                                <textarea type="text" class="form-control" name="details_of_revision1" id="txtEditDetailsOfRevision1"  rows="3" autocomplete= "off"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
 
                                 <div class="row justify-content-between text-left">
                                     <div class="form-group col-sm-6 flex-column d-flex">
@@ -1483,7 +1608,7 @@ $layout = 'layouts.super_user_layout';
                                                         <div id="divOecAssessmentDetailsAndFindings">
                                                             
                                                             <div class="form-group col-sm-12">
-                                                                <input type="file" class="" id="OecAttachment" name="oec_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>                
+                                                                <input type="file" class="" id="OecAttachment" name="oec_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>
                                                                 <input type="text" class="d-none" id="txtOecAttachment" name="txt_oec_attachment" readonly><br>
                                                                 <input type="checkbox" class="form-check-input d-none checked" name="oec_checkbox" id="OecCheckBox">
                                                                 <label class="d-none" id="OecReuploadFile">Re-upload File</label>
@@ -1552,9 +1677,9 @@ $layout = 'layouts.super_user_layout';
                                                         <div id="divRfAssessmentDetailsAndFindings">
                                                             
                                                             <div class="form-group col-sm-12">
-                                                                <input type="file" class="" id="RfAttachment" name="rf_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>                
+                                                                <input type="file" class="" id="RfAttachment" name="rf_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>
                                                                 <input type="text" class="d-none" id="txtRfAttachment" name="txt_rf_attachment" readonly><br>
-                                                
+
                                                                 <input type="checkbox" class="form-check-input d-none checked" name="rf_checkbox" id="chckRfCheckBox">
                                                                 <label class="d-none" id="txtRfReuploadFile">Re-upload File</label>
                                                                 <br>
@@ -1598,7 +1723,7 @@ $layout = 'layouts.super_user_layout';
                                                         <select class="form-control sel_assessed_by select2bs4" id="selectViewFollowUpAssessedBy" name="view_follow_up_assessed_by"></select>
                                                         <input type="hidden" class="form-control" id="txtEditFollowUpAssessedBy" name="follow_up_assessed_by" value="Ma. Arlene A. Dela Cruz" readonly>
                                                     </div>
-                
+
                                                     <div class="form-group col-sm-6 flex-column d-flex">
                                                         <label>Checked by:</label>
                                                         <select class="form-control sel_assessed_by select2bs4" id="selectViewFollowUpCheckedBy" name="view_follow_up_checked_by"></select>
@@ -1623,9 +1748,9 @@ $layout = 'layouts.super_user_layout';
                                                         <div id="divFuAssessmentDetailsAndFindings">
                                                             
                                                             <div class="form-group col-sm-12">
-                                                                <input type="file" class="" id="FuAttachment" name="fu_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>                
+                                                                <input type="file" class="" id="FuAttachment" name="fu_attachment[]" accept="image/jpeg , image/jpg, image/gif, image/png" multiple>
                                                                 <input type="text" class="d-none" id="txtFuAttachment" name="txt_fu_attachment" readonly><br>
-                                                
+
                                                                 <input type="checkbox" class="form-check-input d-none checked" name="fu_checkbox" id="chckFuCheckBox">
                                                                 <label class="d-none" id="txtFuReuploadFile">Re-upload File</label>
                                                                 <br>
@@ -1978,6 +2103,10 @@ $layout = 'layouts.super_user_layout';
             //VIEW PLC MODULES DATATABLES END
 
             // ========================= RELOAD REVISION HISTORY DATATABLE =========================
+            function reloadDataTablePlcModule() {
+                dataTablePlcModuleRevisionHistory.draw();
+                dataTablePlcModuleFlowChart.draw();
+            }
 
             $("#modalEditRevisionHistory").on('hidden.bs.modal', function () {
                 console.log('PLC Revision History Reload Successfully');
@@ -3093,9 +3222,167 @@ $layout = 'layouts.super_user_layout';
                 }
             });
 
+            //============================= ADD Reason For Revision =============================
+            let addReasonForRevisionCounter = 1;
+            $('#addAddRowReasonForRevision').click(function(){
+                addReasonForRevisionCounter++;
+                if(addReasonForRevisionCounter > 1){
+                    $('#removeAddRowReasonForRevision').removeClass('d-none');
+                }
+                console.log('Reason For Revision Row(+):', addReasonForRevisionCounter);
+
+                var html = '<div class="divAddReasonForRevisionHeader_'+addReasonForRevisionCounter+' generatedDivHeader border-top pt-2 mt-4"><span class="badge badge-secondary"> # '+ addReasonForRevisionCounter +'.</span> <label>Reason For Revision:</label></div>';
+                    html += '   <div class="row mt-2 generatedDiv"  id="row_'+addReasonForRevisionCounter+'">';
+                    html += '       <div class="col-md-12" id="row_'+addReasonForRevisionCounter+'">';
+                    html += '           <textarea class="form-control  mb-3" rows="3" id="txtAddReasonForRevision'+addReasonForRevisionCounter+'" name="reason_for_revision'+addReasonForRevisionCounter+'" tyle="height: 134px;"></textarea>';
+                    html += '       <div>';
+                    html += '   </div>';
+
+                $('#addReasonForRevisionCounter').val(addReasonForRevisionCounter);
+                $('#divAddReasonForRevision').append(html);
+            });
+
+            //============================= REMOVE Reason For Revision =============================
+            $("#cardAddReasonForRevision").on('click', '#removeAddRowReasonForRevision', function(e){
+                let plcSaRevisionHistory =  $('#removeAddRowReasonForRevision').val();
+
+                if(addReasonForRevisionCounter > 1){
+                    $('.divAddReasonForRevisionHeader_'+addReasonForRevisionCounter).remove();
+                    $('#cardAddReasonForRevision').find('#row_'+addReasonForRevisionCounter).remove();
+                    addReasonForRevisionCounter--;
+                    $('#addReasonForRevisionCounter').val(addReasonForRevisionCounter).trigger('change');
+                    console.log('Reason For Revision Row(-):' + addReasonForRevisionCounter);
+                }
+
+                if(addReasonForRevisionCounter < 2){
+                    $('#removeAddRowReasonForRevision').addClass('d-none');
+                }
+            });
+
+            //============================= EDIT Reason For Revision =============================
+            let editReasonForRevisionCounter = 1;
+            $('#addEditRowReasonForRevision').click(function(){
+                editReasonForRevisionCounter++;
+                if(editReasonForRevisionCounter > 1){
+                    $('#removeEditRowReasonForRevision').removeClass('d-none');
+                }
+                console.log('Reason For Revision Row(+):', editReasonForRevisionCounter);
+
+                var html = '<div class="divEditReasonForRevisionHeader_'+editReasonForRevisionCounter+' generatedDivHeader border-top pt-2 mt-4"><span class="badge badge-secondary"> # '+ editReasonForRevisionCounter +'.</span> <label>Reason For Revision:</label></div>';
+                    html += '   <div class="row mt-2 generatedDiv"  id="row_'+editReasonForRevisionCounter+'">';
+                    html += '       <div class="col-md-12" id="row_'+editReasonForRevisionCounter+'">';
+                    html += '           <textarea class="form-control  mb-3" rows="3" id="txtEditReasonForRevision'+editReasonForRevisionCounter+'" name="reason_for_revision'+editReasonForRevisionCounter+'" tyle="height: 134px;"></textarea>';
+                    html += '       <div>';
+                    html += '   </div>';
+
+                $('#editReasonForRevisionCounter').val(editReasonForRevisionCounter);
+                $('#divEditReasonForRevision').append(html);
+            });
+
+            //============================= REMOVE Reason For Revision =============================
+            $("#cardEditReasonForRevision").on('click', '#removeEditRowReasonForRevision', function(e){
+                let plcSaRevisionHistory =  $('#removeEditRowReasonForRevision').val();
+
+                if(editReasonForRevisionCounter > 1){
+                    $('.divEditReasonForRevisionHeader_'+editReasonForRevisionCounter).remove();
+                    $('#cardEditReasonForRevision').find('#row_'+editReasonForRevisionCounter).remove();
+                    editReasonForRevisionCounter--;
+                    $('#editReasonForRevisionCounter').val(editReasonForRevisionCounter).trigger('change');
+                    console.log('Reason For Revision Row(-):' + editReasonForRevisionCounter);
+                }
+
+                if(editReasonForRevisionCounter < 2){
+                    $('#removeEditRowReasonForRevision').addClass('d-none');
+                }
+            });
+
+           //============================= ADD Details of Revision =============================
+            let addDetailsOfRevisionCounter = 1;
+            $('#addAddRowDetailsOfRevision').click(function(){
+                addDetailsOfRevisionCounter++;
+                if(addDetailsOfRevisionCounter > 1){
+                    $('#removeAddRowDetailsOfRevision').removeClass('d-none');
+                }
+                console.log('Details of Revision Row(+):', addDetailsOfRevisionCounter);
+
+                var html = '<div class="divAddDetailsOfRevisionHeader_'+addDetailsOfRevisionCounter+' generatedDivHeader border-top pt-2 mt-4"><span class="badge badge-secondary"> # '+ addDetailsOfRevisionCounter +'.</span> <label>Details of Revision:</label></div>';
+                    html += '   <div class="row mt-2 generatedDiv"  id="row_'+addDetailsOfRevisionCounter+'">';
+                    html += '       <div class="col-md-12" id="row_'+addDetailsOfRevisionCounter+'">';
+                    html += '           <textarea class="form-control  mb-3" rows="3" id="txtAddDetailsOfRevision'+addDetailsOfRevisionCounter+'" name="details_of_revision'+addDetailsOfRevisionCounter+'" tyle="height: 134px;"></textarea>';
+                    html += '       <div>';
+                    html += '   </div>';
+
+                $('#addDetailsOfRevisionCounter').val(addDetailsOfRevisionCounter);
+                $('#divAddDetailsOfRevision').append(html);
+
+                //============================= REMOVE Details of Revision =============================
+                $("#cardAddDetailsOfRevision").on('click', '#removeAddRowDetailsOfRevision', function(e){
+                    let plcSaRevisionHistory =  $('#removeAddRowDetailsOfRevision').val();
+
+                    if(addDetailsOfRevisionCounter > 1){
+                        $('.divAddDetailsOfRevisionHeader_'+addDetailsOfRevisionCounter).remove();
+                        $('#cardAddDetailsOfRevision').find('#row_'+addDetailsOfRevisionCounter).remove();
+                        addDetailsOfRevisionCounter--;
+                        $('#addDetailsOfRevisionCounter').val(addDetailsOfRevisionCounter).trigger('change');
+                        console.log('Details of Revision Row(-):' + addDetailsOfRevisionCounter);
+                    }
+
+                    if(addDetailsOfRevisionCounter < 2){
+                        $('#removeAddRowDetailsOfRevision').addClass('d-none');
+                    }
+                });
+            });
+
+            // =============================== EDIT ===============================
+            let editDetailsOfRevisionCounter = 1;
+            $('#addEditRowDetailsOfRevision').click(function(){
+                editDetailsOfRevisionCounter++;
+                if(editDetailsOfRevisionCounter > 1){
+                    $('#removeEditRowDetailsOfRevision').removeClass('d-none');
+                }
+                console.log('Details of Revision Row(+):', editDetailsOfRevisionCounter);
+
+                var html = '<div class="divEditDetailsOfRevisionHeader_'+editDetailsOfRevisionCounter+' generatedDivHeader border-top pt-2 mt-4"><span class="badge badge-secondary"> # '+ editDetailsOfRevisionCounter +'.</span> <label>Details of Revision:</label></div>';
+                    html += '   <div class="row mt-2 generatedDiv"  id="row_'+editDetailsOfRevisionCounter+'">';
+                    html += '       <div class="col-md-12" id="row_'+editDetailsOfRevisionCounter+'">';
+                    html += '           <textarea class="form-control  mb-3" rows="3" id="txtEditDetailsOfRevision'+editDetailsOfRevisionCounter+'" name="details_of_revision'+editDetailsOfRevisionCounter+'" tyle="height: 134px;"></textarea>';
+                    html += '       <div>';
+                    html += '   </div>';
+
+                $('#editDetailsOfRevisionCounter').val(editDetailsOfRevisionCounter);
+                $('#divEditDetailsOfRevision').append(html);
+            });
+
+            //============================= REMOVE =============================
+            $("#cardEditDetailsOfRevision").on('click', '#removeEditRowDetailsOfRevision', function(e){
+                let plcSaRevisionHistory =  $('#removeEditRowDetailsOfRevision').val();
+
+                if(editDetailsOfRevisionCounter > 1){
+                    $('.divEditDetailsOfRevisionHeader_'+editDetailsOfRevisionCounter).remove();
+                    $('#cardEditDetailsOfRevision').find('#row_'+editDetailsOfRevisionCounter).remove();
+                    editDetailsOfRevisionCounter--;
+                    $('#editDetailsOfRevisionCounter').val(editDetailsOfRevisionCounter).trigger('change');
+                    console.log('Details of Revision Row(-):' + editDetailsOfRevisionCounter);
+                }
+
+                if(editDetailsOfRevisionCounter < 2){
+                    $('#removeEditRowDetailsOfRevision').addClass('d-none');
+                }
+            });
+
+            $('#btnExportSummary').on('click', function(){
+                // console.log($('#formViewWPRequest').serialize());
+                let year_id = $('#selectYearId').val();
+                let select_category = $('#selectCategoryId').val();
+
+                window.location.href = `export_summary/${year_id}/${select_category}`;
+                // console.log(year_id);
+                // console.log(select_category);
+                $('#modalExportSummary').modal('hide');
+            });
+
         });// JQUERY DOCUMENT READY END
     </script>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make($layout, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/Jsox_test/resources/views/PLC Dashboard/PMI.blade.php ENDPATH**/ ?>

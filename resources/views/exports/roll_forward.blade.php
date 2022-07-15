@@ -1,8 +1,16 @@
 <table>
 
+    <?php
+    for($q= 0; $q < count($rf_details); $q++){
+
+        $year = $rf_details[$q]->year;
+        $result = substr("$year",2);
+    }
+    ?>
+
     <tr>
         <th>
-            <b>PMI FY21</b>
+            <b>PMI FY{{ $result }}</b>
         </th>
         <th>
             <b>Details of Findings (Roll Forward)</b>

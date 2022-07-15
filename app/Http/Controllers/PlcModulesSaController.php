@@ -938,18 +938,17 @@ class PlcModulesSaController extends Controller
     //============================== COUNT STATUS BY CATEGORY //==============================
     public function count_pmi_category_by_id(Request $request){
         $get_sa_status = PLCModuleSA::where('category', $request->category)->where('logdel', 0)->get();
+
+        //FIRST HALF
         $get_dic_good_status = collect($get_sa_status)->where('dic_status', 'G');
         $get_oec_good_status = collect($get_sa_status)->where('oec_status', 'G');
         
+        //SECOND HALF
         $get_dic_not_good_status = collect($get_sa_status)->where('dic_status', 'NG');
         $get_oec_not_good_status = collect($get_sa_status)->where('oec_status', 'NG');
         // return $get_sa_status;
 
-        //     if(){
 
-        //     }else{
-
-        //     }
         return response()->json(['get_sa_status' => $get_sa_status, 
             'get_dic_good_status' => count($get_dic_good_status), 
             'get_oec_good_status' => count($get_oec_good_status),

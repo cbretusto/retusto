@@ -36,7 +36,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>CLC Module</h1>
+                        <h1>Sample Matrix</h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">CLC Evidences</h3>
+                                <h3 class="card-title">Reference</h3>
                             </div>
                             <div class="card-body">
                                 <div style="float: right;">                   
@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
                                         <br>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Process Name: </strong></span>
                                             </div>
@@ -102,31 +102,37 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <input type="hidden" class="form-control">                                     
                                         </div>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <input type="hidden" class="form-control">                                     
                                         </div>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group mb-1">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Control No: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div>
                                             <input type="text" class="form-control" id="txtAddControlNo" name="control_no" autocomplete="off"> 
                                         </div> 
                                     </div>
-
-                                    <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-default"><strong>Document: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
-                                            </div>
-                                            <input type="text" class="form-control" id="txtAddDocument" name="document" autocomplete="off"> 
-                                        </div> 
+                                    <div class="border-top border-bottom">
+                                        <div class="col-sm-12 float-right" id="divAddDocument">
+                                            <input type="hidden" name="document_number" id="addDocumentCounter" value="1">
+                                            <button type="button" class="btn btn-sm btn-dark float-right mb-2 mt-1" id="addRowDocument"><i class="fa fa-plus"></i> Add Row</button>
+                                            <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 mt-1 d-none" id="removeRowDocument"><i class="fas fa-times"></i> Remove Row</button>
+                                        </div>
+                                        <div class="form-group col-sm-12 flex-column d-flex" id="idDocumentDiv"> 
+                                            <div class="input-group mb-1">
+                                                <div class="input-group-prepend">
+                                                    -<span class="input-group-text ml-2" id="inputGroup-sizing-default"><strong>1. Document: &nbsp;&nbsp;&nbsp; </strong></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="txtAddDocument_1" name="document_1" autocomplete="off"> 
+                                            </div> 
+                                        </div>
                                     </div>
 
-                                    <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                    <div class="form-group col-sm-12 flex-column d-flex mt-2"> 
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Frequency: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div>
@@ -135,7 +141,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>No. of Sample: </strong></span>
                                             </div>
@@ -144,7 +150,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>In-Charge: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div> 
@@ -180,7 +186,7 @@
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
                                         <input type="hidden" class="form-control" name="jsox_plc_matrix_id" id="txtEditJsoxPlcMatrixId"> 
                                         <br>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Process Name: </strong></span>
                                             </div>
@@ -190,13 +196,13 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <input type="hidden" class="form-control">                                     
                                         </div>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <input type="hidden" class="form-control">                                     
                                         </div>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group mb-1">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Control No: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div>
@@ -204,17 +210,33 @@
                                         </div> 
                                     </div>
 
-                                    <div class="form-group col-sm-12 flex-column d-flex"> 
+                                    {{-- <div class="form-group col-sm-12 flex-column d-flex"> 
                                         <div class="input-group mb-4">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Document: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div>
                                             <input type="text" class="form-control" id="txtEditDocument" name="document"> 
                                         </div> 
+                                    </div> --}}
+                                    <div class="border-top border-bottom">
+                                        <div class="col-sm-12 float-right" id="divAddDocumentEdit">
+                                            <input type="hidden" name="document_number" id="addDocumentCounterEdit" value="1">
+                                            <button type="button" class="btn btn-sm btn-dark float-right mb-2 mt-1" id="addRowDocumentEdit"><i class="fa fa-plus"></i> Add Row</button>
+                                            <button type="button" class="btn btn-sm btn-danger float-right mr-2 mb-2 mt-1 d-none" id="removeRowDocumentEdit"><i class="fas fa-times"></i> Remove Row</button>
+                                        </div>
+                                        <div class="form-group col-sm-12 flex-column d-flex" id="idDocumentDivEdit"> 
+
+                                            <div class="input-group mb-1">
+                                                <div class="input-group-prepend">
+                                                    -<span class="input-group-text ml-2" id="inputGroup-sizing-default"><strong>1. Document: &nbsp;&nbsp;&nbsp; </strong></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="txtEditDocument_1" name="document_1" autocomplete="off"> 
+                                            </div> 
+                                        </div>
                                     </div>
 
-                                    <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                    <div class="form-group col-sm-12 flex-column d-flex mt-2"> 
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>Frequency: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div>
@@ -223,7 +245,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>No. of Sample: </strong></span>
                                             </div>
@@ -232,7 +254,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 flex-column d-flex"> 
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default"><strong>In-Charge: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></span>
                                             </div> 
@@ -313,7 +335,8 @@
                 "columns":[
                     { "data" : "process_name" },
                     { "data" : "control_no" },
-                    { "data" : "document" },
+                    // { "data" : "document" },
+                    { "data" : "documentsxz" },
                     { "data" : "frequency" },
                     { "data" : "samples" },
                     { "data" : "in_charge" },
@@ -409,6 +432,89 @@
                 event.preventDefault();
                 ChangeJsoxPlcMatrixStatus();
             });
+
+            //============================= ADD DOCUMENT MULTIPLE=============================
+            let documentCounter = 1;
+            $('#addRowDocument').on('click', function(){
+                documentCounter++;
+                if(documentCounter > 1){
+                    $('#removeRowDocument').removeClass('d-none');
+                }
+                console.log('document Row(+):', documentCounter);
+                let html;
+
+                // html ='<div class="form-group col-sm-12">';
+                    html ='<div class="input-group divDocumentHeader_'+documentCounter+'">';
+                        html +='<div class="input-group-prepend ">';
+                        html +='-<span class="input-group-text ml-2 mt-2" id="inputGroup-sizing-default"><strong>'+documentCounter+'. Document: &nbsp;&nbsp;&nbsp; </strong></span>';
+                        html +='</div>';
+                        html +=' <input type="text" class="form-control mt-2" id="txtAddDocument_'+documentCounter+'" name="document_'+documentCounter+'" autocomplete="off"> ';
+                    html +='</div>';
+                // html +='</div>';
+
+                $('#addDocumentCounter').val(documentCounter);
+                $('#idDocumentDiv').append(html);
+            });
+            
+
+            //============================= REMOVE ADD DOCUMENT MULTIPLE=============================
+            $("#divAddDocument").on('click', '#removeRowDocument', function(e){
+                let plcCapaCapaAnalysis =  $('#removeRowDocument').val();
+
+                if(documentCounter > 1){
+                    $('.divDocumentHeader_'+documentCounter).remove();
+                    // $('#cardCapaAnalysis').find('#row_'+documentCounter).remove();
+                    documentCounter--;
+                    $('#addDocumentCounter').val(documentCounter).trigger('change');
+                    console.log('document Row(-):' + documentCounter);
+                }
+
+                if(documentCounter < 2){
+                    $('#removeRowDocument').addClass('d-none');
+                }
+            });
+
+            //============================= EDIT DOCUMENT MULTIPLE=============================
+            let documentCounterEdit = 1;
+            $('#addRowDocumentEdit').on('click', function(){
+                documentCounterEdit++;
+                if(documentCounterEdit > 1){
+                    $('#removeRowDocumentEdit').removeClass('d-none');
+                }
+                console.log('document Edit Row(+):', documentCounterEdit);
+                let html;
+
+                // html ='<div class="form-group col-sm-12">';
+                    html ='<div class="input-group divDocumentEditHeader_'+documentCounterEdit+'">';
+                        html +='<div class="input-group-prepend ">';
+                        html +='-<span class="input-group-text ml-2 mt-2" id="inputGroup-sizing-default"><strong>'+documentCounterEdit+'. Document: &nbsp;&nbsp;&nbsp; </strong></span>';
+                        html +='</div>';
+                        html +=' <input type="text" class="form-control mt-2" id="txtEditDocument_'+documentCounterEdit+'" name="document_'+documentCounterEdit+'" autocomplete="off"> ';
+                    html +='</div>';
+                // html +='</div>';
+                        
+                
+
+                $('#addDocumentCounterEdit').val(documentCounterEdit);
+                $('#idDocumentDivEdit').append(html);
+            });
+
+            //============================= REMOVE EDIT DOCUMENT MULTIPLE=============================
+            $("#divAddDocumentEdit").on('click', '#removeRowDocumentEdit', function(e){
+                let plcCapaCapaAnalysis =  $('#removeRowDocumentEdit').val();
+
+                if(documentCounterEdit > 1){
+                    $('.divDocumentEditHeader_'+documentCounterEdit).remove();
+                    documentCounterEdit--;
+                    $('#addDocumentCounterEdit').val(documentCounterEdit).trigger('change');
+                    console.log('document Edit Row(-):' + documentCounterEdit);
+                }
+
+                if(documentCounterEdit < 2){
+                    $('#removeRowDocumentEdit').addClass('d-none');
+                }
+            });
+
 
         }); // JQUERY DOCUMENT READY END
     </script>                  
